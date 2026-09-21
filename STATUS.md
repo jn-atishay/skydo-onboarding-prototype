@@ -268,3 +268,7 @@ box; Next and browser back; Verify PAN still moving on to Business details by it
 The home step is now called "Focused home and test payment" in the rail, and "The focused
 home screen" in its (i) popup, matching the product's own name for it. Notes and code
 comments use the same name.
+
+## Copy: Sign up popup (21 Sep 2026)
+Removed the two points about accounts only being created by the customer and about
+"invites" being marketing emails. The Sign up popup now opens on the email address point.

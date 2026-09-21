@@ -17,8 +17,6 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
   login: {
     title: "Sign up",
     why: [
-      "This is the only way a Skydo account is ever created: the customer makes it themselves.",
-      "Nobody at Skydo can create an account and send an invite. When sales say they sent an invite, they mean a marketing email carrying a sign-in link into an account that already exists.",
       "The email address is the account's main identity, so an email already attached to another user is refused.",
       "A referral or partner link changes this screen: the customer sees who invited them and the reward waiting for them.",
     ],
