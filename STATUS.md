@@ -214,3 +214,17 @@ Each stage was compared with its capture in product-deep-dive-1/assets.
 
 ### Still open
 The live industry list and document menu, pending a decision (see Phase 3).
+
+## Tap to fill (21 Sep 2026)
+Every text field in the product screens now works by tapping: an empty field fills with a
+sample that suits it, a filled field clears. Typing, pasting and dropping are switched
+off. Samples: the example.com email, 9876543210, a PAN whose fourth letter matches the
+business type in the top bar (P, C, H or F), the sample website, account number and IFSC,
+"Priya" for the name, "ARJUN MEHTA" and a personal PAN on the owners list, and
+4 8 2 1 9 3 for code boxes (the whole row fills from any box). Dropdowns (search or
+select, nationality, country, currency), read-only and disabled fields are left alone so
+they still open their list.
+
+Verified: sign-up email (fill, clear, refill), the six-box email code (fill, clear,
+refill), mobile number, PAN for Freelancer and Pvt Ltd, the website field with the two
+dropdowns untouched, the four-box phone code, and the HUF members row.

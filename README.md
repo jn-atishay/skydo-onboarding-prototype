@@ -20,6 +20,7 @@ each step, what usually goes wrong, and why each screen exists.
 | (i) beside a field | Extra explanation for that field, such as what the fourth letter of a PAN decides. |
 | Back / Next | Move through the journey. Browser back and forward work too. |
 | Reset | Clears everything and returns to the start. |
+| Tap a text field | Fills it with a sample value that suits the field. Tap again to clear it. Typing is switched off, so no real details can be entered. Dropdowns still open their list. |
 | P | Presenter mode: hides the rail and bars so only the product shows. The (i) buttons stay. |
 
 The home step has its own variants in the top bar: Accounts created, Next payment
@@ -53,6 +54,9 @@ The product expects a server. This prototype replaces that layer rather than the
 - **Analytics and monitoring are disabled outright.** Mixpanel, WebEngage, Segment,
   Sentry, Google Tag Manager and Usersnap are all replaced by no-ops.
 - There is no authentication. Any email is accepted and any code works.
+- No field takes typing. A tap fills a sample (an example.com email, a sample PAN whose
+  fourth letter matches the chosen business type, sample bank details, 4 8 2 1 9 3 for
+  codes); a second tap clears it.
 
 ## Fidelity, and where it stops
 

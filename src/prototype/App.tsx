@@ -5,6 +5,10 @@ import { SCREENS, screensFor, indexOfStep } from "./screens";
 import { BottomBar, LeftRail, TopBar } from "./components/Controls";
 import { InfoButton, InfoPanel } from "./components/InfoPopup";
 import { useSeedProductStores } from "./useProductStores";
+import { installTapToFill } from "./tapToFill";
+
+// No field in the product screens takes typing: tap to fill a sample, tap to clear.
+installTapToFill();
 import { ScreenHost } from "./ScreenHost";
 import { ScreenErrorBoundary } from "./components/ErrorBoundary";
 import { notifyRouter } from "../shims/next-router";
