@@ -272,3 +272,20 @@ comments use the same name.
 ## Copy: Sign up popup (21 Sep 2026)
 Removed the two points about accounts only being created by the customer and about
 "invites" being marketing emails. The Sign up popup now opens on the email address point.
+
+## Popup numbers: August 2026 funnel (21 Sep 2026)
+Every (i) popup now shows the same five figures for its screen, for August 2026: people
+who landed on it, moved ahead, dropped off, and the forward and drop-off rates, followed
+by one or two broad reasons people drop off. The older mixed figures are gone.
+
+How they were counted: everyone who signed up between 1 and 31 August 2026, followed
+through the steps to 21 September, rounded to the nearest 10. Sign up and email code
+cover the skydo.com sign-up form only (website analytics, about four in five new
+accounts). The mobile number screen is an estimate combining analytics and the
+database. Every later screen is from the production database. Directors and partners
+count company types only; documents count Freelancer, Sole Proprietor and HUF only.
+Checks will still rise a little, as 430 August sign-ups were still in manual review.
+"Moved ahead" on the focused home screen means receiving a payment, test or real.
+
+Verified: all 12 Freelancer screens and the Pvt Ltd directors screen show their figures;
+the tiles wrap two to a row at phone width.

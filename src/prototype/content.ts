@@ -1,17 +1,34 @@
 // The text behind every (i) button.
 // "why" is plain language for sales and support: no internal state names, no event names.
-// "numbers" must be traceable to the research file (_work/research/flow-facts.md in the
-// product-deep-dive-1 folder) or say plainly that there is no figure for that step.
-// Period for every production figure: the 90 days to 20 September 2026.
+// "funnel" is August 2026 from production. Sign up and email code come from website
+// analytics (the skydo.com sign-up form); the mobile number screen combines analytics
+// and the database; every later screen comes from the database, following everyone who
+// signed up in August through the steps.
+
+/**
+ * August 2026 on this screen. "Landed" and "moved ahead" count people, from production
+ * data for everyone who signed up between 1 and 31 August 2026, followed to 21 September.
+ * Drop-off and percentages are worked out from the two counts.
+ */
+export interface Funnel {
+  landed: number;
+  moved: number;
+  /** What counts as moving ahead from this screen, in plain words. */
+  movedMeans: string;
+  /** Who is counted, when it is not everyone who reached the screen. */
+  scope?: string;
+  /** One or two broad reasons people stop here. */
+  reasons: string[];
+}
 
 export interface ScreenInfo {
   title: string;
   why: string[];
-  numbers: string[] | null; // null renders "No data for this step yet"
-  numbersNote?: string;
+  funnel: Funnel;
 }
 
-export const PERIOD = "Production, 90 days to 20 September 2026.";
+export const PERIOD =
+  "People who signed up in August 2026, followed to 21 September. Figures rounded to the nearest 10.";
 
 export const SCREEN_INFO: Record<string, ScreenInfo> = {
   login: {
@@ -20,11 +37,16 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The email address is the account's main identity, so an email already attached to another user is refused.",
       "A referral or partner link changes this screen: the customer sees who invited them and the reward waiting for them.",
     ],
-    numbers: [
-      "40,542 sign-ups in the period across all business types.",
-      "15,469 of those never got past the PAN screen, so we never learn their business type.",
-    ],
-    numbersNote: "Sum of the business-type table; recent sign-ups may still be in flight.",
+    funnel: {
+      landed: 17147,
+      moved: 12008,
+      movedMeans: "asked for an email code",
+      scope: "People who filled the sign-up form on skydo.com, where about four in five new accounts start.",
+      reasons: [
+        "They have just given a phone number and are now asked for an email and a code: a second \"who are you\" step they did not expect.",
+        "Most are on a phone, often inside the Instagram or Facebook browser, and many were only browsing after an ad.",
+      ],
+    },
   },
   "email-otp": {
     title: "Email code",
@@ -33,7 +55,16 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "It is the only check at this stage. There is no phone code yet.",
       "The customer can fix a typo without starting again, using the edit link on this screen.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 12008,
+      moved: 9633,
+      movedMeans: "entered the code and got into Skydo",
+      scope: "People who asked for a code on skydo.com, logged in within a day.",
+      reasons: [
+        "Getting the code means leaving the page for an inbox, and on a phone that is where people get distracted or the mail lands late.",
+        "Some never meant to open an account yet and stop once it asks for effort.",
+      ],
+    },
   },
   mobile: {
     title: "Mobile number",
@@ -43,7 +74,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The WhatsApp box is ticked by default, and it is how the customer later hears that a payment has settled.",
       "Two accounts are allowed to share one phone number, so this is not an identity check.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 2800,
+      moved: 2300,
+      movedMeans: "saved a mobile number",
+      scope: "Only people who signed up on the Skydo login page itself see this screen; website sign-ups gave their number already.",
+      reasons: [
+        "It is another question straight after signing in, with nothing yet to show for it.",
+      ],
+    },
   },
   "kyc-intro": {
     title: "Terms and how you found us",
@@ -53,7 +92,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The question about how they found us has eight answers and is entirely optional, so the button works with nothing selected.",
       "It is skipped when we already know the referrer or the marketing source that brought them in.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 13900,
+      moved: 12026,
+      movedMeans: "agreed to the terms and started",
+      reasons: [
+        "The first mention of KYC and a list of documents they may not have to hand, before they see how small the first step is.",
+        "Some signed up to look around and are not ready to commit.",
+      ],
+    },
   },
   pan: {
     title: "Business PAN",
@@ -63,11 +110,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "An unsupported PAN is not a dead end: the customer sees a Change PAN button and can carry on.",
       "Changing the PAN later wipes the business details already entered, and the customer is warned first.",
     ],
-    numbers: [
-      "15,469 sign-ups in the period stopped here without a usable PAN.",
-      "That is the single largest loss anywhere in the journey.",
-      "23 cases needed a manual PAN review because the government source could not be reached.",
-    ],
+    funnel: {
+      landed: 12026,
+      moved: 9160,
+      movedMeans: "entered a business PAN",
+      reasons: [
+        "The PAN is not to hand, or the business is not one Skydo can serve.",
+        "This is the first step that makes the account real, so people who were only exploring stop here.",
+      ],
+    },
   },
   "business-details": {
     title: "Business details",
@@ -77,12 +128,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Freelancers without a GST are asked their monthly income, and only the lower option passes automatically.",
       "A missing website does not block sign-up, but it does stop the first payment clearing later.",
     ],
-    numbers: [
-      "About 53 of every 100 sign-ups finish this step.",
-      "12,444 cases were sent for an industry check, the most common reason for a manual review.",
-      "5,002 freelancers were sent for review for declaring the higher income option.",
-      "The catalogue holds 24 industries: four high risk, eight medium, eleven low, plus Others.",
-    ],
+    funnel: {
+      landed: 9160,
+      moved: 6074,
+      movedMeans: "submitted the business details",
+      reasons: [
+        "It is the longest form, and it asks for proof the business is real (a website, the industry, income) that many small freelancers do not have.",
+        "The effort feels high while there is still nothing in return.",
+      ],
+    },
   },
   aadhaar: {
     title: "Aadhaar through DigiLocker",
@@ -92,7 +146,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The name on the Aadhaar must match the name on the PAN, which is one of the most common places a real customer gets stuck.",
       "If DigiLocker is down there is no fallback: the customer has to try again later.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 6074,
+      moved: 5287,
+      movedMeans: "verified Aadhaar through DigiLocker",
+      reasons: [
+        "They have to leave Skydo for a government site and come back; any hiccup there, a code or an outage, ends the attempt.",
+        "Sharing a personal identity document is a big ask for some.",
+      ],
+    },
   },
   "mobile-otp": {
     title: "Confirm the mobile number",
@@ -101,7 +163,14 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The number confirmed here is the one their international accounts are linked to.",
       "Freelancers and sole proprietors go straight to the bank step after this.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 5287,
+      moved: 5274,
+      movedMeans: "confirmed the phone code",
+      reasons: [
+        "Almost nobody leaves here. By now people are committed, and a phone code is familiar.",
+      ],
+    },
   },
   management: {
     title: "The people who run the business",
@@ -111,10 +180,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Companies must also produce a second owner or director whose PAN name matches, which is one of the harder walls for a small company.",
       "Partnerships must add up to exactly 100 percent across at least two partners.",
     ],
-    numbers: [
-      "527 partnerships were sent for review over how long the firm had existed.",
-      "527 cases were sent for review over how much of the business the main owner holds.",
-    ],
+    funnel: {
+      landed: 971,
+      moved: 945,
+      movedMeans: "added the directors or partners",
+      scope: "Private Limited, LLP, Partnership and HUF only.",
+      reasons: [
+        "They need details of other owners or directors that they may not have to hand.",
+      ],
+    },
   },
   bank: {
     title: "Bank account",
@@ -124,7 +198,14 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "A freelancer without a GST is the exception: they can change their registered business name to match and try again.",
       "The question about past international payments decides which document we recommend next.",
     ],
-    numbers: null,
+    funnel: {
+      landed: 5248,
+      moved: 5105,
+      movedMeans: "added a bank account",
+      reasons: [
+        "The name on the bank account has to match the PAN, and for most a mismatch cannot be fixed on the spot.",
+      ],
+    },
   },
   documents: {
     title: "Documents",
@@ -134,11 +215,16 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "A bank statement on that path is read automatically, so those customers can be live in minutes.",
       "Anything under Choose from other documents is read by a person, so the customer waits before they can be paid.",
     ],
-    numbers: [
-      "What freelancers actually upload: contract 3,167, bank statement 1,912, platform screenshot 1,117.",
-      "Then invoice 663, tax return 209, Udyam 185, certificate of practice 122.",
-      "7,439 cases were sent for review for a missing government registration.",
-    ],
+    funnel: {
+      landed: 4192,
+      moved: 3076,
+      movedMeans: "shared a document and submitted",
+      scope: "Freelancer, Sole Proprietor and HUF only; the other types skip this step.",
+      reasons: [
+        "They have nothing yet that proves foreign clients: no contract and no payment from abroad.",
+        "New freelancers often sign up before their first overseas client.",
+      ],
+    },
   },
   verification: {
     title: "Checks, then accounts ready",
@@ -148,11 +234,16 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The on-screen promise of an update within a day is display text only: there is no timer, reminder or escalation behind it.",
       "Accounts ready is the end of the line. A live customer never moves past it, and the first payment does not change their status.",
     ],
-    numbers: [
-      "Freelancers reach accounts ready 22% of the time, sole proprietors 61%, companies 73%.",
-      "LLPs 77%, partnerships 66%, Hindu Undivided Families 54%.",
-      "About 54,865 accounts sit at accounts ready in total.",
-    ],
+    funnel: {
+      landed: 3957,
+      moved: 3393,
+      movedMeans: "had their accounts created",
+      scope: "Of those who did not: 430 are still waiting in manual review, and 134 were closed (business not supported, or no foreign clients).",
+      reasons: [
+        "A person has to review the case and asks for more information, which slows or stops it.",
+        "Some businesses turn out not to be eligible.",
+      ],
+    },
   },
   home: {
     title: "The focused home screen",
@@ -162,10 +253,15 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "There are three ways to get paid, and sharing account details needs nothing except finished onboarding.",
       "Customers still in review can look around and even run a test payment, but their account numbers stay hidden until the review clears.",
     ],
-    numbers: [
-      "The test payment shows as USD 0.10 on screen and Skydo covers it.",
-      "It disappears as soon as any invoice exists, which usually comes first.",
-    ],
+    funnel: {
+      landed: 3393,
+      moved: 2059,
+      movedMeans: "received a payment, the test payment or a real one",
+      reasons: [
+        "No client payment is due yet, so there is nothing to do today.",
+        "The test payment is optional and easy to skip.",
+      ],
+    },
   },
 };
 

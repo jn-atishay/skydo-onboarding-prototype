@@ -1,6 +1,6 @@
 // The (i) button that sits on every screen, and the panel it opens.
 import React, { useEffect } from "react";
-import { PERIOD, SCREEN_INFO } from "../content";
+import { Funnel, PERIOD, SCREEN_INFO } from "../content";
 
 export function InfoButton({ onClick, label = "Why this screen exists" }: { onClick: () => void; label?: string }) {
   return (
@@ -50,23 +50,48 @@ export function InfoPanel({
           ))}
         </section>
 
-        <section className="proto-modal-section">
-          <h3>What the numbers say</h3>
-          {info.numbers ? (
-            <>
-              <ul>
-                {info.numbers.map((n, i) => (
-                  <li key={i}>{n}</li>
-                ))}
-              </ul>
-              <p className="proto-modal-source">{info.numbersNote ? `${info.numbersNote} ${PERIOD}` : PERIOD}</p>
-            </>
-          ) : (
-            <p className="proto-modal-nodata">No data for this step yet.</p>
-          )}
-        </section>
+        <FunnelNumbers funnel={info.funnel} />
       </div>
     </div>
+  );
+}
+
+const round10 = (n: number) => Math.round(n / 10) * 10;
+const fmt = (n: number) => round10(n).toLocaleString("en-IN");
+
+/** August on this screen: how many arrived, went on and left, and why they leave. */
+function FunnelNumbers({ funnel }: { funnel: Funnel }) {
+  const { landed, moved, movedMeans, scope, reasons } = funnel;
+  const forward = Math.round((moved / landed) * 100);
+  const rows: [string, string][] = [
+    ["Landed on this screen", fmt(landed)],
+    ["Moved ahead", fmt(moved)],
+    ["Dropped off", fmt(landed - moved)],
+    ["Moved forward", `${forward}%`],
+    ["Dropped off", `${100 - forward}%`],
+  ];
+  return (
+    <section className="proto-modal-section">
+      <h3>August 2026, per month</h3>
+      <dl className="proto-funnel">
+        {rows.map(([k, v], i) => (
+          <div key={i} className={`proto-funnel-row ${i === 2 || i === 4 ? "is-drop" : ""}`}>
+            <dt>{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <h3 className="proto-funnel-why">Why people drop off here</h3>
+      <ul>
+        {reasons.map((r, i) => (
+          <li key={i}>{r}</li>
+        ))}
+      </ul>
+      <p className="proto-modal-source">
+        Moved ahead means {movedMeans}. {scope ? `${scope} ` : ""}
+        {PERIOD}
+      </p>
+    </section>
   );
 }
 
