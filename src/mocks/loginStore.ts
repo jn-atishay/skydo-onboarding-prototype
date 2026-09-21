@@ -1,6 +1,7 @@
 // Stand-in for the product's login store. It keeps the same shape the login screen
 // reads, but performs no authentication and no navigation.
 import { create } from "zustand";
+import { usePrototype } from "../prototype/state";
 
 interface LoginState {
   isVerified: boolean;
@@ -15,7 +16,9 @@ const useLoginStore = create<LoginState>()((set) => ({
   isBusy: false,
   resetLogin: () => set({ isVerified: false, isBusy: false }),
   register: async () => {
+    // Signing in moves the demo on to the mobile-number screen.
     set({ isBusy: false });
+    usePrototype.getState().set({ step: "mobile", variant: "" });
   },
   login: async ({ complete }) => {
     set({ isBusy: true });

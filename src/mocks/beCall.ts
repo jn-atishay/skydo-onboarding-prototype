@@ -17,6 +17,14 @@ type Config = {
 
 const ok = (data: any = null, message = "") => ({ success: true, message, data });
 
+/** The sample referrer shown on the referral variant of the sign-up screen. */
+export const SAMPLE_REFERRER = {
+  referrerId: 4021,
+  exporterName: "Rahul Verma",
+  campaignName: "Refer and earn",
+  refereeRewardValue: 30,
+};
+
 /** A short pause so the product's own loading states are visible in the demo. */
 const pause = (ms = 450) => new Promise((r) => setTimeout(r, ms));
 
@@ -48,6 +56,16 @@ function answer(path: string, config: Config): any {
       gstDetails: proto.hasGst ? [{ gstin: "29ABCPS1234K1Z5", status: "ACTIVE" }] : [],
       isPanVerified: true,
     });
+  }
+
+  // --- referral --------------------------------------------------------------
+  // Only the referral variant of the sign-up screen has a referrer.
+  if (p.includes("referrer-details")) {
+    if (usePrototype.getState().variant !== "referral") return ok({});
+    return ok(SAMPLE_REFERRER);
+  }
+  if (p.includes("referral")) {
+    return ok({});
   }
 
   // --- industries ----------------------------------------------------------

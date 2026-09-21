@@ -5,14 +5,7 @@ import useUserData from "../skydo/store/useUserData";
 import useReferralStore from "../skydo/store/useReferralStore";
 import { getProto, usePrototype } from "./state";
 import { SAMPLE, displayName, onboardingStateForStep } from "../mocks/fixtures";
-
-/** Sample referrer, used only by the referral variant of the sign-up screen. */
-const SAMPLE_REFERRER = {
-  referrerId: 4021,
-  exporterName: "Rahul Verma",
-  campaignName: "Refer and earn",
-  refereeRewardValue: 50,
-};
+import { SAMPLE_REFERRER } from "../mocks/beCall";
 
 export function useSeedProductStores() {
   const { step, businessType, panVerified, aadhaarStage, variant } = usePrototype();

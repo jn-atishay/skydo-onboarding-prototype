@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import path from "path";
+import { baseAssetPaths } from "./plugins/base-asset-paths";
 
 const shim = (p: string) => path.resolve(__dirname, "src/shims", p);
 const mock = (p: string) => path.resolve(__dirname, "src/mocks", p);
@@ -12,7 +13,11 @@ const BASE = process.env.PROTOTYPE_BASE ?? "/skydo-onboarding-prototype/";
 
 export default defineConfig({
   base: BASE,
-  plugins: [react(), svgr({ include: "**/*.svg" })],
+  plugins: [
+    baseAssetPaths(path.resolve(__dirname, "public")),
+    react(),
+    svgr({ include: "**/*.svg" }),
+  ],
   resolve: {
     alias: [
       // --- Next.js runtime, replaced by small stand-ins -------------------

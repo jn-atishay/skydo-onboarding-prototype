@@ -188,6 +188,7 @@ body,
 .proto-stage {
   overflow: auto;
   padding: 22px;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -404,4 +405,32 @@ body,
 .proto-field-info:hover {
   background: #5b7cfa;
   color: #fff;
+}
+
+/* Screens that are a whole page in the product (the login page) rather than a
+   card inside the onboarding shell. */
+.proto-product-page {
+  min-height: 620px;
+  height: 100%;
+}
+.proto-product-page > * {
+  height: 100%;
+}
+
+/* The login page paints its own background with a fixed, negatively-stacked image.
+   The transform makes this wrapper the containing block so that image stays inside
+   the screen instead of covering the whole window, and lifting it out of the
+   negative layer lets it show through. */
+.proto-screen-wrap:has(.proto-product-page) {
+  transform: translateZ(0);
+  /* matches the product's own login background, in case the image is slow */
+  background: #f4f6fd;
+  /* the login page is designed for a full window, so give it the whole stage */
+  max-width: none;
+}
+.proto-product-page .-z-1 {
+  z-index: 0;
+}
+.proto-product-page > * {
+  position: relative;
 }

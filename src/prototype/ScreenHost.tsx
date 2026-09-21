@@ -2,7 +2,7 @@
 // wired up yet, it says so plainly rather than faking it.
 import React, { useEffect, useRef } from "react";
 import { StepId, usePrototype } from "./state";
-import EmailLoginFlow from "../skydo/components/Common/EmailLoginFlow";
+import DesktopLoginPage from "../skydo/components/LoginComponents/DesktopLoginPage";
 import MobileInputComp from "../skydo/components/LoginComponents/MobileInputComp";
 import KYCIntro from "../skydo/components/KYCIntro";
 import CompanyPanDetails from "../skydo/components/CompanyPanDetails";
@@ -65,15 +65,11 @@ export function ScreenHost({ step }: { step: StepId }) {
   switch (step) {
     case "login":
     case "email-otp":
+      // The real login page, including its background, logo, footer and the
+      // referral panel, not just the card.
       return (
-        <div className="proto-product proto-product-login">
-          <EmailLoginFlow
-            key={step}
-            isReferred={variant === "referral"}
-            register={async () => {
-              set({ step: "mobile" });
-            }}
-          />
+        <div className="proto-product-page">
+          <DesktopLoginPage key={`${step}-${variant}`} authenticated={false} isReferred={variant === "referral"} />
         </div>
       );
 
