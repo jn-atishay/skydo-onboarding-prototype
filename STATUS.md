@@ -333,3 +333,8 @@ The slide sits first in the side bar marked with a star, unnumbered, so Sign up 
 step 1. Reset and space return to it. It is drawn on a fixed canvas scaled to fit the
 frame, so it never scrolls. Verified at a 1000 x 600 window and in presenter mode;
 arrows move between the slide and Sign up; Pvt Ltd still counts 12 steps.
+
+## Slide wording: "onboardings" (21 Sep 2026)
+The funnel slide says "onboardings" and "Onboarded" instead of "got accounts" and
+"Accounts ready": the headline figure, the funnel row, the channel table column and the
+channel note. An onboarding is still an August sign-up that reached accounts ready.

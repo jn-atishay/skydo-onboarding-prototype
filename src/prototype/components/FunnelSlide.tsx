@@ -47,11 +47,11 @@ const FUNNEL: { label: string; people: number }[] = [
   { label: "Verified Aadhaar", people: 5287 },
   { label: "Added a bank account", people: 5105 },
   { label: "Submitted for checks", people: 3957 },
-  { label: "Accounts ready", people: 3393 },
+  { label: "Onboarded", people: 3393 },
   { label: "Received a first payment", people: 2059 },
 ];
 
-/** August sign-ups by where they came from, and how many reached accounts ready. */
+/** August sign-ups by where they came from, and how many were onboarded (reached accounts ready). */
 const CHANNELS: { name: string; signups: number; ready: number }[] = [
   { name: "Google", signups: 7677, ready: 1644 },
   { name: "Untagged (direct, word of mouth)", signups: 2221, ready: 644 },
@@ -79,15 +79,15 @@ export function FunnelSlide() {
           </div>
           <div className="proto-slide-stat">
             <strong>{r10(3393)}</strong>
-            <span>got accounts: {per100(3393)} of every 100 who signed up</span>
+            <span>onboardings: {per100(3393)} of every 100 who signed up</span>
           </div>
           <div className="proto-slide-stat">
             <strong>{r10(2059)}</strong>
-            <span>received a first payment: {pct(2059, 3393)} of those with accounts</span>
+            <span>received a first payment: {pct(2059, 3393)} of onboardings</span>
           </div>
           <div className="proto-slide-stat">
             <strong>{pct(1275 + 1280, 3393)}</strong>
-            <span>of new accounts are freelancers and sole proprietors</span>
+            <span>of onboardings are freelancers and sole proprietors</span>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ export function FunnelSlide() {
                 <tr>
                   <th>Channel</th>
                   <th>Sign-ups</th>
-                  <th>Got accounts</th>
+                  <th>Onboardings</th>
                   <th>Rate</th>
                 </tr>
               </thead>
@@ -132,7 +132,7 @@ export function FunnelSlide() {
                 ))}
               </tbody>
             </table>
-            <p className="proto-slide-callout">Google brings half the new accounts; referrals convert 8x Facebook.</p>
+            <p className="proto-slide-callout">Google brings half the onboardings; referrals convert 8x Facebook.</p>
           </section>
         </div>
 
