@@ -36,7 +36,21 @@ export const SCREENS: ScreenDef[] = [
     typeAware: true,
   },
   { id: "bank", label: "Bank account", typeAware: true },
-  { id: "documents", label: "Documents", typeAware: true },
+  {
+    id: "documents",
+    label: "Documents",
+    // Private limited companies and LLPs are checked from company records, so the
+    // product shows them no documents step.
+    only: [BUSINESS_TYPES.FREELANCER, BUSINESS_TYPES.PROPRIETORSHIP, BUSINESS_TYPES.PARTNERSHIP, BUSINESS_TYPES.HUF],
+    typeAware: true,
+    // What the customer answered on the bank card decides which document is offered
+    // first; "Other documents" is the fallback list, checked by hand.
+    variants: [
+      { id: "", label: "Answered Yes" },
+      { id: "no", label: "Answered No" },
+      { id: "other", label: "Other documents" },
+    ],
+  },
   { id: "verification", label: "Checks and accounts ready", typeAware: true },
   { id: "home", label: "First home and test payment" },
 ];

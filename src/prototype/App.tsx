@@ -117,7 +117,9 @@ export default function App() {
           <div className="proto-screen-wrap">
             <InfoButton onClick={() => setInfoOpen(true)} />
             <ScreenErrorBoundary screen={`${step}-${businessType}-${variant}`}>
-              <ScreenHost step={step} />
+              {/* wait until the URL has been read, so a deep link mounts its own
+                  screen first rather than flashing the sign-up page */}
+              {booted && <ScreenHost step={step} />}
             </ScreenErrorBoundary>
           </div>
         </div>

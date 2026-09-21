@@ -23,7 +23,8 @@ each step, what usually goes wrong, and why each screen exists.
 | P | Presenter mode: hides the rail and bars so only the product shows. The (i) buttons stay. |
 
 The URL carries the step, business type and variant, so any screen can be linked to
-directly: `#/business-details/FREELANCER`.
+directly: `#/business-details/FREELANCER`, or `#/documents/FREELANCER/no` for the
+documents screen after answering No on the bank card.
 
 ## Where the screens come from
 
@@ -52,6 +53,8 @@ Everything on screen is the real component except:
 - The DigiLocker screens, which belong to the government and cannot be imported. They are
   static replicas, labelled as such in the prototype.
 - Uploading a document attaches a sample file rather than sending anything.
+- The industry dropdown and the "choose from other documents" lists show sample
+  options, not the live lists, which are kept out of this public repository.
 
 ## Running it locally
 

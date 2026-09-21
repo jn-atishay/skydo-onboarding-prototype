@@ -15,12 +15,18 @@ export function PanRuleButton() {
 
     const place = () => {
       tries += 1;
-      const wrap = document.querySelector(".proto-screen-wrap") as HTMLElement | null;
-      const input = wrap?.querySelector("input") as HTMLElement | null;
+      // The button lives inside the page's own scrolling box, so measure against
+      // that box and its scroll offset, and it moves with the field.
+      const wrap = (document.querySelector(".proto-app-scroll") ??
+        document.querySelector(".proto-screen-wrap")) as HTMLElement | null;
+      const input = wrap?.querySelector('input[name="panNumber"], input[name="pan"], form input') as HTMLElement | null;
       if (wrap && input) {
         const w = wrap.getBoundingClientRect();
         const i = input.getBoundingClientRect();
-        setPos({ top: i.top - w.top + i.height / 2 - 13, left: i.right - w.left + 10 });
+        setPos({
+          top: i.top - w.top + wrap.scrollTop + i.height / 2 - 13,
+          left: i.right - w.left + wrap.scrollLeft + 10,
+        });
         return;
       }
       if (tries < 60) frame = window.setTimeout(place, 80);

@@ -26,6 +26,7 @@ body,
 .proto-root {
   display: grid;
   grid-template-columns: var(--proto-rail) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   height: 100vh;
   height: 100dvh;
   background: var(--proto-bg);
@@ -131,6 +132,11 @@ body,
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   min-width: 0;
+  /* keep the main column to the window's height, so a tall page scrolls inside
+     the stage rather than stretching the whole layout */
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
 }
 .is-presenter .proto-main {
   grid-template-rows: minmax(0, 1fr);
@@ -431,6 +437,35 @@ body,
   max-width: none;
 }
 
+/* The onboarding page is one tall page with a fixed header and a sticky progress
+   tracker. The frame is its "window": the transform above pins the header to the
+   frame, and the inner box scrolls, so the header and tracker stay put while the
+   step cards scroll underneath, as they do in the browser. */
+.proto-screen-wrap:has(.proto-app-page) {
+  height: 100%;
+  min-height: 0;
+  background: #fff;
+  border-radius: 10px;
+}
+.proto-stage:has(.proto-app-page) {
+  align-items: stretch;
+}
+.proto-app-page {
+  height: 100%;
+  min-height: 0;
+}
+.proto-app-page > .proto-app-scroll {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* The page sizes itself to the window (w-screen); inside the frame the frame is
+   the window. */
+.proto-app-page .w-screen {
+  width: 100% !important;
+}
+
 /* A prototype-only shortcut, offered where a real step cannot be completed here. */
 .proto-skip-btn {
   position: absolute;
@@ -448,4 +483,51 @@ body,
 }
 .proto-skip-btn:hover {
   background: #dee6ff;
+}
+
+/* On the full page the shortcut sits in the frame's corner, clear of the header. */
+.proto-app-page .proto-skip-btn {
+  position: fixed;
+  top: auto;
+  bottom: 16px;
+  left: 16px;
+  z-index: 60;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+
+/* On the onboarding page the product's own header fills the top edge (avatar and
+   menu at the right), so the (i) sits just below it, over the tracker's blank end. */
+.proto-screen-wrap:has(.proto-app-page) > .proto-info-btn {
+  top: 60px;
+  right: 16px;
+  z-index: 70;
+}
+
+/* Pin each band to its row, so a screen without the business-type bar keeps the
+   stage in the middle row and the bottom bar at the bottom. */
+.proto-topbar {
+  grid-row: 1;
+}
+.proto-stage {
+  grid-row: 2;
+}
+.proto-bottombar {
+  grid-row: 3;
+}
+.is-presenter .proto-stage {
+  grid-row: 1;
+}
+
+/* The DigiLocker replicas are full pages too: let them fill the frame. */
+.proto-stage:has(.dl-page) {
+  align-items: stretch;
+}
+.proto-screen-wrap:has(.dl-page) {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+.proto-screen-wrap .dl-page {
+  min-height: 100%;
 }

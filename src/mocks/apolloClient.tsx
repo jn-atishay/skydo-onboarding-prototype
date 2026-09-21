@@ -7,6 +7,7 @@ import {
   directorDetailsFixture,
   identityVerificationStatus,
   industryList,
+  managementFixture,
   docTypeDescriptions,
 } from "./onboardingFixture";
 
@@ -27,6 +28,11 @@ export function resolveQuery(q: any): any {
   }
   if (text.includes("FETCH_DIRECTOR_DETAILS") || text.includes("defaultAadhaarVendor")) {
     return directorDetailsFixture();
+  }
+  // Directors, partners and owners: the query also names sanctionCategories, so
+  // catch it before the identity step's smaller query below.
+  if (text.includes("ownershipPercentage")) {
+    return managementFixture();
   }
   // The identity step polls a small query for its own verification flags.
   if (text.includes("sanctionCategories")) {

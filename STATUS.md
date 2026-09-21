@@ -111,3 +111,56 @@ as in the real app. Removed, and checked with both variants after the background
 fully loaded that the text, chips, card and footer are on top.
 
 I had seen this during Phase 2 and wrongly put it down to a frame caught mid-reload.
+
+## Phase 3: screens 9 to 12, and a match against the captured screens (21 Sep 2026)
+
+### What changed, and why
+Checked every screen from Phase 1 and 2 against the captures in
+`product-deep-dive-1/assets`. The main mismatch: from the mobile number to the checks
+screen the product is **one page**, with the header (Get help, avatar), the progress
+tracker ("45% complete") and a column of step cards where the current step is open and
+the others are ticked or locked. The prototype had been mounting the single open card
+on its own. It now mounts the product's real onboarding page and header, and the step on
+show decides which card is open, exactly as the live app decides.
+
+Other fixes found by the comparison:
+- The mobile-number screen now uses the full sign-in layout (logo left, card right).
+- The KYC intro shows the header and "0% complete" tracker above its two cards.
+- Tailwind is pinned to 3.2.4, the version the product locks. 3.4 emitted classes in a
+  different order, which turned the current step's dark icon white.
+- The bank card shows the entered account, the green "Name matches" line and the
+  Yes/No question (ob-15), instead of an empty form.
+- The email-code screen is reached by filling the email and pressing Send OTP, as the
+  customer does (ob-02 then ob-03).
+- The mobile-code popup opens reliably on the Confirm mobile step (ob-14).
+- The page scrolls inside the frame with the header and tracker pinned, and opens
+  scrolled to the current card.
+
+### Phase 3 screens
+- Directors, partners and owners (company types only): directors pre-filled from company
+  records for Pvt Ltd and LLP, partners with shares for Partnership, members for HUF.
+- Bank account, per type. For Freelancer, Sole Prop, Partnership and HUF, "Submit and
+  continue" opens the documents card; for Pvt Ltd and LLP it goes straight to the checks.
+- Documents, with a Variant switch in the top bar: Answered Yes (bank statement, ob-16),
+  Answered No (signed contract, ob-17), Other documents (ob-18). Picking a card on the
+  page updates the switch and the URL. Pvt Ltd and LLP have no documents step, so it is
+  not in their rail.
+- Checks: the product's "We are verifying your details" screen. The other-documents path
+  leads to the manual review state, which the product draws with the same screen.
+
+### Verified in the browser
+Clicked through at 1440x900: KYC intro, PAN, business details, Aadhaar prompt and the
+DigiLocker replicas, the mobile-code popup (typed 4 digits, Continue moved on to bank),
+bank (Yes, Submit moved on to documents with the bank statement), all three document
+variants, the checks screen, the Pvt Ltd directors and bank screens, and the
+Partnership and HUF owner screens. Both sign-up variants were rechecked.
+
+### Not done, needs a decision
+Using the live industry list (the real 24 option names, such as "Software, SaaS & IT
+services", with their follow-up questions) and the live document menu. Both come from
+the production database, and the check on this machine stopped me writing them into
+this public repository. The dropdowns still show the earlier sample lists until that is
+decided.
+
+### Still to do
+Phase 4: the first home screen, the next-payment popup, the test payment and tracking.

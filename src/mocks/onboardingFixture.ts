@@ -7,6 +7,8 @@ import {
   getProto,
 } from "../prototype/state";
 import {
+  DIRECTORS,
+  PARTNERS,
   DOCS_BY_TYPE,
   INDUSTRIES,
   INDUSTRY_QUESTIONS,
@@ -108,7 +110,19 @@ export function companyPanDetailsFixture() {
         offboardingType: null,
         businessPAN: done ? p.panValue || SAMPLE.pan : null,
         isAmazonUser: false,
-        exporterKyc: { kycDocList: [] },
+        exporterKyc: { kycDocList: [], iecDetails: null },
+        // The documents card names the account ("bank statement for account number
+        // XX6789"), so it needs the account entered on the bank step.
+        bankAccount: ["bank", "documents", "verification", "home"].includes(p.step)
+          ? {
+              ifscCode: SAMPLE.ifsc,
+              accountNumber: SAMPLE.bankAccount,
+              accountHolderName: displayName(),
+              isValid: true,
+              retry: false,
+              bankBranch: SAMPLE.branch,
+            }
+          : null,
         businessDescription: filled
           ? {
               website: "https://meridiandesign.example.com",
@@ -176,5 +190,60 @@ export function directorDetailsFixture() {
     },
     defaultAadhaarVendor: "DIGILOCKER",
     sanctionCategories: [],
+  };
+}
+
+/**
+ * The people behind a company-like business. For a private limited company or LLP
+ * the directors arrive pre-filled from company records (MCA); partners of a
+ * partnership and the karta of an HUF are typed in by the customer.
+ */
+export function managementFixture() {
+  const p = getProto();
+  const fromRecords = p.businessType === BUSINESS_TYPES.PRIVATE_LIMITED_COMPANY || p.businessType === BUSINESS_TYPES.LLP;
+  const ubo = fromRecords
+    ? DIRECTORS.map((d, i) => ({
+        id: `dir-${i}`,
+        fullName: d.name,
+        isPrimary: i === 0,
+        nationality: d.nationality,
+        ownershipPercentage: null,
+        uboSource: "MCA",
+        pan: null,
+        nameMatched: true,
+      }))
+    : p.businessType === BUSINESS_TYPES.HUF
+    ? [
+        {
+          id: "karta-0",
+          fullName: PARTNERS[0].name,
+          isPrimary: true,
+          nationality: "Indian",
+          ownershipPercentage: null,
+          uboSource: "USER_ENTERED",
+          pan: PARTNERS[0].pan,
+          nameMatched: true,
+        },
+      ]
+    : PARTNERS.map((d, i) => ({
+        id: `partner-${i}`,
+        fullName: d.name,
+        isPrimary: i === 0,
+        nationality: "Indian",
+        ownershipPercentage: d.share,
+        uboSource: "USER_ENTERED",
+        pan: d.pan,
+        nameMatched: true,
+      }));
+  return {
+    exporterUser: {
+      exporter: {
+        businessType: p.businessType,
+        verificationStatus: [{ verificationStep: "UBO_DETAILS_ACCEPTED", isVerified: false }],
+        ubo,
+        sanctionCategories: [],
+      },
+    },
+    country: ["Indian", "American", "British", "Canadian", "Singaporean", "Emirati"].map((nationality) => ({ nationality })),
   };
 }

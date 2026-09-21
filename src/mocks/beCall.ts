@@ -1,7 +1,7 @@
 // Stand-in for the product's fetchData(). Every REST call the onboarding screens make
 // passes through here and is answered from fixtures. No request leaves the page.
 import { SAMPLE, displayName, INDUSTRIES } from "./fixtures";
-import { businessTypeFromPan, getProto, usePrototype } from "../prototype/state";
+import { COMPANY_TYPES, StepId, businessTypeFromPan, getProto, usePrototype } from "../prototype/state";
 import { resolveQuery } from "./apolloClient";
 
 type Config = {
@@ -113,6 +113,27 @@ function answer(path: string, config: Config): any {
   return ok({});
 }
 
+/**
+ * When the customer completes a step with the product's own button, move the
+ * prototype on to the next screen, as the real backend would by changing their state.
+ */
+function advanceAfter(path: string) {
+  const p = (path || "").toLowerCase();
+  const { step, businessType, set } = usePrototype.getState();
+  const isCompany = COMPANY_TYPES.includes(businessType);
+  let next: StepId | null = null;
+  if (p.includes("accept/tnc_privacy")) next = "pan";
+  else if (p.includes("create_exporter_with_pan") && step === "pan") next = "business-details";
+  else if (p.includes("submit/company_details")) next = "aadhaar";
+  else if (p.includes("verify/user_phone_otp")) next = isCompany ? "management" : "bank";
+  else if (p.includes("update/ubo_details")) next = "bank";
+  else if (p.includes("bank_account_submit")) next = "verification";
+  else if (p.includes("submit/exporter_kyc_document")) next = "verification";
+  if (next && next !== step) {
+    window.setTimeout(() => set({ step: next as StepId, verificationStage: "submitted" }), 0);
+  }
+}
+
 export const fetchData = async <T>(config: Config): Promise<any> => {
   await pause();
   const path = config.path ?? config.url ?? "";
@@ -125,6 +146,7 @@ export const fetchData = async <T>(config: Config): Promise<any> => {
     response = ok({});
   }
   if (config.onSuccess) config.onSuccess(response);
+  advanceAfter(path);
   return response as T;
 };
 

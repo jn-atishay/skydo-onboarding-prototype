@@ -41,9 +41,9 @@ export function onboardingStateForStep(): string {
     case "documents":
       return "COMPANY_BANK_ACCOUNT_DETAILS";
     case "verification":
-      return getProto().verificationStage === "created"
-        ? "BENEFICIARY_ACCOUNT_PENDING"
-        : "BACKGROUND_VERIFICATION";
+      // Documents picked from the "other documents" list are checked by hand, so
+      // those customers wait on the manual review screen instead of the loader.
+      return getProto().docPath === "other" ? "MANUAL_VERIFICATION" : "BACKGROUND_VERIFICATION";
     case "home":
       return "BENEFICIARY_ACCOUNT_PENDING";
     default:
@@ -63,7 +63,9 @@ export function displayName() {
 export function exporterUserFixture() {
   const p = getProto();
   const panDone = p.panVerified || ["business-details", "aadhaar", "mobile-otp", "management", "bank", "documents", "verification", "home"].includes(p.step);
-  const bankDone = ["documents", "verification", "home"].includes(p.step);
+  // From the bank step on, the account has been entered and matched: the bank card
+  // shows it filled, with the green name match, waiting for the Yes/No answer.
+  const bankDone = ["bank", "documents", "verification", "home"].includes(p.step);
   return {
     exporterUser: {
       fullName: SAMPLE.name,

@@ -10,14 +10,24 @@ export function notifyRouter() {
   listeners.forEach((l) => l());
 }
 
+// The product decides what to draw from the page path (the header is hidden on
+// /login, for example). The prototype's own hash holds the step instead, so the host
+// tells the router which product page is on show.
+let productPath = "/login";
+export function setProductPath(p: string, silent = false) {
+  if (p === productPath) return;
+  productPath = p;
+  if (!silent) notifyRouter();
+}
+
 function readHash() {
   const raw = typeof window === "undefined" ? "" : window.location.hash.replace(/^#/, "");
-  const [path, search] = raw.split("?");
+  const [, search] = raw.split("?");
   const query: Query = {};
   new URLSearchParams(search || "").forEach((v, k) => {
     query[k] = v;
   });
-  return { asPath: path || "/", pathname: path || "/", query };
+  return { asPath: productPath, pathname: productPath, query };
 }
 
 export function useRouter() {

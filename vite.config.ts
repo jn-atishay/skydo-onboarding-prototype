@@ -59,6 +59,8 @@ export default defineConfig({
       { find: /^.*\/store\/useLoginStore$/, replacement: mock("loginStore.ts") },
       { find: /^.*\/Common\/PdfViewer$/, replacement: mock("nullComponent.tsx") },
       { find: /^.*pdf-worker(\.js)?$/, replacement: noop },
+      { find: /^.*\/authentication\/WithAuth$/, replacement: mock("withAuth.tsx") },
+      { find: /^react-calendly$/, replacement: mock("calendly.tsx") },
       { find: /^@react-oauth\/google$/, replacement: mock("googleOauth.tsx") },
       { find: /^.*\/analytics\/useAnalytics$/, replacement: mock("analytics.ts") },
       { find: /^.*\/analytics\/useSegment$/, replacement: mock("analytics.ts") },
