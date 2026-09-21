@@ -42,6 +42,17 @@ const NextImage = React.forwardRef<HTMLImageElement, Props>(function NextImage(p
   } = props;
 
   const resolved = typeof src === "object" && src !== null ? src.src ?? src.default ?? "" : src;
+
+  // The website field looks up the site's icon from Google's favicon service. The
+  // prototype sends nothing off the page, so skip that request and report it as
+  // failed; the product then shows its own globe icon, as it does for any site
+  // without an icon.
+  const isOutsideLookup = typeof resolved === "string" && /^https?:\/\/www\.google\.com\/s2\/favicons/.test(resolved);
+  const onError = rest.onError;
+  React.useEffect(() => {
+    if (isOutsideLookup && typeof onError === "function") onError(new Event("error"));
+  }, [isOutsideLookup]);
+  if (isOutsideLookup) return null;
   // next/image has two ways of saying the same thing: the modern `fill` prop and the
   // older layout="fill". Both mean "cover the positioned parent".
   const isFill = Boolean(fill) || layout === "fill";
