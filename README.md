@@ -7,8 +7,8 @@ each step, what usually goes wrong, and why each screen exists.
 **Published at** https://jn-atishay.github.io/skydo-onboarding-prototype/
 
 > This is a training tool, not the product. Nothing here connects to Skydo. There is no
-> login, no backend and no real data: every name, number, PAN and bank account on screen
-> is invented sample data for a fictional customer.
+> login, no backend and no real data. The sample customer is named Atishay Jain; every
+> PAN, bank account, account number and document on screen is invented.
 
 ## How to use it
 

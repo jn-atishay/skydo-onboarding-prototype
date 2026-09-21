@@ -228,3 +228,10 @@ they still open their list.
 Verified: sign-up email (fill, clear, refill), the six-box email code (fill, clear,
 refill), mobile number, PAN for Freelancer and Pvt Ltd, the website field with the two
 dropdowns untouched, the four-box phone code, and the HUF members row.
+
+## Sample customer renamed (21 Sep 2026)
+The sample customer is now Atishay Jain everywhere: name, first-name greeting, the
+account holder on the bank and USD account cards, the first director or partner, and
+the email atishay@example.com. The sample PAN became ABCPJ1234K so its fifth letter
+matches the surname, as a real PAN's does; the sample GST follows it. All numbers
+remain invented.

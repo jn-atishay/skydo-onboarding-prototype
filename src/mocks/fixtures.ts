@@ -4,13 +4,13 @@
 import { BUSINESS_TYPES, COMPANY_TYPES, getProto } from "../prototype/state";
 
 export const SAMPLE = {
-  name: "Priya Sharma",
-  email: "priya@example.com",
+  name: "Atishay Jain",
+  email: "atishay@example.com",
   phone: "9876543210",
   companyName: "Meridian Design Studio",
-  legalName: "PRIYA SHARMA",
+  legalName: "ATISHAY JAIN",
   companyLegalName: "MERIDIAN DESIGN STUDIO PRIVATE LIMITED",
-  pan: "ABCPS1234K",
+  pan: "ABCPJ1234K",
   cin: "U74999KA2021PTC000000",
   bankAccount: "50100123456789",
   ifsc: "HDFC0000123",
@@ -191,12 +191,12 @@ export const DOCS_BY_TYPE: Record<string, { mandatory: string[]; optional: strin
 };
 
 export const DIRECTORS = [
-  { name: "PRIYA SHARMA", din: "09123456", nationality: "Indian" },
+  { name: "ATISHAY JAIN", din: "09123456", nationality: "Indian" },
   { name: "ARJUN MEHTA", din: "09234567", nationality: "Indian" },
 ];
 
 export const PARTNERS = [
-  { name: "PRIYA SHARMA", pan: "ABCPS1234K", share: 60 },
+  { name: "ATISHAY JAIN", pan: "ABCPJ1234K", share: 60 },
   { name: "ARJUN MEHTA", pan: "ABCPM5678L", share: 40 },
 ];
 

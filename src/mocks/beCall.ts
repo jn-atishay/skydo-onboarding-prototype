@@ -64,7 +64,7 @@ function answer(path: string, config: Config): any {
       address: SAMPLE.address,
       companyRegistrationNumber: SAMPLE.cin,
       dateOfIncorporation: "2021-04-12",
-      gstDetails: proto.hasGst ? [{ gstin: "29ABCPS1234K1Z5", status: "ACTIVE" }] : [],
+      gstDetails: proto.hasGst ? [{ gstin: "29ABCPJ1234K1Z5", status: "ACTIVE" }] : [],
       isPanVerified: true,
     });
   }

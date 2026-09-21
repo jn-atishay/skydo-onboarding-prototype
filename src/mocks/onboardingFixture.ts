@@ -144,7 +144,7 @@ export function companyPanDetailsFixture() {
           ? [{ industryId: 2, industryDescription: "Design and Creative Services", industryInfoResponse: null }]
           : [],
         gstList: p.hasGst
-          ? [{ id: "1", gstin: "29ABCPS1234K1Z5", entryType: "PAN_FETCH", address: SAMPLE.address, nba: null }]
+          ? [{ id: "1", gstin: "29ABCPJ1234K1Z5", entryType: "PAN_FETCH", address: SAMPLE.address, nba: null }]
           : [],
         leads: [],
       },
@@ -183,7 +183,7 @@ export function directorDetailsFixture() {
         correspondentName: SAMPLE.name,
         verificationStatus: identityVerificationStatus(),
         ubo: COMPANY_TYPES.includes(p.businessType)
-          ? [{ fullName: "PRIYA SHARMA" }, { fullName: "ARJUN MEHTA" }]
+          ? [{ fullName: "ATISHAY JAIN" }, { fullName: "ARJUN MEHTA" }]
           : [{ fullName: SAMPLE.legalName }],
       },
       exporterUserKyc: { kycDocList: [] },

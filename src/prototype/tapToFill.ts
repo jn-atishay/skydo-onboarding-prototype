@@ -57,7 +57,7 @@ function sampleFor(input: HTMLInputElement | HTMLTextAreaElement): string {
   if (/website|link|url|online presence|linkedin|upwork|fiverr/.test(d)) return "www.meridiandesign.example.com";
   if (/ifsc/.test(d)) return SAMPLE.ifsc;
   if (/account number|account no|accountnumber/.test(d)) return SAMPLE.bankAccount;
-  if (/gst/.test(d)) return "29ABCPS1234K1Z5";
+  if (/gst/.test(d)) return "29ABCPJ1234K1Z5";
   if (/\bpan\b|pan number|pannumber/.test(d)) return inPeopleList(input) ? "ABCPM5678L" : samplePan();
   if (/mobile|phone/.test(d)) return SAMPLE.phone;
   if (/percent|share|ownership|%/.test(d)) return "40";
