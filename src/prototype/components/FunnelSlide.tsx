@@ -153,10 +153,7 @@ export function FunnelSlide() {
         </div>
 
         <p className="proto-slide-foot">
-          Onboarding: first CC account created. Activated: at least one successful transaction. Headline: August's
-          onboardings, activations among them to 21 September. Funnel: August's leads followed to 21 September; docs
-          uploaded counts everyone who reached the checks. Internal accounts and payees excluded. Channels: Zoho, about
-          3,100 onboardings closed in August, rounded to the nearest 10.
+          Activation data as of 21 September 2026.
         </p>
       </div>
     </SlideCanvas>

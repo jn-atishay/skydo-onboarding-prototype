@@ -390,3 +390,7 @@ accounts and payees are excluded. Headline, as supplied: 3,185 onboardings in Au
 funnel was re-run on the same rules, payees excluded: 13,844 leads; per 100: PAN 62,
 business details 40, Aadhaar 34, bank 33, docs 25, onboarding completed 21 (2,897),
 activated 5 (711). Headline figures are shown exact; channel counts stay rounded.
+
+## Slide footnote shortened (21 Sep 2026)
+The slide's footnote now reads only "Activation data as of 21 September 2026." The
+definitions it used to carry are recorded in the entries above.
