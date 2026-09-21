@@ -394,3 +394,6 @@ activated 5 (711). Headline figures are shown exact; channel counts stay rounded
 ## Slide footnote shortened (21 Sep 2026)
 The slide's footnote now reads only "Activation data as of 21 September 2026." The
 definitions it used to carry are recorded in the entries above.
+
+## Slide title (21 Sep 2026)
+The slide is titled "August Signup to Activation Funnel (As of 21st Sept 2026)".

@@ -98,7 +98,7 @@ export function FunnelSlide() {
     <SlideCanvas>
       <div className="proto-slide-inner">
         <p className="proto-slide-eyebrow">The funnel · August 2026</p>
-        <h1 className="proto-slide-title">Where August's leads went</h1>
+        <h1 className="proto-slide-title">August Signup to Activation Funnel (As of 21st Sept 2026)</h1>
 
         <div className="proto-slide-stats">
           <div className="proto-slide-stat">
