@@ -403,3 +403,7 @@ The small note under the numbers is gone from nine popups: Sign up, Mobile numbe
 Terms, Business PAN, Business details, Aadhaar, Confirm mobile, Bank account and
 Documents. "Figures rounded to the nearest 10." is removed everywhere; the Email code,
 Directors, Checks and Focused home popups keep their note without it.
+
+## Side bar note removed (21 Sep 2026)
+The side bar no longer shows "A prototype for training. Sample data only, nothing here
+is a real account."

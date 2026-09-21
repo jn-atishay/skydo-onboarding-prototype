@@ -36,9 +36,6 @@ export function LeftRail({ onJump }: { onJump: (s: StepId) => void }) {
               </li>
             ))}
           </ol>
-          <p className="proto-rail-foot">
-            A prototype for training. Sample data only, nothing here is a real account.
-          </p>
         </>
       )}
     </nav>
