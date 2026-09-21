@@ -2,11 +2,28 @@
 // render the right screen for the chosen business type without any backend.
 import { useEffect } from "react";
 import useUserData from "../skydo/store/useUserData";
+import useReferralStore from "../skydo/store/useReferralStore";
 import { getProto, usePrototype } from "./state";
 import { SAMPLE, displayName, onboardingStateForStep } from "../mocks/fixtures";
 
+/** Sample referrer, used only by the referral variant of the sign-up screen. */
+const SAMPLE_REFERRER = {
+  referrerId: 4021,
+  exporterName: "Rahul Verma",
+  campaignName: "Refer and earn",
+  refereeRewardValue: 50,
+};
+
 export function useSeedProductStores() {
-  const { step, businessType, panVerified, aadhaarStage } = usePrototype();
+  const { step, businessType, panVerified, aadhaarStage, variant } = usePrototype();
+
+  // The referral variant shows who invited the customer and the reward waiting.
+  useEffect(() => {
+    useReferralStore.setState({
+      referrerDetails: variant === "referral" ? (SAMPLE_REFERRER as any) : undefined,
+      referrerDetailsViaCode: variant === "referral" ? (SAMPLE_REFERRER as any) : undefined,
+    } as any);
+  }, [variant, step]);
 
   useEffect(() => {
     const p = getProto();

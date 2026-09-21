@@ -48,6 +48,17 @@ tracked in that repo; none were copied here.
 Typing a PAN sets the business type from its fourth letter, and the rail changes with it:
 a C PAN adds the directors screen and makes the journey 13 steps instead of 12.
 
+### Verified in the browser
+Clicked through screens 1 to 6 on the built bundle, not just the dev server: sign up,
+the email code with its resend timer, the mobile screen, terms with all eight traffic
+options, the PAN screen with both (i) panels, and the freelancer business-details form.
+The referral variant shows the referrer's reward line. Escape closes the panels.
+
+The published site itself could not be opened in my browser pane, which blocks
+jn-atishay.github.io by site permission. It was checked by fetching it instead: the page
+and both assets return 200, and the bundle contains no credentials. Allow that domain in
+the pane if you want me to click through the live URL directly.
+
 ### Not done yet
 Screens 7 to 13. The Aadhaar and DigiLocker sequence, the mobile code popup, the
 directors and partners screens, bank, documents, the checks screen and the first home
