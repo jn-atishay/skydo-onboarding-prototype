@@ -100,3 +100,14 @@ sub-path.
 ### Still to do
 Screens 9 to 13: directors and partners, bank, documents, the checks screen and the
 first home screen with the test payment.
+
+### Fix: sign-up screen content disappearing after load (reported 21 Sep)
+Cause was mine. To make the login background visible I had raised the product's
+background image from z-index -1 to 0. A positioned image at 0 paints above the page's
+ordinary text, so the screen rendered, then the image finished loading and covered the
+logo, headline and chips. The override was never needed: the wrapper's transform already
+makes it the stacking context, so -1 sits above its background and below the content,
+as in the real app. Removed, and checked with both variants after the background had
+fully loaded that the text, chips, card and footer are on top.
+
+I had seen this during Phase 2 and wrongly put it down to a frame caught mid-reload.

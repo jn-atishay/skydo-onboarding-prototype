@@ -417,22 +417,18 @@ body,
   height: 100%;
 }
 
-/* The login page paints its own background with a fixed, negatively-stacked image.
-   The transform makes this wrapper the containing block so that image stays inside
-   the screen instead of covering the whole window, and lifting it out of the
-   negative layer lets it show through. */
+/* The login page paints its own background with a fixed image at z-index -1.
+   The transform makes this wrapper both the containing block (so the image stays
+   inside the screen instead of covering the window) and the stacking context (so
+   -1 lands above this wrapper's background but below the page's content, exactly
+   as it does in the real app). Do not raise that z-index: a positioned image at 0
+   or above paints over the text as soon as it loads. */
 .proto-screen-wrap:has(.proto-product-page) {
   transform: translateZ(0);
   /* matches the product's own login background, in case the image is slow */
   background: #f4f6fd;
   /* the login page is designed for a full window, so give it the whole stage */
   max-width: none;
-}
-.proto-product-page .-z-1 {
-  z-index: 0;
-}
-.proto-product-page > * {
-  position: relative;
 }
 
 /* A prototype-only shortcut, offered where a real step cannot be completed here. */
