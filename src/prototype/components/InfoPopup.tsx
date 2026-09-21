@@ -61,7 +61,7 @@ const fmt = (n: number) => round10(n).toLocaleString("en-IN");
 
 /** August on this screen: how many arrived, went on and left, and why they leave. */
 function FunnelNumbers({ funnel }: { funnel: Funnel }) {
-  const { landed, moved, movedMeans, scope, reasons } = funnel;
+  const { landed, moved, movedMeans, scope, reasons, hideNote } = funnel;
   const forward = Math.round((moved / landed) * 100);
   const rows: [string, string][] = [
     ["Landed on this screen", fmt(landed)],
@@ -87,10 +87,12 @@ function FunnelNumbers({ funnel }: { funnel: Funnel }) {
           <li key={i}>{r}</li>
         ))}
       </ul>
-      <p className="proto-modal-source">
-        Moved ahead means {movedMeans}. {scope ? `${scope} ` : ""}
-        {PERIOD}
-      </p>
+      {!hideNote && (
+        <p className="proto-modal-source">
+          Moved ahead means {movedMeans}. {scope ? `${scope} ` : ""}
+          {PERIOD}
+        </p>
+      )}
     </section>
   );
 }

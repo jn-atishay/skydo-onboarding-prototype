@@ -18,7 +18,8 @@ export interface Funnel {
   /** Who is counted, when it is not everyone who reached the screen. */
   scope?: string;
   /** One or two broad reasons people stop here. */
-  reasons: string[];
+  reasons: string[];  /** Leave out the small note under the numbers. */
+  hideNote?: boolean;
 }
 
 export interface ScreenInfo {
@@ -28,7 +29,7 @@ export interface ScreenInfo {
 }
 
 export const PERIOD =
-  "People who signed up in August 2026, followed to 21 September. Figures rounded to the nearest 10.";
+  "People who signed up in August 2026, followed to 21 September.";
 
 export const SCREEN_INFO: Record<string, ScreenInfo> = {
   login: {
@@ -38,6 +39,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "A referral or partner link changes this screen: the customer sees who invited them and the reward waiting for them.",
     ],
     funnel: {
+      hideNote: true,
       landed: 17147,
       moved: 12008,
       movedMeans: "asked for an email code",
@@ -75,6 +77,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Two accounts are allowed to share one phone number, so this is not an identity check.",
     ],
     funnel: {
+      hideNote: true,
       landed: 2800,
       moved: 2300,
       movedMeans: "saved a mobile number",
@@ -93,6 +96,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "It is skipped when we already know the referrer or the marketing source that brought them in.",
     ],
     funnel: {
+      hideNote: true,
       landed: 13900,
       moved: 12026,
       movedMeans: "agreed to the terms and started",
@@ -111,6 +115,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Changing the PAN later wipes the business details already entered, and the customer is warned first.",
     ],
     funnel: {
+      hideNote: true,
       landed: 12026,
       moved: 9160,
       movedMeans: "entered a business PAN",
@@ -129,6 +134,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "A missing website does not block sign-up, but it does stop the first payment clearing later.",
     ],
     funnel: {
+      hideNote: true,
       landed: 9160,
       moved: 6074,
       movedMeans: "submitted the business details",
@@ -147,6 +153,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "If DigiLocker is down there is no fallback: the customer has to try again later.",
     ],
     funnel: {
+      hideNote: true,
       landed: 6074,
       moved: 5288,
       movedMeans: "verified Aadhaar through DigiLocker",
@@ -164,6 +171,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Freelancers and sole proprietors go straight to the bank step after this.",
     ],
     funnel: {
+      hideNote: true,
       landed: 5288,
       moved: 5274,
       movedMeans: "confirmed the phone code",
@@ -199,6 +207,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The question about past international payments decides which document we recommend next.",
     ],
     funnel: {
+      hideNote: true,
       landed: 5248,
       moved: 5106,
       movedMeans: "added a bank account",
@@ -216,6 +225,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Anything under Choose from other documents is read by a person, so the customer waits before they can be paid.",
     ],
     funnel: {
+      hideNote: true,
       landed: 4192,
       moved: 3076,
       movedMeans: "shared a document and submitted",

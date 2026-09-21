@@ -397,3 +397,9 @@ definitions it used to carry are recorded in the entries above.
 
 ## Slide title (21 Sep 2026)
 The slide is titled "August Signup to Activation Funnel (As of 21st Sept 2026)".
+
+## Popup notes trimmed (21 Sep 2026)
+The small note under the numbers is gone from nine popups: Sign up, Mobile number,
+Terms, Business PAN, Business details, Aadhaar, Confirm mobile, Bank account and
+Documents. "Figures rounded to the nearest 10." is removed everywhere; the Email code,
+Directors, Checks and Focused home popups keep their note without it.
