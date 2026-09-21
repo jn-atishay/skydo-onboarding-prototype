@@ -59,10 +59,11 @@ const FUNNEL: { label: string; people: number }[] = [
  */
 const CHANNELS: { name: string; onboardings: number }[] = [
   { name: "Google (paid)", onboardings: 758 },
-  { name: "Google search", onboardings: 221 }, // google_search
   { name: "Meta (Facebook, Instagram)", onboardings: 574 },
   { name: "Referrals", onboardings: 447 },
-  { name: "Organic (word of mouth, AI tools, blogs)", onboardings: 171 + 147 + 71 },
+  // google_search, chatgpt_ai_tools, blogs, word_of_mouth (an SEO source, if Zoho has
+  // one, sits among the unlabelled sources under Others until its count is known)
+  { name: "Organic (search, AI tools, blogs, word of mouth)", onboardings: 221 + 147 + 71 + 171 },
   { name: "Others (untagged, cold calls, rest)", onboardings: 266 + 142 + 308 },
 ];
 

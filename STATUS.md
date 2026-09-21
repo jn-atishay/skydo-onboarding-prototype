@@ -363,3 +363,9 @@ the sign-up cohort, and the footnote says which source each half uses.
 ## Slide: Google paid and Google search apart (21 Sep 2026)
 The channel split shows Google (paid) 24% (758) and Google search 7% (221) as separate
 channels. Meta rounds to 19% so the six shares add up to 100.
+
+## Slide: organic regrouped (21 Sep 2026)
+Organic now combines Google search 221, AI tools 147, blogs 71 and word of mouth 171:
+610 onboardings, 20%. The split reads Google (paid) 24%, Organic 20%, Meta 19%,
+Referrals 14%, Others 23%. The chart has no labelled SEO source, so any SEO onboardings
+remain among the unlabelled sources under Others.
