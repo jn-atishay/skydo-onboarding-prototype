@@ -1,0 +1,407 @@
+/* The prototype's own chrome. Kept deliberately unlike the product so it is always
+   obvious what is Skydo and what is the training wrapper. */
+
+:root {
+  --proto-bg: #0f1530;
+  --proto-panel: #171f42;
+  --proto-line: #2b3763;
+  --proto-text: #e8ecfa;
+  --proto-muted: #97a3ce;
+  --proto-accent: #5b7cfa;
+  --proto-green: #22c55e;
+  --proto-rail: 276px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.proto-root {
+  display: grid;
+  grid-template-columns: var(--proto-rail) minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--proto-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--proto-text);
+}
+.proto-root.is-presenter {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------- left rail ---------- */
+.proto-rail {
+  position: relative;
+  background: var(--proto-panel);
+  border-right: 1px solid var(--proto-line);
+  overflow-y: auto;
+  padding: 18px 14px 20px;
+}
+.proto-rail-closed {
+  padding: 18px 6px;
+}
+.proto-root:has(.proto-rail-closed) {
+  grid-template-columns: 52px minmax(0, 1fr);
+}
+.proto-rail-toggle {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--proto-line);
+  background: #1e2850;
+  color: var(--proto-text);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+.proto-rail-title {
+  margin: 4px 0 14px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--proto-muted);
+}
+.proto-rail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+  counter-reset: none;
+}
+.proto-rail-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 10px;
+  color: var(--proto-text);
+  cursor: pointer;
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+.proto-rail-item:hover {
+  background: #1e2850;
+}
+.proto-rail-item.is-current {
+  background: var(--proto-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.proto-rail-num {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2b3763;
+  font-size: 11.5px;
+  color: var(--proto-text);
+}
+.proto-rail-item.is-current .proto-rail-num {
+  background: #fff;
+  color: var(--proto-accent);
+}
+.proto-rail-foot {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--proto-line);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--proto-muted);
+}
+
+/* ---------- main column ---------- */
+.proto-main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-width: 0;
+}
+.is-presenter .proto-main {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.proto-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--proto-panel);
+  border-bottom: 1px solid var(--proto-line);
+}
+.proto-topbar-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.proto-topbar-label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--proto-muted);
+}
+.proto-seg {
+  display: flex;
+  gap: 4px;
+  background: #121a3a;
+  padding: 3px;
+  border-radius: 9px;
+  border: 1px solid var(--proto-line);
+  flex-wrap: wrap;
+}
+.proto-seg-btn {
+  border: 0;
+  background: transparent;
+  color: var(--proto-muted);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.proto-seg-btn:hover {
+  color: var(--proto-text);
+}
+.proto-seg-btn.is-on {
+  background: var(--proto-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---------- the product itself ---------- */
+.proto-stage {
+  overflow: auto;
+  padding: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.proto-screen-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  background: #fff;
+  color: #1b2140;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  min-height: 560px;
+  overflow: hidden;
+}
+.proto-product {
+  padding: 26px 22px 34px;
+}
+.proto-product-login {
+  display: flex;
+  justify-content: center;
+}
+
+.proto-info-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 40;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--proto-accent);
+  background: #fff;
+  color: var(--proto-accent);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.proto-info-btn:hover {
+  background: var(--proto-accent);
+  color: #fff;
+}
+
+.proto-notwired {
+  padding: 90px 40px;
+  text-align: center;
+  color: #5a6484;
+}
+.proto-notwired h2 {
+  color: #16225b;
+  text-transform: capitalize;
+}
+
+/* ---------- bottom bar ---------- */
+.proto-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--proto-panel);
+  border-top: 1px solid var(--proto-line);
+}
+.proto-bottom-mid {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  color: var(--proto-muted);
+  font-size: 12.5px;
+}
+.proto-bottom-right {
+  display: flex;
+  gap: 8px;
+}
+.proto-btn {
+  border: 1px solid var(--proto-line);
+  background: #1e2850;
+  color: var(--proto-text);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.proto-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.proto-btn-primary {
+  background: var(--proto-accent);
+  border-color: var(--proto-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.proto-btn-ghost {
+  background: transparent;
+}
+
+/* ---------- info popup ---------- */
+.proto-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 30, 0.62);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  padding: 24px;
+}
+.proto-modal {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: 84vh;
+  overflow: auto;
+  background: #fff;
+  color: #1b2140;
+  border-radius: 14px;
+  padding: 26px 30px 30px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+.proto-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  color: #5a6484;
+  cursor: pointer;
+}
+.proto-modal-title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  color: #16225b;
+}
+.proto-modal-section {
+  margin-top: 18px;
+}
+.proto-modal-section h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #5b7cfa;
+}
+.proto-modal-section p {
+  margin: 0 0 9px;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.proto-modal-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.proto-modal-section li {
+  font-size: 15.5px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.proto-modal-source {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: #5a6484;
+  font-style: italic;
+}
+.proto-modal-nodata {
+  color: #5a6484;
+  font-style: italic;
+}
+.proto-rule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+.proto-rule-table td {
+  border-top: 1px solid #dde3f1;
+  padding: 9px 8px;
+  font-size: 15px;
+  vertical-align: top;
+}
+.proto-rule-letter {
+  font-weight: 700;
+  color: #16225b;
+  width: 82px;
+}
+
+@media (max-width: 900px) {
+  .proto-root {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .proto-rail {
+    display: none;
+  }
+}
+
+/* The (i) button that sits beside a single field, such as the PAN. */
+.proto-field-info {
+  position: absolute;
+  z-index: 30;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #5b7cfa;
+  background: #fff;
+  color: #5b7cfa;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1;
+}
+.proto-field-info:hover {
+  background: #5b7cfa;
+  color: #fff;
+}

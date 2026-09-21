@@ -1,0 +1,33 @@
+.triangle {
+  width: 0;
+  height: 0;
+}
+
+/*
+  widht 16px and height 8px for triangle--small
+ */
+.triangle--small {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.triangle--large {
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid white;
+}
+
+.triangle--small--custom {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #0A2540;
+  border-bottom: 8px solid transparent;
+}
+
+.triangle--small--black {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid #0A2540;
+}

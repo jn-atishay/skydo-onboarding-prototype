@@ -1,0 +1,528 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.highlighted-area {
+  /* Your styles here */
+  border: 2px solid red !important; /* for example */
+}
+
+@layer utilities {
+  .tooltip-triangle {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid black;
+    left: -19px;
+    top: 17px;
+  }
+}
+
+@layer components {
+  #__next {
+    @apply h-full flex flex-col;
+  }
+}
+
+@layer base {
+  body {
+    @apply h-screen;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .flex_row_item_center {
+    @apply flex flex-row items-center;
+  }
+
+  .hide_for_mob {
+    @apply md:block hidden;
+  }
+
+  .hide_for_mob_flex {
+    @apply md:flex hidden;
+  }
+
+  .hide_for_desktop {
+    @apply md:hidden block;
+  }
+
+  .hide_for_desktop_flex {
+    @apply md:hidden flex;
+  }
+
+  .full_width_button {
+    @apply w-full justify-center;
+  }
+
+  .page {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex: 1;
+    padding-top: 52px;
+  }
+
+  .bullet_points {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .pageWithoutDisplay {
+    width: 100%;
+    justify-content: center;
+    flex: 1;
+    padding-top: 52px;
+  }
+
+  .dashboardPopup {
+    @apply p-6 rounded-10px;
+  }
+
+  .commonOnboardingContent {
+    @apply flex-1 md:content-area md:min-w-[900px] md:max-w-screen-lg md:h-auto min-w-[360px];
+  }
+
+  .pageDashboard {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    margin-top: 48px;
+  }
+
+  .content-area {
+    flex: calc(2 / 3);
+  }
+
+  .remaining-area {
+    flex: calc(1 / 3);
+  }
+
+  .half-flex {
+    flex: calc(1 / 2);
+  }
+
+  .content-bwn-line {
+    @apply flex flex-row;
+  }
+
+  .content-bwn-line::after {
+    @apply border-black-500 border-solid content-[''] flex-1 border-b m-auto ml-4;
+  }
+
+  .content-bwn-line::before {
+    @apply border-black-500 border-solid content-[''] flex-1 border-b m-auto mr-4;
+  }
+
+  .widget {
+    @apply rounded-10px p-6 bg-white;
+  }
+
+
+  /**
+    paragraph
+   */
+  .paraxlarge {
+    @apply text-paraxlarge font-normal leading-8;
+  }
+
+  .paralarge {
+    @apply text-paralarge font-normal leading-7;
+  }
+
+  .paramedium {
+    @apply text-paramedium font-normal leading-6;
+    /*@apply text-xs;*/
+  }
+
+  .parasmall {
+    @apply text-parasmall font-normal leading-5;
+  }
+
+  .paraxsmall {
+    @apply text-paraxsmall font-normal leading-4;
+  }
+
+  .para2xsmall {
+    @apply text-para2xsmall font-normal leading-3;
+  }
+
+  .para3xsmall {
+    @apply text-para3xsmall font-normal leading-2;
+  }
+
+  /**
+    heading
+   */
+  .headingxlarge {
+    @apply text-headingxlarge font-bold leading-11;
+  }
+
+  .headinglarge {
+    @apply text-headinglarge font-bold leading-10;
+  }
+
+  .headingmedium {
+    @apply text-headingmedium font-bold leading-9;
+  }
+
+  .headingsmall {
+    @apply text-headingsmall font-bold leading-8;
+  }
+
+  .headingxsmall {
+    @apply text-headingxsmall font-bold leading-7;
+  }
+
+  .heading2xsmall {
+    @apply text-heading2xsmall font-bold leading-6;
+  }
+
+  /**
+    label
+   */
+  .labellarge {
+    @apply text-labellarge font-semibold leading-6;
+  }
+
+  .labelmedium {
+    @apply text-labelmedium font-semibold leading-5;
+  }
+
+  .labelsmall {
+    @apply text-labelsmall font-semibold leading-4;
+  }
+
+  .labelxsmall {
+    @apply text-labelxsmall font-semibold leading-4;
+  }
+
+  /**
+    display
+   */
+  .displaylarge {
+    @apply text-displaylarge font-bold leading-28;
+  }
+
+  .displaymedium {
+    @apply text-displaymedium font-bold leading-16;
+  }
+
+  .displaysmall {
+    @apply text-displaysmall font-bold leading-13;
+  }
+
+  .displayxsmall {
+    @apply text-displayxsmall font-bold leading-13;
+  }
+
+
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    color: #383838;
+    background: white;
+  }
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #283c8b !important;
+  height: 48px !important;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited {
+  background-color: #ffffff;
+  border: 1px solid #cfd7df;
+  border-radius: 10px;
+  color: #cfd7df;
+}
+
+.react-multi-email input {
+  font-size: 14px;
+}
+
+/*TODO- remove the usage of font-weight 500. the Text seems to be more bold than font weigh 800*/
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Black.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-BlackItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+* {
+  font-family: "Lato";
+}
+
+.react-calendar__navigation {
+  margin-bottom: 0px !important;
+}
+
+.react-calendar__navigation button {
+  background-color: white !important;
+  overflow: hidden;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+  color: #8898AA;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.react-calendar__tile--now {
+  background: #EEF3FE !important;
+  border-radius: 4px;
+}
+
+.react-calendar__viewContainer {
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 12px;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.5;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #0A2540 !important;
+}
+
+.react-calendar__month-view__days__day {
+  color: #0A2540 !important;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+/*.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {*/
+/*  background-color: #EEF3FE !important;*/
+/*}*/
+
+.react-calendar__tile--active {
+  background-color: #276EF1 !important;
+  color: white !important;
+  border-radius: 4px;
+}
+
+.react-calendar__tile:disabled {
+  background-color: white !important;
+  color: #CFD7DF !important;
+  cursor: not-allowed;
+}
+
+.react-calendar__navigation__arrow:disabled > div {
+  cursor: not-allowed;
+}
+
+.compact-calendar .react-calendar__navigation {
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.compact-calendar .react-calendar__navigation button {
+  min-width: unset;
+  padding: 0;
+}
+
+.compact-calendar .react-calendar__viewContainer {
+  padding: 0 12px 12px;
+}
+
+.compact-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 1px 0;
+  line-height: 20px;
+}
+
+.compact-calendar .react-calendar__tile {
+  padding: 1px 0;
+  line-height: 20px;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.wave-pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 #A0BFF8;
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+}
+
+.tippy-popper {
+  z-index: 100002 !important;
+}
+
+/* Animated Skydo Icon with snake-like color movement */
+@keyframes snakeMove {
+  0% {
+    backgroundPosition: -200% 0;
+  }
+  100% {
+    backgroundPosition: 200% 0;
+  }
+}
+
+/* Lightning bolt snake animation */
+@keyframes snakeMoveLightning {
+  0% {
+    transform: translateX(-64px);
+  }
+  100% {
+    transform: translateX(128px);
+  }
+}
+
+/* Text gradient animation */
+@keyframes snakeMoveText {
+  0% {
+    backgroundPosition: -200% 0;
+  }
+  100% {
+    backgroundPosition: 200% 0;
+  }
+}
+
+/*
+ * styles for calendly
+ */
+@media (min-width: 976px) {
+  .calendly-overlay .calendly-popup {
+    max-height: 730px !important;
+  }
+}
+
+#veem-card-plugin-popup > div {
+  height: 100% !important;
+}
+
+/* Instant Settlement Button - Force white background */
+.instant-settlement-white-btn {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+}
+
+.instant-settlement-white-btn:hover,
+.instant-settlement-white-btn:focus,
+.instant-settlement-white-btn:active {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+}
+
+/* NavBar scrollbar styles have been moved to components/NavBar/NavBar.module.css
+   so that theme("colors.black.400") can be resolved at build time.
+   CSS modules are processed after the multi-theme Tailwind config is available,
+   unlike globals.css which is processed too early. */

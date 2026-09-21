@@ -1,0 +1,5 @@
+export enum DashboardVersionType {
+  AMAZON_SELLER = "AMAZON_SELLER",
+  SKYDO_PAYOUTS = "SKYDO_PAYOUTS",
+  INVOICE_FULL = "INVOICE_FULL",
+}

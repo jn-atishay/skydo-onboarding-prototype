@@ -1,0 +1,33 @@
+/* Scroll region for the estimate cards. The grey rounded scrollbar sits in the
+   modal's right gutter (outside the green box) and is always visible.
+
+   NOTE: we deliberately do NOT set the standard `scrollbar-width`/`scrollbar-color`
+   on this element for WebKit/Blink — modern Chrome (121+) ignores the
+   `::-webkit-scrollbar` pseudo-elements whenever those standard properties are
+   present, which reverts to a thin overlay scrollbar that auto-hides on macOS.
+   Defining only the pseudo-elements forces a persistent, styled scrollbar. */
+.scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px 0;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background-color: #b5c0cd;
+  border-radius: 9999px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background-color: #8898aa;
+}
+
+/* Firefox only — Blink/WebKit keep the always-visible pseudo-element styling above. */
+@supports (-moz-appearance: none) {
+  .scrollArea {
+    scrollbar-width: thin;
+    scrollbar-color: #b5c0cd transparent;
+  }
+}

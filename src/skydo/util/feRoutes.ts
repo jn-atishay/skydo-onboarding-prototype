@@ -1,0 +1,153 @@
+const FE_ROUTES = {
+  INSTANT_ONBOARDING: "/onboarding",
+  PAYOUT_BENEFICIARY_LINKING: "/payout-beneficiary",
+  DASHBOARD: "/home",
+  LOGIN: "/login",
+  HOME: "/",
+  INVOICES: "/invoices",
+  INVOICE_DETAILS: "/invoices/[invoice_id]",
+  ACCOUNT: "/account",
+  PROFILE: "/profile",
+  UNPARSED_INVOICE: "/invoice/[invoice_id]",
+  USER_ACCESS: "/user-access",
+  INTERNATIONAL_ACCOUNTS: "/international-accounts",
+  ANALYTICS: "/analytics",
+  BUSINESS_ANALYTICS: "/analytics/business",
+  CLIENT_LEVEL_ANALYTICS: "/analytics/client",
+  REPORTS: "/analytics/reports",
+  PAYMENTS_AND_CHARGES: "/charges",
+  PAYMENTS_AND_CHARGES_DETAILS: "/charges/[payment_id]",
+  SKYDO_FEES: "/charges/skydo-fees",
+  PUBLIC_ACCOUNTS: "/accounts/[accounts_id]",
+  FUNDING_INVOICE_MAPPER: "/unmapped-payment/[funding_id]",
+  FUNDING: "/unmapped-payment",
+  DRAFT_INVOICES: "/draft",
+  DRAFT_INVOICE_DETAILS: "/draft/[draft_id]",
+  THANK_YOU: "/thank-you",
+  WAITLIST: "/waitlist",
+  CLIENT_LIST: "/clients",
+  CLIENTS_DETAIL_PAGE: "/clients/[importer_id]",
+  CLIENT_LEDGER_DETAILS: "/client-ledger/[importer_id]",
+  PUBLIC_CLIENT_LEDGER: "/ledger/[imp_identifier]",
+  TRIAL_INVOICE_CREATION_HOME: "/new-invoice",
+  TRIAL_INVOICE_CREATION_DETAILS: "/new-invoice/[draft_id]",
+  REFERRAL: "/referral",
+  RECURRING_INVOICE_CONFIGS: "/recurring/invoice/configs",
+  PAYMENT_LINKS: "/payment-links",
+  RECEIVE_PAYMENT: "/pay/[payment_link_id]",
+  PAY_UAE_TRANSFER_DETAILS: "/pay/uae-transfer/[invoice_id]/[exporter_id]",
+  CREATE_PAYMENT_LINK: "/payment-links/create",
+  METHOD_NOT_ALLOWED: "/405",
+  VKYC: "/vkyc",
+  PUBLIC_REFERRAL_ROUTE: "/referral/[identifier]",
+  MOBILE_HOME: "/mobilehome",
+  OFFBOARD_SCREEN_ROUTE: "/access-denied",
+  MAGIC_LINK: "/magic-link",
+  INFO_WHATSAPP: "/info/whatsapp",
+  DOC_UPLOAD: "/doc-upload",
+  INITIATE_TEST_TRANSACTION: "/initiate-test-transaction",
+  PRICING: "/pricing",
+  FEEDBACK: "/feedback",
+
+  PLATFORM_WITHDRAWALS: "/platform-withdrawals",
+  PLATFORM_WITHDRAWALS_DETAILS: "/platform-withdrawals/[platform]",
+  PAYMENTS: "/payments",
+  PAYMENT_DETAILS: "/payments/[payment_id]",
+  SKYDO_BALANCE: "/balance",
+  SKYDO_BALANCE_PENDING_TRANSACTIONS: "/balance/pending-transactions",
+  SKYDO_BALANCE_DRAFT_PAYOUT: "/balance/draft-payout/[draft_payout_id]",
+  IRM: "/irm",
+  VIEW_ALL_EBRC: "/ebrc",
+  EBRC_CONNECT: "/ebrc/connect",
+  IRM_MAP: "/irm/map",
+  FIRA: "/fira",
+  FIRA_MAP: "/fira/map",
+  OVD_COLLECTION: "/ubo-onboarding/[token]",
+};
+
+export const CUSTOM_PAGE_EVENT_ROUTES = [FE_ROUTES.INTERNATIONAL_ACCOUNTS, FE_ROUTES.PAYMENT_LINKS, FE_ROUTES.INVOICE_DETAILS, FE_ROUTES.INVOICES];
+
+export const USERSNAP_ENABLED_ROUTES = [
+  FE_ROUTES.DASHBOARD,
+  FE_ROUTES.INTERNATIONAL_ACCOUNTS
+];
+
+export const HEADER_DISABLED_ROUTES = [
+  FE_ROUTES.LOGIN,
+  FE_ROUTES.PUBLIC_ACCOUNTS,
+  FE_ROUTES.PUBLIC_CLIENT_LEDGER,
+  FE_ROUTES.THANK_YOU,
+  FE_ROUTES.WAITLIST,
+  FE_ROUTES.RECEIVE_PAYMENT,
+  FE_ROUTES.PAY_UAE_TRANSFER_DETAILS,
+  FE_ROUTES.METHOD_NOT_ALLOWED,
+  FE_ROUTES.INFO_WHATSAPP,
+  FE_ROUTES.PRICING,
+  FE_ROUTES.FEEDBACK,
+  FE_ROUTES.OVD_COLLECTION,
+];
+
+export const HEADER_PROFILE_DISABLED_ROUTES = [
+  FE_ROUTES.INSTANT_ONBOARDING,
+  FE_ROUTES.USER_ACCESS,
+  FE_ROUTES.OFFBOARD_SCREEN_ROUTE,
+  FE_ROUTES.INITIATE_TEST_TRANSACTION,
+];
+export const HEADER_ENABLED_PUBLIC_ROUTES = [
+  FE_ROUTES.TRIAL_INVOICE_CREATION_DETAILS,
+  FE_ROUTES.TRIAL_INVOICE_CREATION_HOME,
+  FE_ROUTES.PUBLIC_REFERRAL_ROUTE,
+];
+
+export const DISABLED_HEADER_FOR_MOBILE = [
+  FE_ROUTES.INSTANT_ONBOARDING,
+  FE_ROUTES.TRIAL_INVOICE_CREATION_HOME,
+  FE_ROUTES.USER_ACCESS,
+  FE_ROUTES.FUNDING_INVOICE_MAPPER,
+  FE_ROUTES.INVOICE_DETAILS,
+];
+export const LAYOUT_DISABLED_ROUTES = [
+  FE_ROUTES.LOGIN,
+  FE_ROUTES.INSTANT_ONBOARDING,
+  FE_ROUTES.USER_ACCESS,
+  FE_ROUTES.PUBLIC_ACCOUNTS,
+  FE_ROUTES.THANK_YOU,
+  FE_ROUTES.WAITLIST,
+  FE_ROUTES.HOME,
+  FE_ROUTES.PUBLIC_CLIENT_LEDGER,
+  FE_ROUTES.TRIAL_INVOICE_CREATION_DETAILS,
+  FE_ROUTES.TRIAL_INVOICE_CREATION_HOME,
+  FE_ROUTES.RECEIVE_PAYMENT,
+  FE_ROUTES.PAY_UAE_TRANSFER_DETAILS,
+  FE_ROUTES.METHOD_NOT_ALLOWED,
+  FE_ROUTES.PUBLIC_REFERRAL_ROUTE,
+  FE_ROUTES.OFFBOARD_SCREEN_ROUTE,
+  FE_ROUTES.MAGIC_LINK,
+  FE_ROUTES.INFO_WHATSAPP,
+  FE_ROUTES.INITIATE_TEST_TRANSACTION,
+  FE_ROUTES.PRICING,
+  FE_ROUTES.FEEDBACK,
+  FE_ROUTES.OVD_COLLECTION,
+];
+
+export const SUBNAV_INSIDE_LAYOUT_ROUTES = [
+  FE_ROUTES.ANALYTICS,
+  FE_ROUTES.BUSINESS_ANALYTICS,
+  FE_ROUTES.INTERNATIONAL_ACCOUNTS,
+  FE_ROUTES.CLIENT_LEVEL_ANALYTICS,
+  FE_ROUTES.REPORTS,
+];
+
+export const DASHBOARD_CONTAINER_STYLE_MAP = {
+  [FE_ROUTES.PLATFORM_WITHDRAWALS_DETAILS]: {
+    content: "!max-w-none !p-0",
+  },
+  [FE_ROUTES.INTERNATIONAL_ACCOUNTS]: {
+    content: "!max-w-none !p-0",
+  },
+  [FE_ROUTES.REFERRAL]: {
+    content: "!max-w-none !min-w-0 !p-0",
+  },
+};
+
+export default FE_ROUTES;

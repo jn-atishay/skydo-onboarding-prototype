@@ -1,0 +1,19 @@
+import { ServiceDescriptionRowVariant } from "../types/Invoice";
+
+export const FETCH_DATA_FOR = {
+  FUNDING_DETAILS: "FUNDING_DETAILS",
+  MAPPED_INVOICES: "MAPPED_INVOICES",
+  UNMAPPED_INVOICES: "UNMAPPED_INVOICES",
+  UNMAPPED_FUNDING_LIST: "UNMAPPED_FUNDING_LIST",
+  REFERRAL_TRACKING_DATA: "REFERRAL_TRACKING_DATA",
+};
+
+export const SERVICE_DESCRIPTION_ISSUE_TYPE: Record<ServiceDescriptionRowVariant, string> = {
+  NOT_FOUND: "missing",
+  NOT_DESCRIPTIVE: "incomplete",
+  PURPOSE_CODE_MISMATCH: "not_matching",
+  PURPOSE_CODE_MISMATCH_AND_NOT_DESCRIPTIVE: "not_matching_and_incomplete",
+};
+
+export const SERVICE_DESCRIPTION_COMBINED_VARIANT: ServiceDescriptionRowVariant =
+  "PURPOSE_CODE_MISMATCH_AND_NOT_DESCRIPTIVE";

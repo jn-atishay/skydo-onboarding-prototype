@@ -1,0 +1,16 @@
+import React from "react";
+import { IconProps } from "./DownloadIcon";
+
+const ListIcon: React.FC<IconProps> = () => {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.3335 4H14.0002" stroke="#0A2540" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.3335 8H14.0002" stroke="#0A2540" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.3335 12H14.0002" stroke="#0A2540" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2 4H2.00667" stroke="#0A2540" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2 8H2.00667" stroke="#0A2540" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2 12H2.00667" stroke="#0A2540" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+};
+export default ListIcon;

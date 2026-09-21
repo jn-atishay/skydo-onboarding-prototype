@@ -1,0 +1,69 @@
+/* NavBar scrollbar — thin, subtle, always visible in both Chrome and Firefox.
+   Standard scrollbar-width/scrollbar-color are only set for Firefox via
+   @supports (-moz-appearance: none); Chrome 121+ ignores ::-webkit-scrollbar
+   pseudo-elements when the standard properties are present on the same element,
+   reverting to a thin auto-hiding overlay scrollbar. Defining only the
+   ::-webkit-scrollbar pseudo-elements on the base selector forces a persistent,
+   styled scrollbar in WebKit/Blink.
+   Matches Figma spec: 5px width, thumb color = black-400. */
+.navbarScroll {
+  /* Keep the 5px track reserved even when the list fits, so nav rows sit the same
+     distance from the rail edge whether or not the scrollbar is present. Not one of
+     the standard properties that suppresses the pseudo-elements below. */
+  scrollbar-gutter: stable;
+}
+.navbarScroll::-webkit-scrollbar {
+  width: 5px;
+}
+.navbarScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.navbarScroll::-webkit-scrollbar-thumb {
+  @apply bg-black-400;
+  border-radius: 4px;
+}
+/* Firefox only — keep the always-visible pseudo-element styling above for Blink/WebKit. */
+@supports (-moz-appearance: none) {
+  .navbarScroll {
+    scrollbar-width: thin;
+    scrollbar-color: #cfd7df transparent; /* black-400 — theme() unavailable in this build pipeline */
+  }
+}
+/* The rail's 12px padding seats the scrollbar 12px inside its right edge, but the
+   design (node 6002:2633, "Rectangle 2" at x 222 of a 230px rail) leaves only 3px.
+   The scroll area reaches 9px back into that padding and its content puts a 4px
+   inset back, so the scrollbar moves outward without dragging the nav rows with it.
+   Rows still end 12px from the rail edge, matching the design's 206px content frame. */
+.scrollArea {
+  margin-right: -9px;
+}
+.scrollAreaContent {
+  padding-right: 4px;
+}
+
+/* Height reserved for the pinned bottom block, per the Figma annotations
+   "180 px minimum height" (Line 33) and "265 px is maximum" (Line 34). Those
+   measure the bottom block itself — referral widget alone, and referral plus the
+   milestone widget — not the scrollbar thumb. The nav above takes the remainder. */
+.bottomBlock {
+  min-height: 180px;
+}
+.bottomBlockWithMilestone {
+  min-height: 265px;
+}
+
+/* Figma "Rectangle 803", annotated "Add this progressive blur so the user knows
+   more items are there below". The exported asset is a plain white gradient — no
+   actual blur — running from 20% to 100% opacity over ~48px, so a CSS gradient
+   reproduces it exactly. Rendered only while more content sits below the fold.
+   Nav rows carry a matching scroll-mb-10 (40px) so an auto-scrolled active row
+   stops above this overlay instead of landing under it. */
+.scrollFade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  pointer-events: none;
+  background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0.2) 100%);
+}

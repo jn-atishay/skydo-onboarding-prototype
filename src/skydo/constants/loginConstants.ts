@@ -1,0 +1,3 @@
+export const LOGIN_JOURNEY_TTL_MS = 15 * 60 * 1000;
+export const LOGIN_NAVIGATION_TIMEOUT_MS = 15 * 1000;
+export const LOGIN_REQUEST_TIMEOUT_MS = 20 * 1000;

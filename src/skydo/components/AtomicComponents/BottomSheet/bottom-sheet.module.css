@@ -1,0 +1,49 @@
+/* bottom-sheet.module.css */
+.bottomSheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.open {
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.625rem 0.625rem 0 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.contentChildren {
+    margin-top: 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+}

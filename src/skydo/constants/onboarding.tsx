@@ -1,0 +1,288 @@
+import InfoIcon from "../components/AtomicComponents/ToastMessages/InfoIcon";
+import Typography from "../components/AtomicComponents/Typography";
+import Locale from "../util/locale/en";
+import { TYPOGRAPHY_SIZES, TYPOGRAPHY_TYPES } from "./atomicConstants";
+
+export const EXPORTER_ID_PARAM_QUERY = "exporter_id";
+
+export const USER_STATES = {
+  NO_STATE: "NO_STATE",
+  SIGN_UP_SUCCESS: "SIGN_UP_SUCCESS",
+  COMPANY_PAN_DETAILS: "COMPANY_PAN_DETAILS",
+  UBO_PAN_DETAILS: "UBO_PAN_DETAILS",
+  COMPANY_MANAGEMENT_DETAILS: "COMPANY_MANAGEMENT_DETAILS",
+  COMPANY_BANK_ACCOUNT_DETAILS: "COMPANY_BANK_ACCOUNT_DETAILS",
+  E_SIGN: "E_SIGN",
+  BACKGROUND_VERIFICATION: "BACKGROUND_VERIFICATION", // -- loaders
+  VIRTUAL_ACCOUNT_CREATE: "VIRTUAL_ACCOUNT_CREATE",
+  MANUAL_VERIFICATION: "MANUAL_VERIFICATION",
+  BENEFICIARY_ACCOUNT_PENDING: "BENEFICIARY_ACCOUNT_PENDING",
+  MANUAL_CHECKS: "MANUAL_CHECKS",
+  ONBOARDING_COMPLETE: "ONBOARDING_COMPLETE",
+  ARCHIVED: "ARCHIVED",
+  BLACK_LISTED: "BLACK_LISTED",
+};
+
+export const OFF_BOARDING_TYPE = {
+  AUTO_ARCHIVED_DUPLICATE_PAN: "AUTO_ARCHIVED_DUPLICATE_PAN",
+  ONBOARDING_CUSTOMER_MIA: "ONBOARDING_CUSTOMER_MIA",
+  ONBOARDING_INVALID_DOCS: "ONBOARDING_INVALID_DOCS",
+  ONBOARDING_NO_CROSS_BORDER_USECASE: "ONBOARDING_NO_CROSS_BORDER_USECASE",
+  ONBOARDING_NO_CROSS_BORDER_USECASE_SALES: "ONBOARDING_NO_CROSS_BORDER_USECASE_SALES",
+  ONBOARDING_UNSUPPORTED_BUSINESS: "ONBOARDING_UNSUPPORTED_BUSINESS",
+  ONBOARDING_WRONG_ENTITY_ONBOARDED: "ONBOARDING_WRONG_ENTITY_ONBOARDED",
+  SUSPECTED_FRAUD_CC_REPORTED: "SUSPECTED_FRAUD_CC_REPORTED",
+  SUSPECTED_FRAUD_INTERNAL: "SUSPECTED_FRAUD_INTERNAL",
+  SYSTEM_BLACK_LISTED: "SYSTEM_BLACK_LISTED",
+  USER_REQUESTED_CLOSURE: "USER_REQUESTED_CLOSURE",
+};
+
+export const DOC_UPLOAD_STATE = "DOC_UPLOAD";
+
+export const ACCOUNT_CREATED_STATES = [
+  USER_STATES.MANUAL_CHECKS,
+  USER_STATES.BENEFICIARY_ACCOUNT_PENDING,
+  USER_STATES.ONBOARDING_COMPLETE,
+  USER_STATES.MANUAL_VERIFICATION,
+];
+
+export const INT_ACCOUNT_CREATED_STATE = [USER_STATES.BENEFICIARY_ACCOUNT_PENDING, USER_STATES.ONBOARDING_COMPLETE];
+
+export const userStateJourney = [
+  USER_STATES.SIGN_UP_SUCCESS,
+  USER_STATES.COMPANY_PAN_DETAILS,
+  USER_STATES.UBO_PAN_DETAILS,
+  USER_STATES.COMPANY_MANAGEMENT_DETAILS,
+  USER_STATES.COMPANY_BANK_ACCOUNT_DETAILS,
+  USER_STATES.E_SIGN,
+  USER_STATES.BACKGROUND_VERIFICATION,
+  USER_STATES.MANUAL_VERIFICATION,
+  USER_STATES.VIRTUAL_ACCOUNT_CREATE,
+  USER_STATES.MANUAL_CHECKS,
+  USER_STATES.BENEFICIARY_ACCOUNT_PENDING,
+];
+
+export const MAX_FILE_SIZE = Math.pow(10, 7); // 10 MB
+// 200KB
+export const MAX_COMPANY_LOGO_SIZE = 6 * Math.pow(10, 4);
+
+export const INDUSTRY_CATEGORY = {
+  OTHERS: "OTHERS",
+  MEDIUM: "MEDIUM",
+  HIGH: "HIGH",
+};
+
+export const EcommerceOptions = {
+  AMAZON: "AMAZON",
+  GLOBAL_MARKETPLACE: "GLOBAL_MARKETPLACE",
+  WEBSITE: "WEBSITE",
+  SOCIAL_MEDIA: "SOCIAL_MEDIA",
+  NONE: "NONE",
+};
+
+export const INDUSTRY_TYPES = {
+  E_COMMERCE: "E_COMMERCE",
+  GOODS_EXPORT: "GOODS_EXPORT",
+  PHARMA: "PHARMA",
+};
+
+export const BUSSINESS_TYPES = {
+  PRIVATE_LIMITED_COMPANY: "COMPANY",
+  LLP: "LIMITED_LIABILITY_PARTNERSHIP",
+  PARTNERSHIP: "PARTNERSHIP",
+  PROPRIETORSHIP: "SOLE_PROPRIETORSHIP",
+  FREELANCER: "FREELANCER",
+  HUF: "HINDU_UNDIVIDED_FAMILY",
+};
+
+export const INDIVIDUAL_BUSINESSES = [BUSSINESS_TYPES.FREELANCER, BUSSINESS_TYPES.PROPRIETORSHIP];
+
+export const GST_AUTH_STATUS = {
+  ACTIVE: "ACTIVE",
+};
+
+export const CIN_NOT_REQUIRED_BUSINESSES = [
+  BUSSINESS_TYPES.FREELANCER,
+  BUSSINESS_TYPES.PROPRIETORSHIP,
+  BUSSINESS_TYPES.HUF,
+  BUSSINESS_TYPES.PARTNERSHIP,
+];
+
+export const COMPANY_BUSINESSES = [
+  BUSSINESS_TYPES.PRIVATE_LIMITED_COMPANY,
+  BUSSINESS_TYPES.LLP,
+  BUSSINESS_TYPES.PARTNERSHIP,
+];
+
+export const PRE_SELECTED_AADHAAR_UBOS_BUSINESSES = [
+  BUSSINESS_TYPES.HUF,
+  BUSSINESS_TYPES.PRIVATE_LIMITED_COMPANY,
+  BUSSINESS_TYPES.LLP,
+];
+
+export const DOC_REQUIRED_BUSINESSES = [
+  BUSSINESS_TYPES.FREELANCER,
+  BUSSINESS_TYPES.PROPRIETORSHIP,
+  BUSSINESS_TYPES.HUF,
+  BUSSINESS_TYPES.PARTNERSHIP,
+];
+
+export const SANCTION_CATEGORY = {
+  PEP: "PEP",
+  ADVERSE_MEDIA: "ADVERSE_MEDIA",
+  ENTITY_PROOF_DOC_UNAVAILABLE: "ENTITY_PROOF_DOC_UNAVAILABLE",
+} as const;
+
+export const KYC_API_PROVIDER = {
+  KARZA: "KARZA",
+  HYPERVERGE: "HYPERVERGE",
+};
+
+export const DECLARATION_RESPONSE = {
+  YES: "YES",
+  NO: "NO",
+};
+
+export const UTM_VALUES = {
+  utmLinkedIn: "linkedin",
+  utmGoogleAds: "google",
+  utmWordOfMouth: "word_of_mouth",
+  utmFacebookInstagram: "facebook",
+  utmGoogle: "google_search",
+  utmOnlineCommunity: "online_community",
+  utmChatGPTAITools: "chatgpt_ai_tools",
+  utmOthers: "others",
+};
+
+export enum DocTypesOnboarding {
+  IEC_CERTIFICATE = "IEC_CERTIFICATE",
+  UDYAM_CERTIFICATE = "UDYAM_CERTIFICATE",
+  UTILITY_BILL = "UTILITY_BILL",
+  ITR_ORDER = "ITR_ORDER",
+  GUMASTA_REGISTRATION = "GUMASTA_REGISTRATION",
+  SHOP_ESTABLISHMENT = "SHOP_ESTABLISHMENT",
+  UDYOG_AADHAAR = "UDYOG_AADHAAR",
+  CERTIFICATE_OF_PRACTICE = "CERTIFICATE_OF_PRACTICE",
+  FSSAI_LICENSE = "FSSAI_LICENSE",
+  TRADE_LICENSE = "TRADE_LICENSE",
+  PHARMA_LICENSE = "PHARMA_LICENSE",
+  BANK_STATEMENT = "BANK_STATEMENT",
+  HUF_DEED = "HUF_DEED",
+  PARTNERSHIP_DEED = "PARTNERSHIP_DEED",
+  PLATFORM_SCREENSHOT = "SCREENSHOT_PLATFORM",
+  CONTRACT_AGREEMENT = "CONTRACT_AGREEMENT",
+  RENTAL_AGREEMENT = "RENTAL_AGREEMENT",
+  INVOICE = "INVOICE",
+  MOA = "MOA",
+  AOA = "AOA",
+  COI = "COI",
+  LLP_DEED = "LLP_DEED",
+}
+
+export const DOCTYPE_OPTIONS_ORDER = [
+  DocTypesOnboarding.UDYAM_CERTIFICATE,
+  DocTypesOnboarding.UDYOG_AADHAAR,
+  DocTypesOnboarding.PLATFORM_SCREENSHOT,
+  DocTypesOnboarding.INVOICE,
+  DocTypesOnboarding.UTILITY_BILL,
+  DocTypesOnboarding.ITR_ORDER,
+  DocTypesOnboarding.CERTIFICATE_OF_PRACTICE,
+  DocTypesOnboarding.SHOP_ESTABLISHMENT,
+  DocTypesOnboarding.TRADE_LICENSE,
+  DocTypesOnboarding.RENTAL_AGREEMENT,
+  DocTypesOnboarding.IEC_CERTIFICATE,
+  DocTypesOnboarding.FSSAI_LICENSE,
+  DocTypesOnboarding.PHARMA_LICENSE,
+  DocTypesOnboarding.GUMASTA_REGISTRATION,
+  DocTypesOnboarding.MOA,
+  DocTypesOnboarding.AOA,
+  DocTypesOnboarding.COI,
+  DocTypesOnboarding.LLP_DEED,
+  DocTypesOnboarding.PARTNERSHIP_DEED,
+  DocTypesOnboarding.HUF_DEED,
+  DocTypesOnboarding.BANK_STATEMENT,
+  DocTypesOnboarding.CONTRACT_AGREEMENT,
+];
+
+export const DocCombinationsNotAllowed = [
+  [
+    DocTypesOnboarding.UTILITY_BILL.toString(),
+    DocTypesOnboarding.ITR_ORDER.toString(),
+    DocTypesOnboarding.RENTAL_AGREEMENT.toString(),
+  ],
+  [DocTypesOnboarding.SHOP_ESTABLISHMENT.toString(), DocTypesOnboarding.GUMASTA_REGISTRATION.toString()],
+  [DocTypesOnboarding.UDYOG_AADHAAR.toString(), DocTypesOnboarding.UDYAM_CERTIFICATE.toString()],
+];
+
+/** Sole-prop docs strong enough on their own that the second doc can be replaced by a declaration. */
+export const DECLARATION_ELIGIBLE_DOC_TYPES: string[] = [
+  DocTypesOnboarding.SHOP_ESTABLISHMENT,
+  DocTypesOnboarding.TRADE_LICENSE,
+];
+
+/** Product has suggested to remove these docs from options for sole prop. */
+export const SOLE_PROP_DOCS_TO_REMOVE: string[] = [
+  DocTypesOnboarding.UDYOG_AADHAAR,
+  DocTypesOnboarding.FSSAI_LICENSE,
+  DocTypesOnboarding.PHARMA_LICENSE,
+  DocTypesOnboarding.GUMASTA_REGISTRATION,
+];
+
+export const MIN_OTHER_INDUSTRY_DETAILS_LENGTH = 15;
+export const MIN_BUSINESS_ACTIVITY_DESC_LEN = 50;
+
+export const MONTHLY_REVENUE_OPTIONS = ["0_10K_USD", "10_20K_USD", "20_50K_USD", "50_100K_USD", ">100K_USD"];
+
+export const FREELANCER_MONTHLY_INCOME_RANGE = {
+  UNDER_10L: "UNDER_10L_INR",
+  OVER_10L: "OVER_10L_INR",
+};
+
+export const FREELANCER_MONTHLY_INCOME_OPTIONS = [
+  { label: Locale.underTenLakhMonthly, value: FREELANCER_MONTHLY_INCOME_RANGE.UNDER_10L },
+  { label: Locale.overTenLakhMonthly, value: FREELANCER_MONTHLY_INCOME_RANGE.OVER_10L },
+];
+
+export const AVG_TRANSACTION_VALUE = ["0_500_USD", "500_1K_USD", "1K_5K_USD", "5K_1K_USD", ">10K_USD"];
+export const AVG_TRANSACTION_OPTIONS = [
+  {
+    label: "",
+    value: undefined,
+    customRowRenderer: () => {
+      return (
+        <div key={"key"} className={"top-0 bg-white sticky flex flex-col px-4 py-3 border-b-2 border-black-100"}>
+          <div className={"flex flex-row space-x-[12px] items-center"}>
+            <InfoIcon stroke={"#8898AA"} />
+            <Typography
+              text={Locale.averageTransactionValueSubtext}
+              size={TYPOGRAPHY_SIZES.SMALL}
+              type={TYPOGRAPHY_TYPES.PARA}
+              textClasses={"!text-black-500"}
+            />
+          </div>
+        </div>
+      );
+    },
+  },
+  { label: Locale.avgTransactionUnder500, value: AVG_TRANSACTION_VALUE[0] },
+  { label: Locale.avgTransaction500To1000, value: AVG_TRANSACTION_VALUE[1] },
+  { label: Locale.avgTransaction1000To5000, value: AVG_TRANSACTION_VALUE[2] },
+  { label: Locale.avgTransaction5000To10000, value: AVG_TRANSACTION_VALUE[3] },
+  { label: Locale.avgTransaction10000OrMore, value: AVG_TRANSACTION_VALUE[4] },
+];
+
+export const BUSINESS_NAME_UPDATE_BLOCKED_CODES = [
+  "BUSINESS_NAME_UPDATE_NOT_ALLOWED",
+  "BUSINESS_NAME_UPDATE_NOT_ALLOWED_IN_CURRENT_STATE",
+  "BUSINESS_NAME_UPDATE_NOT_ALLOWED_GST_VERIFIED",
+  "BUSINESS_NAME_UPDATE_NOT_ALLOWED_BANK_VERIFIED",
+];
+
+export const BANK_VERIFY_FAILURE_REASONS: Record<string, string> = {
+  BANK_NAME_MATCHED_FAILED: "name_mismatch",
+  BANK_NAME_MATCHED_FAILED_INDIVIDUAL_AND_ENTITY: "name_mismatch",
+  INVALID_BANK_DETAILS: "invalid_account",
+  INVALID_IFSC: "invalid_ifsc",
+  MAX_RETRIES_EXCEEDED: "max_retries_exceeded",
+  ALREADY_ACTIVE: "account_already_active",
+};

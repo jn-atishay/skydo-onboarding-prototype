@@ -1,0 +1,21 @@
+export const WEBSITE_CONSTANTS = {
+  AVERAGE_TRANSACTION_VALUES_ANSWERS: {
+    USD_0_TO_499: "0 - 499 USD",
+    USD_500_TO_999: "500 - 999 USD",
+    USD_1000_TO_4999: "1,000 - 4,999 USD",
+    USD_5000_TO_9999: "5,000 - 9,999 USD",
+    USD_10000_ABOVE: "10,000 USD or more",
+  },
+  AMAZON_SELLER: {
+    ONLY_LOCAL: "Amazon India",
+    NOT_SELLING: "Not selling on Amazon",
+    ONLY_GLOBAL: "Amazon US, UK, Europe, etc",
+  },
+  AVERAGE_TRANSACTION_VALUES_ANSWERS_FOR_LEAD_CARD: {
+    USD_0_TO_249: "0 - 249 USD",
+    USD_250_TO_499: "250 - 499 USD",
+    USD_500_TO_1999: "500 - 1,999 USD",
+    USD_2000_TO_4999: "2,000 - 4,999 USD",
+    USD_5000_ABOVE: "5,000 USD or more",
+  },
+};
