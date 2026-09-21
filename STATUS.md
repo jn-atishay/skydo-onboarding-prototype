@@ -244,3 +244,6 @@ rules for the network helper, sign-in, analytics and the PDF viewer now match on
 file name alone, so no import form can bypass them. Verified: the sample website now
 gets the green tick, and a pass over sign-up, mobile, KYC intro, Aadhaar, documents,
 home, share account and tracking made no request to any host but the prototype's own. The website field's favicon lookup (Google's favicon service) is skipped too; the product's globe icon shows instead.
+The home page's customer-video embeds (YouTube) now point at a local placeholder that
+says the video plays on the live site, since an embed loads from YouTube as soon as the
+page opens. Plain links to videos are unchanged.

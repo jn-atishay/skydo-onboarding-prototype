@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import path from "path";
 import { baseAssetPaths } from "./plugins/base-asset-paths";
+import { noOutsideEmbeds } from "./plugins/no-outside-embeds";
 
 const shim = (p: string) => path.resolve(__dirname, "src/shims", p);
 const mock = (p: string) => path.resolve(__dirname, "src/mocks", p);
@@ -15,6 +16,7 @@ export default defineConfig({
   base: BASE,
   plugins: [
     baseAssetPaths(path.resolve(__dirname, "public")),
+    noOutsideEmbeds(),
     react(),
     svgr({ include: "**/*.svg" }),
   ],
