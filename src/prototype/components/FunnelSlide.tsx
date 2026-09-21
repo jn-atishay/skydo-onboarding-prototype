@@ -37,8 +37,18 @@ function SlideCanvas({ children }: { children: React.ReactNode }) {
 }
 
 const LEADS = 14398;
+// The funnel follows August's sign-ups; these two are for the funnel's last steps.
 const ONBOARDED = 3395;
 const ACTIVATED = 978;
+
+/**
+ * The headline: every onboarding completed in August (first reached accounts ready
+ * between 1 and 31 August, whenever the person signed up), and how many of those have
+ * received a first payment from a client, as of 21 September.
+ */
+const AUG_ONBOARDINGS = 3685;
+const AUG_ACTIVATED = 1111;
+const AUG_FL_SP = 2770;
 
 /** How many of every 100 leads reached each step. */
 const FUNNEL: { label: string; people: number }[] = [
@@ -97,15 +107,15 @@ export function FunnelSlide() {
             <span>leads signed up in August</span>
           </div>
           <div className="proto-slide-stat">
-            <strong>{r10(ONBOARDED)}</strong>
-            <span>onboardings: {per100(ONBOARDED)} of every 100 leads</span>
+            <strong>{r10(AUG_ONBOARDINGS)}</strong>
+            <span>onboardings completed in August</span>
           </div>
           <div className="proto-slide-stat">
-            <strong>{r10(ACTIVATED)}</strong>
-            <span>activated: {pct(ACTIVATED, ONBOARDED)} of onboardings received a first client payment</span>
+            <strong>{r10(AUG_ACTIVATED)}</strong>
+            <span>activated: {pct(AUG_ACTIVATED, AUG_ONBOARDINGS)} of August's onboardings have had a first client payment</span>
           </div>
           <div className="proto-slide-stat">
-            <strong>{pct(1275 + 1280, 3393)}</strong>
+            <strong>{pct(AUG_FL_SP, AUG_ONBOARDINGS)}</strong>
             <span>of onboardings are freelancers and sole proprietors</span>
           </div>
         </div>
@@ -148,9 +158,9 @@ export function FunnelSlide() {
         </div>
 
         <p className="proto-slide-foot">
-          Funnel: everyone who signed up 1 to 31 August 2026, followed to 21 September, rounded to the nearest 10; docs
-          uploaded counts everyone who reached the checks, and activated means a first client payment. Channels: Zoho,
-          about 3,100 onboardings closed in August.
+          Headline: onboardings completed in August, activations among them to 21 September. Funnel: August's leads followed
+          to 21 September; docs uploaded counts everyone who reached the checks. Channels: Zoho, about 3,100 onboardings
+          closed in August. Activated means a first client payment. Rounded to the nearest 10.
         </p>
       </div>
     </SlideCanvas>

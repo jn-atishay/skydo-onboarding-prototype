@@ -369,3 +369,11 @@ Organic now combines Google search 221, AI tools 147, blogs 71 and word of mouth
 610 onboardings, 20%. The split reads Google (paid) 24%, Organic 20%, Meta 19%,
 Referrals 14%, Others 23%. The chart has no labelled SEO source, so any SEO onboardings
 remain among the unlabelled sources under Others.
+
+## Slide headline: August onboardings and their activations (21 Sep 2026)
+The headline now counts onboardings completed in August (first reached accounts ready
+between 1 and 31 August IST, whatever the sign-up date): 3,685, of which 1,111 (30%)
+have received a first client payment by 21 September, and 2,770 (75%) are freelancers
+or sole proprietors. The funnel card still follows August's sign-ups. Zoho's August
+count by closing date implies about 3,105; accounts closed since (63 archived, 24
+blacklisted) explain only 87 of the difference, so Zoho counts on a different basis.
