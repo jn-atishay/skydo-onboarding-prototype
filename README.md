@@ -22,6 +22,8 @@ each step, what usually goes wrong, and why each screen exists.
 | Reset | Clears everything and returns to the start. |
 | Tap a text field | Fills it with a sample value that suits the field. Tap again to clear it. Typing is switched off, so no real details can be entered. Dropdowns still open their list. |
 | P | Presenter mode: hides the rail and bars so only the product shows. The (i) buttons stay. |
+| Right / left arrow | Next and Back, from the keyboard. Also works in presenter mode. |
+| Space | Reset: back to Sign up with everything cleared. |
 
 The home step has its own variants in the top bar: Accounts created, Next payment
 question, Receive steps, Test payment, Choose method, Share account and Tracking. The

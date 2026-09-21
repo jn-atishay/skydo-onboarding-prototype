@@ -289,3 +289,11 @@ Checks will still rise a little, as 430 August sign-ups were still in manual rev
 
 Verified: all 12 Freelancer screens and the Pvt Ltd directors screen show their figures;
 the tiles wrap two to a row at phone width.
+
+## Keyboard: arrows and space (21 Sep 2026)
+Right arrow is Next, left arrow is Back, and space is Reset, so a presenter can drive the
+demo without the mouse, including in presenter mode where the buttons are hidden. The
+keys do nothing while an (i) popup is open or a field has focus. Space no longer also
+presses whichever button was clicked last.
+Verified: arrows moved PAN → Business details → Terms; arrows ignored with a popup open;
+space from Documents (with Next focused) returned to Sign up without also pressing Next.

@@ -111,6 +111,23 @@ export default function App() {
     notifyRouter();
   }, [reset]);
 
+  // Presenting from the keyboard: right arrow is Next, left arrow is Back, space is Reset.
+  // Left alone while a field has focus, and while a popup is open.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable);
+      if (typing || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || document.querySelector(".proto-modal")) return;
+      if (e.key === "ArrowRight") go(1);
+      else if (e.key === "ArrowLeft") go(-1);
+      else if (e.key === " " || e.code === "Space") onReset();
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go, onReset]);
+
   return (
     <AppContext.Provider value={{ theme: resolvedTheme }}>
     <div className={`proto-root ${presenter ? "is-presenter" : ""}`}>
