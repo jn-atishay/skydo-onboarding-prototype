@@ -2,7 +2,7 @@
 // back/next bar. None of this is part of the product.
 import React from "react";
 import { BUSINESS_TYPE_LIST, StepId, usePrototype } from "../state";
-import { screensFor, indexOfStep } from "../screens";
+import { screensFor, indexOfStep, journeyLength, journeyNumber } from "../screens";
 
 export function LeftRail({ onJump }: { onJump: (s: StepId) => void }) {
   const { step, businessType, railOpen, set } = usePrototype();
@@ -23,14 +23,14 @@ export function LeftRail({ onJump }: { onJump: (s: StepId) => void }) {
         <>
           <p className="proto-rail-title">The journey</p>
           <ol className="proto-rail-list">
-            {list.map((s, i) => (
+            {list.map((s) => (
               <li key={s.id}>
                 <button
-                  className={`proto-rail-item ${s.id === step ? "is-current" : ""}`}
+                  className={`proto-rail-item ${s.id === step ? "is-current" : ""} ${s.slide ? "is-slide" : ""}`}
                   onClick={() => onJump(s.id)}
                   aria-current={s.id === step ? "step" : undefined}
                 >
-                  <span className="proto-rail-num">{i + 1}</span>
+                  <span className="proto-rail-num">{s.slide ? "★" : journeyNumber(s.id, businessType)}</span>
                   <span className="proto-rail-label">{s.label}</span>
                 </button>
               </li>
@@ -118,7 +118,9 @@ export function BottomBar({
 
       <div className="proto-bottom-mid">
         <span className="proto-step-count">
-          Step {i + 1} of {list.length}
+          {journeyNumber(step, businessType) === null
+            ? "Overview"
+            : `Step ${journeyNumber(step, businessType)} of ${journeyLength(businessType)}`}
         </span>
         {hint && <span className="proto-hint">{hint}</span>}
       </div>

@@ -607,3 +607,165 @@ body,
 .proto-stage:has(.proto-viewport-outer) {
   overflow: clip;
 }
+
+/* ---------- opening slide: the August funnel ---------- */
+.proto-slide-outer {
+  position: relative;
+  background: #f6f8ff;
+}
+.proto-slide {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  background: #f6f8ff;
+}
+.proto-slide-inner {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 22px 28px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.proto-slide-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5b7cfa;
+}
+.proto-slide-title {
+  margin: 0 0 14px;
+  font-size: 28px;
+  line-height: 1.15;
+  color: #16225b;
+}
+.proto-slide-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.proto-slide-stat {
+  background: #fff;
+  border: 1px solid #e3e8fb;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.proto-slide-stat strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #16225b;
+}
+.proto-slide-stat span {
+  display: block;
+  margin-top: 5px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #5a6484;
+}
+.proto-slide-cols {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.proto-slide-card {
+  background: #fff;
+  border: 1px solid #e3e8fb;
+  border-radius: 12px;
+  padding: 13px 16px;
+}
+.proto-slide-card h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #5b7cfa;
+}
+.proto-slide-funnel {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.proto-slide-funnel li {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 0;
+  font-size: 14px;
+}
+.proto-slide-funnel-label {
+  color: #1b2140;
+}
+.proto-slide-funnel-bar {
+  height: 12px;
+  border-radius: 6px;
+  background: #eef1fb;
+  overflow: hidden;
+}
+.proto-slide-funnel-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: #5b7cfa;
+}
+.proto-slide-funnel li:nth-last-child(-n + 2) .proto-slide-funnel-bar span {
+  background: #22a35a;
+}
+.proto-slide-funnel-num {
+  text-align: right;
+  font-weight: 700;
+  color: #16225b;
+}
+.proto-slide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.proto-slide-table th {
+  text-align: right;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #5a6484;
+  padding: 0 0 6px 8px;
+  border-bottom: 1px solid #e3e8fb;
+}
+.proto-slide-table td {
+  text-align: right;
+  padding: 4px 0 4px 8px;
+  border-bottom: 1px solid #f0f2fa;
+  color: #1b2140;
+}
+.proto-slide-table th:first-child,
+.proto-slide-table td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+.proto-slide-table td:last-child {
+  font-weight: 700;
+}
+.proto-slide-callout {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #16225b;
+  background: #eef2ff;
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+.proto-slide-foot {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #5a6484;
+}
+.proto-rail-item.is-slide .proto-rail-num {
+  background: #5b7cfa;
+  color: #fff;
+}

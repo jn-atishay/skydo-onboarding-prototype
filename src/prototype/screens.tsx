@@ -11,9 +11,13 @@ export interface ScreenDef {
   typeAware?: boolean;
   /** Named variants offered in the top bar for this screen. */
   variants?: { id: string; label: string }[];
+  /** A presenter slide rather than a product screen: not numbered as a journey step. */
+  slide?: boolean;
 }
 
 export const SCREENS: ScreenDef[] = [
+  // The opening slide: the August funnel, before walking the journey.
+  { id: "intro", label: "August 2026 funnel", slide: true },
   {
     id: "login",
     label: "Sign up",
@@ -76,4 +80,16 @@ export function screensFor(businessType: string): ScreenDef[] {
 
 export function indexOfStep(step: StepId, businessType: string): number {
   return screensFor(businessType).findIndex((s) => s.id === step);
+}
+
+/** A screen's number in the journey, counting product screens only (slides have none). */
+export function journeyNumber(step: StepId, businessType: string): number | null {
+  const list = screensFor(businessType).filter((s) => !s.slide);
+  const i = list.findIndex((s) => s.id === step);
+  return i === -1 ? null : i + 1;
+}
+
+/** How many product screens a business type walks through. */
+export function journeyLength(businessType: string): number {
+  return screensFor(businessType).filter((s) => !s.slide).length;
 }

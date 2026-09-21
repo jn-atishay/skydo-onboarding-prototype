@@ -318,3 +318,18 @@ refresh. Two causes:
 Verified: Verify PAN for Freelancer, Pvt Ltd, HUF and Sole Prop (which the product's own
 rule turns into Freelancer without a GST) shows no error and the right form; side bar
 back and forward and business-type switches still work.
+
+## Opening slide: the August 2026 funnel (21 Sep 2026)
+The prototype now opens on a slide, "Where August's sign-ups went", before Sign up. It
+condenses the business-context deck's customer and funnel slides onto August 2026
+onboarding figures: 14,400 sign-ups, 3,390 got accounts (24 of every 100), 2,060
+received a first payment (61% of those), and 75% of new accounts are freelancers and
+sole proprietors; the funnel per 100 sign-ups step by step; and sign-ups and accounts
+by channel (referrals get accounts 60% of the time against 7% for Facebook).
+Same cohort as the popups (August sign-ups followed to 21 September); channels were
+read on 10 September. The deck's SMB share of TPV and revenue and its take rate are not
+on the slide: the database has no SMB segment to recompute them for August.
+The slide sits first in the side bar marked with a star, unnumbered, so Sign up stays
+step 1. Reset and space return to it. It is drawn on a fixed canvas scaled to fit the
+frame, so it never scrolls. Verified at a 1000 x 600 window and in presenter mode;
+arrows move between the slide and Sign up; Pvt Ltd still counts 12 steps.

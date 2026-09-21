@@ -44,6 +44,7 @@ export function currentPan(): string {
 export function onboardingStateForStep(): string {
   const { step, businessType } = getProto();
   switch (step) {
+    case "intro":
     case "login":
     case "email-otp":
     case "mobile":

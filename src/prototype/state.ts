@@ -44,6 +44,7 @@ export function businessTypeFromPan(pan: string, hasGst = false): BusinessTypeId
 }
 
 export type StepId =
+  | "intro"
   | "login"
   | "email-otp"
   | "mobile"
@@ -92,7 +93,7 @@ export interface PrototypeState {
 }
 
 const initial = {
-  step: "login" as StepId,
+  step: "intro" as StepId,
   businessType: BUSINESS_TYPES.FREELANCER as BusinessTypeId,
   variant: "",
   panValue: "",

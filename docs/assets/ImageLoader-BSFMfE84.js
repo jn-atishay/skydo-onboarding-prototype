@@ -1,0 +1,1 @@
+import{j as o,i as r}from"./index-BT50i24j.js";const a=()=>o.jsx(r,{autoplay:!0,loop:!0,src:"/skydo-onboarding-prototype/lottie_loader.json",className:"w-[200px} md:w-[800px] h-[200px]"});export{a as ImageLoader,a as default};

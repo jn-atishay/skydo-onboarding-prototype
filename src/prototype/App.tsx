@@ -107,7 +107,7 @@ export default function App() {
 
   const onReset = useCallback(() => {
     reset();
-    history.pushState(null, "", "#/login/FREELANCER");
+    history.pushState(null, "", "#/intro/FREELANCER");
     notifyRouter();
   }, [reset]);
 
@@ -138,7 +138,7 @@ export default function App() {
 
         <div className="proto-stage">
           <div className="proto-screen-wrap">
-            <InfoButton onClick={() => setInfoOpen(true)} />
+            {!def.slide && <InfoButton onClick={() => setInfoOpen(true)} />}
             <ScreenErrorBoundary screen={`${step}-${businessType}-${variant}`}>
               {/* wait until the URL has been read, so a deep link mounts its own
                   screen first rather than flashing the sign-up page */}

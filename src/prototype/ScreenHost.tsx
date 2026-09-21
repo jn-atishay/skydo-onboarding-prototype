@@ -1,5 +1,6 @@
 // Mounts the product's own components for the screen on show. Where a screen is not
 // wired up yet, it says so plainly rather than faking it.
+import { FunnelSlide } from "./components/FunnelSlide";
 import React, { useEffect } from "react";
 import { StepId, usePrototype } from "./state";
 import DesktopLoginPage from "../skydo/components/LoginComponents/DesktopLoginPage";
@@ -224,6 +225,10 @@ export function ScreenHost({ step }: { step: StepId }) {
   // router already on screen catch up.
   setProductPath(productPath, true, isTracking ? { payment_id: "test" } : {});
   useEffect(() => notifyRouter(), [productPath]);
+
+  if (step === "intro") {
+    return <FunnelSlide />;
+  }
 
   if (step === "login" || step === "email-otp") {
     // The real login page, including its background, logo, footer and the

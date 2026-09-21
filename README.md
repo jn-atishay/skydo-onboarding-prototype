@@ -14,7 +14,7 @@ each step, what usually goes wrong, and why each screen exists.
 
 | Control | What it does |
 |---|---|
-| Left rail | Every screen in journey order. Click any step to jump to it. |
+| Left rail | Opens on the August 2026 funnel slide (★), then every screen in journey order. Click any step to jump to it. |
 | Business type bar | Freelancer, Sole Proprietor, Private Limited, LLP, Partnership, HUF. The screen re-renders for that type and the choice sticks as you move. |
 | (i) top right | Why this screen exists, and what the numbers say for that step. Closes with X or Escape. |
 | (i) beside a field | Extra explanation for that field, such as what the fourth letter of a PAN decides. |
@@ -23,7 +23,7 @@ each step, what usually goes wrong, and why each screen exists.
 | Tap a text field | Fills it with a sample value that suits the field. Tap again to clear it. Typing is switched off, so no real details can be entered. Dropdowns still open their list. |
 | P | Presenter mode: hides the rail and bars so only the product shows. The (i) buttons stay. |
 | Right / left arrow | Next and Back, from the keyboard. Also works in presenter mode. |
-| Space | Reset: back to Sign up with everything cleared. |
+| Space | Reset: back to the funnel slide with everything cleared. |
 
 The home step has its own variants in the top bar: Accounts created, Next payment
 question, Receive steps, Test payment, Choose method, Share account and Tracking. The
