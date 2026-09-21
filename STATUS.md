@@ -416,3 +416,9 @@ margin left of the page on the onboarding steps and DigiLocker, and in the right
 on the focused home. The figures are the same as in the (i) popup. Once on, the card
 stays on while moving between screens; press the button again to hide it. The opening
 slide has neither button.
+
+## Who the sign-up figures count (21 Sep 2026)
+On the Sign up and Email code screens, the numbers card now carries one line above it:
+"Website sign-ups only; a few existing customers are included." Both screens' figures
+come from the login box that follows the skydo.com form, and they are not filtered to
+new people.

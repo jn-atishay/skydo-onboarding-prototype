@@ -20,6 +20,8 @@ export interface Funnel {
   /** One or two broad reasons people stop here. */
   reasons: string[];  /** Leave out the small note under the numbers. */
   hideNote?: boolean;
+  /** One line shown above the on-screen numbers card, on who is counted. */
+  cardNote?: string;
 }
 
 export interface ScreenInfo {
@@ -40,6 +42,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
     ],
     funnel: {
       hideNote: true,
+      cardNote: "Website sign-ups only; a few existing customers are included.",
       landed: 17147,
       moved: 12008,
       movedMeans: "asked for an email code",
@@ -58,6 +61,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "The customer can fix a typo without starting again, using the edit link on this screen.",
     ],
     funnel: {
+      cardNote: "Website sign-ups only; a few existing customers are included.",
       landed: 12008,
       moved: 9633,
       movedMeans: "entered the code and got into Skydo",

@@ -113,7 +113,7 @@ function useUnderLogo(active: boolean) {
       const logo = Array.from(wrap.querySelectorAll(".proto-product-page svg"))
         .map((el) => el.getBoundingClientRect())
         .find((r) => r.width > 120 && r.left - w.left < w.width / 2);
-      if (logo) setPos({ top: logo.bottom - w.top + 24, left: logo.left - w.left + logo.width / 2 });
+      if (logo) setPos({ top: logo.bottom - w.top + 36, left: logo.left - w.left + logo.width / 2 });
     };
     place();
     // The page settles over its first moments (fonts, images), so place it again.
@@ -140,6 +140,7 @@ export function NumbersCard({ screenId }: { screenId: string }) {
       role="note"
       aria-label="August 2026 numbers for this screen"
     >
+      {info.funnel.cardNote && <p className="proto-num-card-note">{info.funnel.cardNote}</p>}
       <p className="proto-num-card-head">August 2026, per month</p>
       <dl>
         {funnelRows(info.funnel).map(([k, v], i) => (
