@@ -338,3 +338,16 @@ arrows move between the slide and Sign up; Pvt Ltd still counts 12 steps.
 The funnel slide says "onboardings" and "Onboarded" instead of "got accounts" and
 "Accounts ready": the headline figure, the funnel row, the channel table column and the
 channel note. An onboarding is still an August sign-up that reached accounts ready.
+
+## Slide simplified: leads funnel and channel split (21 Sep 2026)
+"Out of every 100 leads" (a lead and a sign-up are treated as the same for now) now has
+eight steps: Signup 100, PAN submitted 64, Business details submitted 42, Aadhaar
+verified 37, Bank account linked 35, Docs uploaded 27, Onboarding completed 24,
+Activated 7. Docs uploaded counts everyone who went on to the checks (companies and
+LLPs have no documents step). Activated means a first payment from a client (978, 29%
+of onboardings); the free test payment no longer counts.
+"Onboardings by channel" is now a plain split of the 3,395 onboardings: Google 50%,
+Organic 21% (SEO, blogs, word of mouth: untagged or blog-tagged sign-ups), Referrals
+12%, Others 12%, Meta 5% (Facebook and Instagram). Shares are rounded to add up to 100.
+All figures re-read on 21 September; the popups' later-step counts were brought in line
+(3,393 to 3,395 onboardings and three similar one-or-two-person differences).

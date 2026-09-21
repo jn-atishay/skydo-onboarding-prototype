@@ -715,7 +715,7 @@ body,
   border-radius: 6px;
   background: #5b7cfa;
 }
-.proto-slide-funnel li:nth-last-child(-n + 2) .proto-slide-funnel-bar span {
+.proto-slide-funnel:not(.proto-slide-channels) li:nth-last-child(-n + 2) .proto-slide-funnel-bar span {
   background: #22a35a;
 }
 .proto-slide-funnel-num {
@@ -764,6 +764,21 @@ body,
   font-size: 12px;
   line-height: 1.45;
   color: #5a6484;
+}
+.proto-slide-channels li {
+  grid-template-columns: 150px minmax(0, 1fr) 92px;
+  padding: 7px 0;
+}
+.proto-slide-channel-num {
+  text-align: right;
+  font-size: 13px;
+  color: #5a6484;
+  white-space: nowrap;
+}
+.proto-slide-channel-num strong {
+  font-size: 15px;
+  color: #16225b;
+  margin-right: 4px;
 }
 .proto-rail-item.is-slide .proto-rail-num {
   background: #5b7cfa;

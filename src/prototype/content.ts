@@ -148,7 +148,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
     ],
     funnel: {
       landed: 6074,
-      moved: 5287,
+      moved: 5288,
       movedMeans: "verified Aadhaar through DigiLocker",
       reasons: [
         "They have to leave Skydo for a government site and come back; any hiccup there, a code or an outage, ends the attempt.",
@@ -164,7 +164,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Freelancers and sole proprietors go straight to the bank step after this.",
     ],
     funnel: {
-      landed: 5287,
+      landed: 5288,
       moved: 5274,
       movedMeans: "confirmed the phone code",
       reasons: [
@@ -200,7 +200,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
     ],
     funnel: {
       landed: 5248,
-      moved: 5105,
+      moved: 5106,
       movedMeans: "added a bank account",
       reasons: [
         "The name on the bank account has to match the PAN, and for most a mismatch cannot be fixed on the spot.",
@@ -235,8 +235,8 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Accounts ready is the end of the line. A live customer never moves past it, and the first payment does not change their status.",
     ],
     funnel: {
-      landed: 3957,
-      moved: 3393,
+      landed: 3958,
+      moved: 3395,
       movedMeans: "had their accounts created",
       scope: "Of those who did not: 430 are still waiting in manual review, and 134 were closed (business not supported, or no foreign clients).",
       reasons: [
@@ -254,7 +254,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "Customers still in review can look around and even run a test payment, but their account numbers stay hidden until the review clears.",
     ],
     funnel: {
-      landed: 3393,
+      landed: 3395,
       moved: 2059,
       movedMeans: "received a payment, the test payment or a real one",
       reasons: [
