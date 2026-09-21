@@ -77,7 +77,17 @@ export interface PrototypeState {
   presenter: boolean;
   railOpen: boolean;
 
+  /**
+   * Counts moves made with the prototype's own controls (rail, top bar, Back/Next,
+   * browser back and forward). Each one opens the product page afresh, because some
+   * product cards read the customer's details only when they first open. Moves made
+   * by the product's own buttons leave it alone, so their transitions play as live.
+   */
+  jump: number;
+
   set: (patch: Partial<PrototypeState>) => void;
+  /** A move made with the prototype's controls: applies it and opens the page afresh. */
+  jumpTo: (patch: Partial<PrototypeState>) => void;
   reset: () => void;
 }
 
@@ -99,8 +109,20 @@ const initial = {
 
 export const usePrototype = create<PrototypeState>()((set) => ({
   ...initial,
+  jump: 0,
   set: (patch) => set(patch),
-  reset: () => set({ ...initial }),
+  // A PAN verified earlier is forgotten, so jumping back to the PAN step shows the
+  // empty PAN box again. The steps after it count the PAN as verified regardless.
+  // A new business type also drops the PAN entered for the old one, so the screens
+  // show a sample PAN that suits the new type.
+  jumpTo: (patch) =>
+    set((s) => ({
+      panVerified: false,
+      ...(patch.businessType && patch.businessType !== s.businessType ? { panValue: "" } : {}),
+      ...patch,
+      jump: s.jump + 1,
+    })),
+  reset: () => set((s) => ({ ...initial, jump: s.jump + 1 })),
 }));
 
 /** Read current state outside React (fixtures need this). */

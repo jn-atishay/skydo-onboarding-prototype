@@ -5,24 +5,9 @@
 // Search-and-pick dropdowns are left alone, because tapping them opens their list,
 // which is how an option is chosen. Read-only and disabled fields are left alone too.
 import { getProto } from "./state";
-import { SAMPLE } from "../mocks/fixtures";
+import { SAMPLE, samplePan } from "../mocks/fixtures";
 
 const SCOPE = ".proto-screen-wrap";
-
-/** A PAN whose fourth letter matches the business type chosen in the top bar. */
-function samplePan(): string {
-  switch (getProto().businessType) {
-    case "COMPANY":
-      return "AAACM1234D"; // C, a company
-    case "HINDU_UNDIVIDED_FAMILY":
-      return "AAAHS1234K"; // H, an HUF
-    case "PARTNERSHIP":
-    case "LIMITED_LIABILITY_PARTNERSHIP":
-      return "AAAFM1234L"; // F, a firm
-    default:
-      return SAMPLE.pan; // P, a person
-  }
-}
 
 /**
  * Everything that says what a field is for: its name and placeholder, plus the

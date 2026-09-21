@@ -21,6 +21,26 @@ export const SAMPLE = {
 };
 
 /** The onboarding state the product expects for the screen currently being shown. */
+/** A sample PAN whose fourth letter matches the business type chosen in the top bar. */
+export function samplePan(): string {
+  switch (getProto().businessType) {
+    case "COMPANY":
+      return "AAACM1234D"; // C, a company
+    case "HINDU_UNDIVIDED_FAMILY":
+      return "AAAHS1234K"; // H, an HUF
+    case "PARTNERSHIP":
+    case "LIMITED_LIABILITY_PARTNERSHIP":
+      return "AAAFM1234L"; // F, a firm
+    default:
+      return SAMPLE.pan; // P, a person
+  }
+}
+
+/** The business PAN on show: the one entered in the PAN step, else a sample for the type. */
+export function currentPan(): string {
+  return getProto().panValue || samplePan();
+}
+
 export function onboardingStateForStep(): string {
   const { step, businessType } = getProto();
   switch (step) {

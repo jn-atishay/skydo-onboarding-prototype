@@ -52,7 +52,7 @@ export function TopBar({
   variants?: { id: string; label: string }[];
   typeAware?: boolean;
 }) {
-  const { businessType, variant, set } = usePrototype();
+  const { businessType, variant, jumpTo } = usePrototype();
 
   if (!typeAware && !variants) return null;
 
@@ -66,7 +66,7 @@ export function TopBar({
               <button
                 key={b.id}
                 className={`proto-seg-btn ${businessType === b.id ? "is-on" : ""}`}
-                onClick={() => set({ businessType: b.id })}
+                onClick={() => jumpTo({ businessType: b.id })}
               >
                 {b.short}
               </button>
@@ -83,7 +83,7 @@ export function TopBar({
               <button
                 key={v.id || "default"}
                 className={`proto-seg-btn ${variant === v.id ? "is-on" : ""}`}
-                onClick={() => set({ variant: v.id })}
+                onClick={() => jumpTo({ variant: v.id })}
               >
                 {v.label}
               </button>

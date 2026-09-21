@@ -15,6 +15,7 @@ import { SAMPLE_REFERRER } from "../mocks/beCall";
 import { BankAccountStep } from "../skydo/types/Onboarding";
 import { DOC_REQUIRED_BUSINESSES } from "../skydo/constants/onboarding";
 import useBankStatementAnalyseStore from "../skydo/store/useBankStatementAnalyseStore";
+import useCompanyPanDetailsStore from "../skydo/store/useCompanyPanDetailsStore";
 
 const AFTER_PAN = ["business-details", "aadhaar", "mobile-otp", "management", "bank", "documents", "verification", "home"];
 
@@ -26,6 +27,14 @@ function seedProductStores() {
   useReferralStore.setState({
     referrerDetails: variant === "referral" ? (SAMPLE_REFERRER as any) : undefined,
     referrerDetailsViaCode: variant === "referral" ? (SAMPLE_REFERRER as any) : undefined,
+  } as any);
+
+  // The PAN card remembers a verified PAN and never forgets it by itself, so going
+  // back to the PAN step would still show the business form. Match it to the step.
+  useCompanyPanDetailsStore.setState({
+    isPanVerified: panDone,
+    isForcePanInput: false,
+    ...(panDone ? {} : { companyPanDetailsData: {} }),
   } as any);
 
   // The documents card opens on the document that matches the bank-card answer:

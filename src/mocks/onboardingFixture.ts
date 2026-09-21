@@ -13,6 +13,7 @@ import {
   INDUSTRIES,
   INDUSTRY_QUESTIONS,
   SAMPLE,
+  currentPan,
   displayName,
   onboardingStateForStep,
 } from "./fixtures";
@@ -108,7 +109,7 @@ export function companyPanDetailsFixture() {
         cin: isCompany ? SAMPLE.cin : null,
         onBoardingState: onboardingStateForStep(),
         offboardingType: null,
-        businessPAN: done ? p.panValue || SAMPLE.pan : null,
+        businessPAN: done ? currentPan() : null,
         isAmazonUser: false,
         exporterKyc: { kycDocList: [], iecDetails: null },
         // The documents card names the account ("bank statement for account number
@@ -175,7 +176,7 @@ export function directorDetailsFixture() {
       fullName: SAMPLE.name,
       registeredName: SAMPLE.name,
       phoneNumber: SAMPLE.phone,
-      panNumber: p.panValue || SAMPLE.pan,
+      panNumber: currentPan(),
       isDirector: COMPANY_TYPES.includes(p.businessType),
       maskedAadhaar: aadhaarDone ? "XXXX XXXX 1891" : null,
       exporter: {

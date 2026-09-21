@@ -33,7 +33,7 @@ function parseHash(): { step?: StepId; businessType?: BusinessTypeId; variant?: 
 
 export default function App() {
   const proto = usePrototype();
-  const { step, businessType, variant, presenter, set, reset } = proto;
+  const { step, businessType, variant, presenter, jump, set, jumpTo, reset } = proto;
   const [infoOpen, setInfoOpen] = useState(false);
   const [booted, setBooted] = useState(false);
 
@@ -41,9 +41,11 @@ export default function App() {
 
   // --- URL <-> state ------------------------------------------------------
   useEffect(() => {
+    // A changed URL (browser back or forward, or a pasted link) is a move made
+    // outside the product, so the page opens afresh.
     const apply = () => {
       const h = parseHash();
-      set({
+      usePrototype.getState().jumpTo({
         ...(h.step ? { step: h.step } : {}),
         ...(h.businessType ? { businessType: h.businessType } : {}),
         variant: h.variant ?? "",
@@ -89,18 +91,18 @@ export default function App() {
   // If a business type does not reach the current screen, fall back to the nearest one.
   useEffect(() => {
     if (idx === -1 && list.length) {
-      set({ step: list[Math.min(list.length - 1, 0)].id });
+      jumpTo({ step: list[Math.min(list.length - 1, 0)].id });
     }
-  }, [idx, list, set]);
+  }, [idx, list, jumpTo]);
 
   const go = useCallback(
     (delta: number) => {
       const l = screensFor(usePrototype.getState().businessType);
       const i = indexOfStep(usePrototype.getState().step, usePrototype.getState().businessType);
       const next = l[Math.max(0, Math.min(l.length - 1, i + delta))];
-      if (next) set({ step: next.id, variant: "" });
+      if (next) jumpTo({ step: next.id, variant: "" });
     },
-    [set]
+    [jumpTo]
   );
 
   const onReset = useCallback(() => {
@@ -112,7 +114,7 @@ export default function App() {
   return (
     <AppContext.Provider value={{ theme: resolvedTheme }}>
     <div className={`proto-root ${presenter ? "is-presenter" : ""}`}>
-      {!presenter && <LeftRail onJump={(s) => set({ step: s, variant: "" })} />}
+      {!presenter && <LeftRail onJump={(s) => jumpTo({ step: s, variant: "" })} />}
 
       <main className="proto-main">
         {!presenter && <TopBar variants={def.variants} typeAware={def.typeAware} />}
@@ -123,7 +125,7 @@ export default function App() {
             <ScreenErrorBoundary screen={`${step}-${businessType}-${variant}`}>
               {/* wait until the URL has been read, so a deep link mounts its own
                   screen first rather than flashing the sign-up page */}
-              {booted && <ScreenHost step={step} />}
+              {booted && <ScreenHost key={jump} step={step} />}
             </ScreenErrorBoundary>
           </div>
         </div>

@@ -1,6 +1,6 @@
 // Stand-in for the product's fetchData(). Every REST call the onboarding screens make
 // passes through here and is answered from fixtures. No request leaves the page.
-import { SAMPLE, displayName, INDUSTRIES } from "./fixtures";
+import { SAMPLE, displayName, INDUSTRIES, samplePan } from "./fixtures";
 import { COMPANY_TYPES, StepId, businessTypeFromPan, getProto, usePrototype } from "../prototype/state";
 import { resolveQuery } from "./apolloClient";
 import {
@@ -52,7 +52,7 @@ function answer(path: string, config: Config): any {
 
   // --- PAN -----------------------------------------------------------------
   if (p.includes("create_exporter_with_pan") || p.includes("user_pan_profile")) {
-    const submitted = String(config.body?.panNumber || config.body?.pan || proto.panValue || SAMPLE.pan).toUpperCase();
+    const submitted = String(config.body?.panNumber || config.body?.pan || proto.panValue || samplePan()).toUpperCase();
     // The fourth letter decides the business type, exactly as the real rule does.
     const derived = businessTypeFromPan(submitted, proto.hasGst) ?? proto.businessType;
     usePrototype.getState().set({ panValue: submitted, panVerified: true, businessType: derived });

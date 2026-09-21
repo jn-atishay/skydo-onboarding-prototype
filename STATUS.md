@@ -247,3 +247,19 @@ home, share account and tracking made no request to any host but the prototype's
 The home page's customer-video embeds (YouTube) now point at a local placeholder that
 says the video plays on the live site, since an embed loads from YouTube as soon as the
 page opens. Plain links to videos are unchanged.
+
+## Fix: rail and business-type buttons now change the page (21 Sep 2026)
+Choosing Business details from the rail, or switching the business type while on it,
+changed the address but left the old screen up until a hard refresh. Two causes: the
+product's PAN card reads the customer's details only when it first opens, and it keeps
+a "PAN verified" flag that it never turns off by itself. Moves made with the
+prototype's own controls (rail, business type, variant buttons, Back/Next, browser back
+and forward, Reset) now open the product page afresh, and the PAN flag follows the step.
+Moves made with the product's own buttons still play as live, without a reload.
+The sample PAN now matches the chosen type (C for Pvt Ltd, F for Partnership and LLP,
+H for HUF, P for Freelancer and Sole Prop), and switching type drops a PAN entered for
+the old one.
+
+Verified: PAN to Business details by the rail; Pvt Ltd, HUF, Partnership and Freelancer
+switched on Business details, each showing its own form and PAN; Back to the empty PAN
+box; Next and browser back; Verify PAN still moving on to Business details by itself.
