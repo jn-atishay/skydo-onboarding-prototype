@@ -351,3 +351,11 @@ Organic 21% (SEO, blogs, word of mouth: untagged or blog-tagged sign-ups), Refer
 12%, Others 12%, Meta 5% (Facebook and Instagram). Shares are rounded to add up to 100.
 All figures re-read on 21 September; the popups' later-step counts were brought in line
 (3,393 to 3,395 onboardings and three similar one-or-two-person differences).
+
+## Slide: channel split from Zoho (21 Sep 2026)
+"Onboardings by channel" now uses Zoho's "Onboardings previous month (by closing date)"
+for August, grouped: Google 32% (google 758 + google_search 221), Meta 18% (facebook
+574), Referrals 14% (447), Organic 13% (word of mouth 171 + AI tools 147 + blogs 71),
+Others 23% (Unknown 266 + cold call 142 + about 308 in sources the chart does not label;
+the chart's own percentages imply about 3,105 onboardings in all). The funnel stays on
+the sign-up cohort, and the footnote says which source each half uses.

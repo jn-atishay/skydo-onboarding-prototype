@@ -52,13 +52,17 @@ const FUNNEL: { label: string; people: number }[] = [
   { label: "Activated", people: ACTIVATED },
 ];
 
-/** August onboardings by the channel the lead came from. */
+/**
+ * August onboardings by channel, from Zoho ("Onboardings previous month, by closing
+ * date", utm source). The chart's shares imply about 3,105 in all; the sources it does
+ * not label (about 308) are counted under Others.
+ */
 const CHANNELS: { name: string; onboardings: number }[] = [
-  { name: "Google", onboardings: 1691 },
-  { name: "Organic (SEO, blogs, word of mouth)", onboardings: 703 },
-  { name: "Referrals", onboardings: 426 },
-  { name: "Others", onboardings: 398 },
-  { name: "Meta (Facebook, Instagram)", onboardings: 177 },
+  { name: "Google", onboardings: 758 + 221 }, // google, google_search
+  { name: "Meta (Facebook, Instagram)", onboardings: 574 },
+  { name: "Referrals", onboardings: 447 },
+  { name: "Organic (word of mouth, AI tools, blogs)", onboardings: 171 + 147 + 71 },
+  { name: "Others (untagged, cold calls, rest)", onboardings: 266 + 142 + 308 },
 ];
 
 const r10 = (n: number) => (Math.round(n / 10) * 10).toLocaleString("en-IN");
@@ -142,9 +146,9 @@ export function FunnelSlide() {
         </div>
 
         <p className="proto-slide-foot">
-          Everyone who signed up 1 to 31 August 2026, followed to 21 September, rounded to the nearest 10. Docs uploaded
-          counts everyone who went on to the checks (companies and LLPs have no documents step). Activated means a first
-          payment from a client, not the free test payment.
+          Funnel: everyone who signed up 1 to 31 August 2026, followed to 21 September, rounded to the nearest 10; docs
+          uploaded counts everyone who reached the checks, and activated means a first client payment. Channels: Zoho,
+          about 3,100 onboardings closed in August.
         </p>
       </div>
     </SlideCanvas>
