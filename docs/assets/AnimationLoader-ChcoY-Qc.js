@@ -1,1 +1,0 @@
-import{j as p,P as l}from"./index-D7JAcdmW.js";const n=o=>{const{width:a,height:s,animation:t,className:e="",src:i,loop:r}=o;return p.jsx(l,{autoplay:t,loop:r||t,src:i,style:{height:s,width:a},className:e})};n.defaultProps={width:"32px",height:"32px"};export{n as AnimationLoader,n as default};

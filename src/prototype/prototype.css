@@ -531,3 +531,10 @@ body,
 .proto-screen-wrap .dl-page {
   min-height: 100%;
 }
+
+/* The current step's icon carries both bg-white and bg-black-700. The live app
+   shows it dark (see the captures); this build's stylesheet lists bg-white later,
+   so state the live result explicitly. */
+.proto-app-page .top-10.bg-black-700 {
+  background-color: hsl(var(--twc-black-700));
+}
