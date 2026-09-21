@@ -48,7 +48,6 @@ const ACTIVATED = 978;
  */
 const AUG_ONBOARDINGS = 3685;
 const AUG_ACTIVATED = 1111;
-const AUG_FL_SP = 2770;
 
 /** How many of every 100 leads reached each step. */
 const FUNNEL: { label: string; people: number }[] = [
@@ -113,10 +112,6 @@ export function FunnelSlide() {
           <div className="proto-slide-stat">
             <strong>{r10(AUG_ACTIVATED)}</strong>
             <span>activated: {pct(AUG_ACTIVATED, AUG_ONBOARDINGS)} of August's onboardings have had a first client payment</span>
-          </div>
-          <div className="proto-slide-stat">
-            <strong>{pct(AUG_FL_SP, AUG_ONBOARDINGS)}</strong>
-            <span>of onboardings are freelancers and sole proprietors</span>
           </div>
         </div>
 

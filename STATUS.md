@@ -377,3 +377,7 @@ have received a first client payment by 21 September, and 2,770 (75%) are freela
 or sole proprietors. The funnel card still follows August's sign-ups. Zoho's August
 count by closing date implies about 3,105; accounts closed since (63 archived, 24
 blacklisted) explain only 87 of the difference, so Zoho counts on a different basis.
+
+## Slide: freelancer share removed (21 Sep 2026)
+The "75% of onboardings are freelancers and sole proprietors" block is gone; the headline
+row now has three figures: leads, onboardings completed in August, and activations.
