@@ -381,3 +381,12 @@ blacklisted) explain only 87 of the difference, so Zoho counts on a different ba
 ## Slide: freelancer share removed (21 Sep 2026)
 The "75% of onboardings are freelancers and sole proprietors" block is gone; the headline
 row now has three figures: leads, onboardings completed in August, and activations.
+
+## Slide: onboarding and activation on the agreed definitions (21 Sep 2026)
+Onboarding now means the exporter's first CC account was created, and activation means
+at least one EXPORTER_SUCCESS transaction (dated by settlement date, IST); internal
+accounts and payees are excluded. Headline, as supplied: 3,185 onboardings in August,
+825 activated (25.9%) as of 21 September (reproduced here as 3,186 and 830). The leads
+funnel was re-run on the same rules, payees excluded: 13,844 leads; per 100: PAN 62,
+business details 40, Aadhaar 34, bank 33, docs 25, onboarding completed 21 (2,897),
+activated 5 (711). Headline figures are shown exact; channel counts stay rounded.

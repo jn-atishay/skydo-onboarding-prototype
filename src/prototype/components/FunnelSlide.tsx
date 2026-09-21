@@ -36,29 +36,30 @@ function SlideCanvas({ children }: { children: React.ReactNode }) {
   );
 }
 
-const LEADS = 14398;
-// The funnel follows August's sign-ups; these two are for the funnel's last steps.
-const ONBOARDED = 3395;
-const ACTIVATED = 978;
+// Internal accounts and payees are left out throughout.
+const LEADS = 13844;
 
 /**
- * The headline: every onboarding completed in August (first reached accounts ready
- * between 1 and 31 August, whenever the person signed up), and how many of those have
- * received a first payment from a client, as of 21 September.
+ * The headline: exporters whose first CC account was created in August (IST), and how
+ * many of those have at least one successful transaction (dated by settlement date) as
+ * of 21 September.
  */
-const AUG_ONBOARDINGS = 3685;
-const AUG_ACTIVATED = 1111;
+const AUG_ONBOARDINGS = 3185;
+const AUG_ACTIVATED = 825;
 
-/** How many of every 100 leads reached each step. */
+/**
+ * How many of every 100 of August's leads reached each step, followed to 21 September.
+ * Onboarding completed and Activated use the same rules as the headline.
+ */
 const FUNNEL: { label: string; people: number }[] = [
   { label: "Signup", people: LEADS },
-  { label: "PAN submitted", people: 9160 },
-  { label: "Business details submitted", people: 6074 },
-  { label: "Aadhaar verified", people: 5288 },
-  { label: "Bank account linked", people: 5106 },
-  { label: "Docs uploaded", people: 3958 },
-  { label: "Onboarding completed", people: ONBOARDED },
-  { label: "Activated", people: ACTIVATED },
+  { label: "PAN submitted", people: 8633 },
+  { label: "Business details submitted", people: 5550 },
+  { label: "Aadhaar verified", people: 4772 },
+  { label: "Bank account linked", people: 4592 },
+  { label: "Docs uploaded", people: 3448 },
+  { label: "Onboarding completed", people: 2897 },
+  { label: "Activated", people: 711 },
 ];
 
 /**
@@ -77,7 +78,6 @@ const CHANNELS: { name: string; onboardings: number }[] = [
 ];
 
 const r10 = (n: number) => (Math.round(n / 10) * 10).toLocaleString("en-IN");
-const pct = (a: number, b: number) => `${Math.round((a / b) * 100)}%`;
 const per100 = (n: number) => Math.round((n / LEADS) * 100);
 
 /** Whole-number shares that add up to exactly 100 (largest remainder). */
@@ -102,16 +102,16 @@ export function FunnelSlide() {
 
         <div className="proto-slide-stats">
           <div className="proto-slide-stat">
-            <strong>{r10(LEADS)}</strong>
+            <strong>{LEADS.toLocaleString("en-IN")}</strong>
             <span>leads signed up in August</span>
           </div>
           <div className="proto-slide-stat">
-            <strong>{r10(AUG_ONBOARDINGS)}</strong>
+            <strong>{AUG_ONBOARDINGS.toLocaleString("en-IN")}</strong>
             <span>onboardings completed in August</span>
           </div>
           <div className="proto-slide-stat">
-            <strong>{r10(AUG_ACTIVATED)}</strong>
-            <span>activated: {pct(AUG_ACTIVATED, AUG_ONBOARDINGS)} of August's onboardings have had a first client payment</span>
+            <strong>{AUG_ACTIVATED.toLocaleString("en-IN")}</strong>
+            <span>activated: {((AUG_ACTIVATED / AUG_ONBOARDINGS) * 100).toFixed(1)}% of August's onboardings have a successful transaction</span>
           </div>
         </div>
 
@@ -153,9 +153,10 @@ export function FunnelSlide() {
         </div>
 
         <p className="proto-slide-foot">
-          Headline: onboardings completed in August, activations among them to 21 September. Funnel: August's leads followed
-          to 21 September; docs uploaded counts everyone who reached the checks. Channels: Zoho, about 3,100 onboardings
-          closed in August. Activated means a first client payment. Rounded to the nearest 10.
+          Onboarding: first CC account created. Activated: at least one successful transaction. Headline: August's
+          onboardings, activations among them to 21 September. Funnel: August's leads followed to 21 September; docs
+          uploaded counts everyone who reached the checks. Internal accounts and payees excluded. Channels: Zoho, about
+          3,100 onboardings closed in August, rounded to the nearest 10.
         </p>
       </div>
     </SlideCanvas>
