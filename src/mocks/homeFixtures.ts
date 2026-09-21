@@ -1,4 +1,4 @@
-// Fixtures for the first home screen, the test payment and its tracking page.
+// Fixtures for the focused home screen, the test payment and its tracking page.
 //
 // The home screen is the product's "focused home": a list of steps, each NOT_STARTED,
 // IN_PROGRESS or COMPLETED. Which stage the demo shows is chosen in the top bar (the

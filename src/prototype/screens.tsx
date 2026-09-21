@@ -54,7 +54,7 @@ export const SCREENS: ScreenDef[] = [
   { id: "verification", label: "Checks and accounts ready", typeAware: true },
   {
     id: "home",
-    label: "First home and test payment",
+    label: "Focused home and test payment",
     // The home screen moves through several stages without a new URL in the product;
     // each is offered here so it can be shown directly.
     variants: [

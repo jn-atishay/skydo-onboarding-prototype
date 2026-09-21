@@ -137,7 +137,7 @@ function answer(path: string, config: Config): any {
     return ok({ base: "USD", target: "INR", fx_rate: SAMPLE_INR.USD, api_timestamp: String(Math.floor(Date.now() / 1000)) });
   }
 
-  // --- first home screen and the test payment ------------------------------
+  // --- focused home screen and the test payment ------------------------------
   if (p.includes("focused/home/get/home/state")) return ok("FOCUSED");
   if (p.includes("get_loggedin_user_details")) return ok(loggedInUserFixture());
   if (p.includes("/api/dashboard-data")) return ok(dashboardDataFixture());

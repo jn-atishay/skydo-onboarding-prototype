@@ -255,7 +255,7 @@ export function ScreenHost({ step }: { step: StepId }) {
   }
 
   if (step === "home") {
-    // The first home screen and the tracking page sit inside the product's dashboard
+    // The focused home screen and the tracking page sit inside the product's dashboard
     // layout: its header, the left menu and the page body.
     return (
       <ScaledViewport className="proto-product-page proto-app-page proto-home-page">

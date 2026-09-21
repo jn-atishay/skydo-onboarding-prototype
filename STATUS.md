@@ -61,7 +61,7 @@ the pane if you want me to click through the live URL directly.
 
 ### Not done yet
 Screens 7 to 13. The Aadhaar and DigiLocker sequence, the mobile code popup, the
-directors and partners screens, bank, documents, the checks screen and the first home
+directors and partners screens, bank, documents, the checks screen and the focused home
 screen with the test payment are still placeholders.
 
 ## Phase 2 — the sign-up page proper, Aadhaar and the mobile code
@@ -99,7 +99,7 @@ sub-path.
 
 ### Still to do
 Screens 9 to 13: directors and partners, bank, documents, the checks screen and the
-first home screen with the test payment.
+focused home screen with the test payment.
 
 ### Fix: sign-up screen content disappearing after load (reported 21 Sep)
 Cause was mine. To make the login background visible I had raised the product's
@@ -163,7 +163,7 @@ this public repository. The dropdowns still show the earlier sample lists until 
 decided.
 
 ### Still to do
-Phase 4: the first home screen, the next-payment popup, the test payment and tracking.
+Phase 4: the focused home screen, the next-payment popup, the test payment and tracking.
 
 ### Fix: spacing on the referral sign-up screen (reported 21 Sep)
 The product's pages are laid out for a full browser window: the referral sign-up page
@@ -175,7 +175,7 @@ margin and padding keeps its real proportion. Presenter mode (P) shows them larg
 Applies to the sign-up pages and the onboarding page; the DigiLocker replicas are
 unchanged.
 
-## Phase 4: the first home screen, the test payment and tracking (21 Sep 2026)
+## Phase 4: the focused home screen, the test payment and tracking (21 Sep 2026)
 
 ### Built
 - The home step mounts the product's own focused home inside its dashboard layout
@@ -263,3 +263,8 @@ the old one.
 Verified: PAN to Business details by the rail; Pvt Ltd, HUF, Partnership and Freelancer
 switched on Business details, each showing its own form and PAN; Back to the empty PAN
 box; Next and browser back; Verify PAN still moving on to Business details by itself.
+
+## Wording: "focused home" (21 Sep 2026)
+The home step is now called "Focused home and test payment" in the rail, and "The focused
+home screen" in its (i) popup, matching the product's own name for it. Notes and code
+comments use the same name.

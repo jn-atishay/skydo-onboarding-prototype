@@ -157,7 +157,7 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
     ],
   },
   home: {
-    title: "The first home screen",
+    title: "The focused home screen",
     why: [
       "Brand new customers get a guided home instead of the usual dashboard, and it changes as soon as they have an invoice.",
       "The free test payment sits first on the checklist so they can watch a payment work before a real client sends one.",
