@@ -297,3 +297,9 @@ keys do nothing while an (i) popup is open or a field has focus. Space no longer
 presses whichever button was clicked last.
 Verified: arrows moved PAN → Business details → Terms; arrows ignored with a popup open;
 space from Documents (with Next focused) returned to Sign up without also pressing Next.
+
+## Fix: Aadhaar number boxes on the DigiLocker screen (21 Sep 2026)
+The three Aadhaar number boxes on the first DigiLocker screen ran past the card's right
+edge, because a text box has a built-in minimum width that stopped the columns shrinking.
+They now share the card's width and line up with the Next button. Verified: the boxes
+end where the button ends; the PIN and consent screens also fit their cards.

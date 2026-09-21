@@ -151,11 +151,16 @@
 }
 .dl-aadhaar-boxes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, 1fr): a text box has a built-in minimum width, which otherwise pushes
+     the third box past the card's edge. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 16px;
 }
 .dl-aadhaar-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
   height: 52px;
   border: 1px solid #d5d7dc;
   border-radius: 5px;
