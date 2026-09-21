@@ -36,7 +36,10 @@ export function baseAssetPaths(publicDir: string): Plugin {
       if (!code.includes('"/') && !code.includes("'/")) return null;
 
       let changed = false;
-      const out = code.replace(/(["'])(\/[A-Za-z0-9_./-]+)\1/g, (whole, quote, p) => {
+      // Skip url('/...') inside Tailwind class names such as bg-[url('/x.webp')]:
+      // the stylesheet adds the base there, and rewriting the class name would stop
+      // it matching its rule.
+      const out = code.replace(/(?<!url\()(["'])(\/[A-Za-z0-9_./-]+)\1/g, (whole, quote, p) => {
         if (!isRealAsset(p)) return whole;
         changed = true;
         return `${quote}${base.replace(/\/$/, "")}${p}${quote}`;

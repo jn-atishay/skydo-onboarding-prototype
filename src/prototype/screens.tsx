@@ -52,7 +52,21 @@ export const SCREENS: ScreenDef[] = [
     ],
   },
   { id: "verification", label: "Checks and accounts ready", typeAware: true },
-  { id: "home", label: "First home and test payment" },
+  {
+    id: "home",
+    label: "First home and test payment",
+    // The home screen moves through several stages without a new URL in the product;
+    // each is offered here so it can be shown directly.
+    variants: [
+      { id: "", label: "Accounts created" },
+      { id: "next-payment", label: "Next payment question" },
+      { id: "receive", label: "Receive steps" },
+      { id: "test", label: "Test payment" },
+      { id: "method", label: "Choose method" },
+      { id: "share", label: "Share account" },
+      { id: "tracking", label: "Tracking" },
+    ],
+  },
 ];
 
 /** The screens a given business type actually walks through. */

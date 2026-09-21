@@ -22,11 +22,19 @@ each step, what usually goes wrong, and why each screen exists.
 | Reset | Clears everything and returns to the start. |
 | P | Presenter mode: hides the rail and bars so only the product shows. The (i) buttons stay. |
 
+The home step has its own variants in the top bar: Accounts created, Next payment
+question, Receive steps, Test payment, Choose method, Share account and Tracking. The
+product's own buttons also move between them, just as a customer would.
+
 The URL carries the step, business type and variant, so any screen can be linked to
 directly: `#/business-details/FREELANCER`, or `#/documents/FREELANCER/no` for the
 documents screen after answering No on the bank card.
 
 ## Where the screens come from
+
+Product pages are laid out at a real desktop window width (1,512px, the width of the
+reference captures) and scaled to fit the frame, like a Figma frame, so margins and
+padding keep their true proportions. Press P for a larger view.
 
 The screens are the **real product components**, imported from the Skydo frontend
 (`swagat-frontend`, `origin/release`, 17 September 2026) and rendered against sample
@@ -53,6 +61,11 @@ Everything on screen is the real component except:
 - The DigiLocker screens, which belong to the government and cannot be imported. They are
   static replicas, labelled as such in the prototype.
 - Uploading a document attaches a sample file rather than sending anything.
+- The product's guided tour (the speech bubbles that point at parts of the tracking
+  page) is not included.
+- The home page's chat assistant and the feedback widget load third-party scripts, so
+  they are switched off. "No, I have more questions" therefore opens nothing.
+- Exchange rates in the savings calculator are fixed sample rates, not live ones.
 - The industry dropdown and the "choose from other documents" lists show sample
   options, not the live lists, which are kept out of this public repository.
 

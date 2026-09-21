@@ -3,6 +3,14 @@
 import { SAMPLE, displayName, INDUSTRIES } from "./fixtures";
 import { COMPANY_TYPES, StepId, businessTypeFromPan, getProto, usePrototype } from "../prototype/state";
 import { resolveQuery } from "./apolloClient";
+import {
+  dashboardDataFixture,
+  focusedHomeFixture,
+  loggedInUserFixture,
+  markTestPaid,
+  testPaymentFixture,
+  virtualAccountsFixture,
+} from "./homeFixtures";
 
 type Config = {
   path?: string;
@@ -24,6 +32,9 @@ export const SAMPLE_REFERRER = {
   campaignName: "Refer and earn",
   refereeRewardValue: 30,
 };
+
+/** Sample rupee value of one unit of each currency. Not live rates. */
+const SAMPLE_INR: Record<string, number> = { INR: 1, USD: 88.2, GBP: 118.9, EUR: 103.4, CAD: 63.8, AUD: 58.1, SGD: 68.7, AED: 24.0 };
 
 /** A short pause so the product's own loading states are visible in the demo. */
 const pause = (ms = 450) => new Promise((r) => setTimeout(r, ms));
@@ -109,6 +120,36 @@ function answer(path: string, config: Config): any {
     return ok({ documentId: "sample-doc-1", status: "UPLOADED", verified: true });
   }
 
+  // --- exchange rates ------------------------------------------------------
+  // Sample rates for the savings calculator, not live ones.
+  if (p.includes("fxratelist")) {
+    const pairs: { base: string; target: string }[] = config.body?.currencyPairList ?? [];
+    return ok(
+      pairs.map(({ base, target }) => ({
+        base,
+        target,
+        fx_rate: +(SAMPLE_INR[base] / SAMPLE_INR[target]).toFixed(4),
+        api_timestamp: String(Math.floor(Date.now() / 1000)),
+      }))
+    );
+  }
+  if (p.includes("fxrates/live")) {
+    return ok({ base: "USD", target: "INR", fx_rate: SAMPLE_INR.USD, api_timestamp: String(Math.floor(Date.now() / 1000)) });
+  }
+
+  // --- first home screen and the test payment ------------------------------
+  if (p.includes("focused/home/get/home/state")) return ok("FOCUSED");
+  if (p.includes("get_loggedin_user_details")) return ok(loggedInUserFixture());
+  if (p.includes("/api/dashboard-data")) return ok(dashboardDataFixture());
+  if (p.includes("get-all-account-details")) return ok(virtualAccountsFixture());
+  if (p.includes("/api/focused-home")) return ok(focusedHomeFixture());
+  if (p.includes("dashboard/version/get")) return ok({ version: "SKYDO_PAYOUTS" });
+  if (p.includes("test/transaction/initiate")) {
+    markTestPaid(true);
+    return ok(true);
+  }
+  if (p.includes("invoice_details")) return ok(testPaymentFixture());
+
   // --- everything else -----------------------------------------------------
   return ok({});
 }
@@ -129,6 +170,15 @@ function advanceAfter(path: string) {
   else if (p.includes("update/ubo_details")) next = "bank";
   else if (p.includes("bank_account_submit")) next = "verification";
   else if (p.includes("submit/exporter_kyc_document")) next = "verification";
+  // On the home screen the stage lives in the variant.
+  if (step === "home") {
+    const v = usePrototype.getState().variant;
+    let nextVariant: string | null = null;
+    if (p.includes("focused/home/set/payment/timeline")) nextVariant = "receive";
+    else if (p.includes("focused/home/set/payment/method")) nextVariant = "share";
+    if (nextVariant && nextVariant !== v) window.setTimeout(() => set({ variant: nextVariant as string }), 0);
+    return;
+  }
   if (next && next !== step) {
     window.setTimeout(() => set({ step: next as StepId, verificationStage: "submitted" }), 0);
   }

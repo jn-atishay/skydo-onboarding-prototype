@@ -112,7 +112,6 @@ export const SCREEN_INFO: Record<string, ScreenInfo> = {
       "For the owners they type in, each PAN is checked against the name given.",
       "Companies must also produce a second owner or director whose PAN name matches, which is one of the harder walls for a small company.",
       "Partnerships must add up to exactly 100 percent across at least two partners.",
-      "Freelancers and sole proprietors never see this step.",
     ],
     numbers: [
       "527 partnerships were sent for review over how long the firm had existed.",

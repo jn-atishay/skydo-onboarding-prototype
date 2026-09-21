@@ -42,7 +42,7 @@ function seedProductStores() {
 
   useUserData.setState({
     userState: onboardingStateForStep(),
-    userName: SAMPLE.name,
+    userName: SAMPLE.name.split(" ")[0], // the product greets people by first name
     exporterId: "1",
     loggedInUserEmail: SAMPLE.email,
     businessType: panDone ? businessType : "",

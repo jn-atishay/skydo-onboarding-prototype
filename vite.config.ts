@@ -26,6 +26,7 @@ export default defineConfig({
       { find: /^next\/link$/, replacement: shim("next-link.tsx") },
       { find: /^next\/head$/, replacement: shim("next-head.tsx") },
       { find: /^next\/dynamic$/, replacement: shim("next-dynamic.tsx") },
+      { find: /^next\/script$/, replacement: mock("nextScript.tsx") },
       { find: /^next\/app$/, replacement: noop },
       { find: /^next\/document$/, replacement: noop },
       { find: /^next$/, replacement: noop },

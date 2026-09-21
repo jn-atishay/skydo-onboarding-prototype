@@ -174,3 +174,43 @@ margin. Product pages are now laid out at the width the captures were taken at
 margin and padding keeps its real proportion. Presenter mode (P) shows them larger.
 Applies to the sign-up pages and the onboarding page; the DigiLocker replicas are
 unchanged.
+
+## Phase 4: the first home screen, the test payment and tracking (21 Sep 2026)
+
+### Built
+- The home step mounts the product's own focused home inside its dashboard layout
+  (header with calendar and bell, the left menu), exactly as a customer whose accounts
+  were just created sees it. Seven stages, offered in the top bar and reached through
+  the product's own buttons:
+  Accounts created, Next payment question, Receive steps, Test payment (the start popup,
+  then "Receive test payment" plays the USD 0.10 success), Choose method, Share account
+  (with pricing), and Tracking (the product's payment page for the test payment).
+- "Track" opens the tracking stage in place instead of a new tab.
+- The test payment follows the backend's own constants: from Skydo Inc, reference
+  Test-SRN-001, fee waived, INR expected the next day.
+- The (i) panels were checked on every screen: 2 to 4 plain sentences each, figures with
+  their period or "No data for this step yet", closes with X or Escape.
+- Presenter mode (P) checked on the tracking page: rail and bars hidden, (i) stays.
+
+### Fixed along the way
+- The asset-path rewriter was also rewriting paths inside Tailwind class names such as
+  bg-[url('/x.webp')], which broke the home banner's background. It now leaves url()
+  alone.
+- The product scrolls cards into view; the frame's outer boxes are now "clip" rather
+  than "hidden", so only the page scrolls and the frame stays put.
+- On steps without the business-type bar, the bottom bar collapsed; each band is now
+  pinned to its grid row.
+
+### Not included
+The product's guided tour bubbles, the chat assistant and the feedback widget (all
+third-party or tour scripts). Exchange rates are fixed samples.
+
+### Verified in the browser
+Clicked through at 1440x900: accounts created, the next-payment popup (picked "In the
+next 30 days", Continue moved to the receive steps), "Try test payment", "Receive test
+payment", "Proceed to next steps" (moved to Choose method), Continue (moved to Share
+account), "Track" (opened Tracking), the (i) panel and Escape, and presenter mode.
+Each stage was compared with its capture in product-deep-dive-1/assets.
+
+### Still open
+The live industry list and document menu, pending a decision (see Phase 3).

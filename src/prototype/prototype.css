@@ -559,3 +559,20 @@ body,
 .proto-viewport.proto-product-page {
   min-height: 0;
 }
+
+/* On the home page a full-width banner sits under the header, so the (i) drops into
+   the blank margin beside the page column. */
+.proto-screen-wrap:has(.proto-home-page) > .proto-info-btn {
+  top: 96px;
+}
+
+/* The product calls scrollIntoView on cards. "hidden" boxes can still be scrolled
+   that way, which slid the whole frame; "clip" boxes cannot, so only the page's own
+   scroller moves. */
+.proto-screen-wrap,
+.proto-viewport-outer,
+.proto-viewport,
+.proto-main,
+.proto-stage:has(.proto-viewport-outer) {
+  overflow: clip;
+}

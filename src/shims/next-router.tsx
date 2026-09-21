@@ -14,9 +14,12 @@ export function notifyRouter() {
 // /login, for example). The prototype's own hash holds the step instead, so the host
 // tells the router which product page is on show.
 let productPath = "/login";
-export function setProductPath(p: string, silent = false) {
-  if (p === productPath) return;
+let productQuery: Query = {};
+export function setProductPath(p: string, silent = false, query: Query = {}) {
+  const same = p === productPath && JSON.stringify(query) === JSON.stringify(productQuery);
+  if (same) return;
   productPath = p;
+  productQuery = query;
   if (!silent) notifyRouter();
 }
 
@@ -27,7 +30,7 @@ function readHash() {
   new URLSearchParams(search || "").forEach((v, k) => {
     query[k] = v;
   });
-  return { asPath: productPath, pathname: productPath, query };
+  return { asPath: productPath, pathname: productPath, query: { ...query, ...productQuery } };
 }
 
 export function useRouter() {

@@ -5,6 +5,13 @@ import { StepId, usePrototype } from "./state";
 import DesktopLoginPage from "../skydo/components/LoginComponents/DesktopLoginPage";
 import Header from "../skydo/components/Header";
 import Onboarding from "../skydo/pages/onboarding";
+import GlobalContainer from "../skydo/components/Layout/GlobalContainer";
+// The product's home container picks between this focused home and the classic
+// dashboard; a customer whose accounts were just created always gets this one.
+import FocusedHome from "../skydo/containers/HomePage/FocusedHome";
+import TestPaymentDetails from "../skydo/pages/payments/[payment_id]";
+import useTestTransactionStore from "../skydo/store/useTestTransactionStore";
+import { isTestPaid, markTestPaid } from "../mocks/homeFixtures";
 import { notifyRouter, setProductPath } from "../shims/next-router";
 import { SAMPLE } from "../mocks/fixtures";
 import { PanRuleButton } from "./components/PanRuleButton";
@@ -114,6 +121,61 @@ function useScrollToCurrentCard(key: string, active: boolean) {
   }, [key, active]);
 }
 
+/** Presses a product button, found by its label, once it is on screen. */
+function useAutoClick(label: string, active: boolean, key: string) {
+  useEffect(() => {
+    if (!active) return;
+    let tries = 0;
+    const tick = window.setInterval(() => {
+      tries += 1;
+      const root = document.querySelector(".proto-screen-wrap");
+      const btn = (Array.from(root?.querySelectorAll("button, [role='button']") ?? []) as HTMLElement[]).find(
+        (b) => b.textContent?.trim().startsWith(label) && b.offsetParent !== null
+      );
+      if (btn) {
+        btn.click();
+        window.clearInterval(tick);
+      }
+      if (tries > 150) window.clearInterval(tick);
+    }, 100);
+    return () => window.clearInterval(tick);
+  }, [active, key]);
+}
+
+/**
+ * The home screen's stages. "Track" opens the tracking page in a new tab in the
+ * product; here it opens the Tracking stage in place. Closing the test payment's
+ * success popup moves on to choosing a payment method, as it does in the product.
+ */
+function useHomeStages(active: boolean, variant: string, set: (p: any) => void) {
+  useEffect(() => {
+    if (!active) return;
+    if (["", "next-payment", "receive", "test"].includes(variant)) markTestPaid(false);
+    useTestTransactionStore.setState({ isTTPopUpVisible: false } as any);
+
+    const realOpen = window.open;
+    window.open = ((url?: string | URL) => {
+      const u = String(url ?? "");
+      if (u.includes("/payments/") || u.includes("/invoices/")) {
+        set({ variant: "tracking" });
+        return null;
+      }
+      console.debug("[prototype] new tab suppressed:", u);
+      return null;
+    }) as typeof window.open;
+
+    const unsub = useTestTransactionStore.subscribe((state: any, prev: any) => {
+      if (prev.isTTPopUpVisible && !state.isTTPopUpVisible && isTestPaid()) {
+        set({ variant: "method" });
+      }
+    });
+    return () => {
+      window.open = realOpen;
+      unsub();
+    };
+  }, [active, variant]);
+}
+
 function NotWired({ label }: { label: string }) {
   return (
     <div className="proto-notwired">
@@ -128,6 +190,9 @@ export function ScreenHost({ step }: { step: StepId }) {
   const isOtp = step === "email-otp";
   useAutoSubmitEmail(isOtp);
   useAutoOpenMobileOtp(step === "mobile-otp");
+  useHomeStages(step === "home", variant, set);
+  useAutoClick("Yes, I want to get started", step === "home" && variant === "next-payment", variant);
+  useAutoClick("Try test payment", step === "home" && variant === "test", variant);
   useScrollToCurrentCard(`${step}-${aadhaarStage}`, !["login", "email-otp", "mobile", "kyc-intro", "home"].includes(step));
 
   /**
@@ -146,10 +211,18 @@ export function ScreenHost({ step }: { step: StepId }) {
 
   // Tell the product which of its pages is on show, so its header and layout
   // follow the same rules as the live app.
-  const productPath = step === "login" || step === "email-otp" ? "/login" : step === "home" ? "/home" : "/onboarding";
+  const isTracking = step === "home" && variant === "tracking";
+  const productPath =
+    step === "login" || step === "email-otp"
+      ? "/login"
+      : isTracking
+      ? "/payments/[payment_id]"
+      : step === "home"
+      ? "/home"
+      : "/onboarding";
   // Set before the page renders, so it mounts on the right path, then let any
   // router already on screen catch up.
-  setProductPath(productPath, true);
+  setProductPath(productPath, true, isTracking ? { payment_id: "test" } : {});
   useEffect(() => notifyRouter(), [productPath]);
 
   if (step === "login" || step === "email-otp") {
@@ -182,7 +255,16 @@ export function ScreenHost({ step }: { step: StepId }) {
   }
 
   if (step === "home") {
-    return <NotWired label={step} />;
+    // The first home screen and the tracking page sit inside the product's dashboard
+    // layout: its header, the left menu and the page body.
+    return (
+      <ScaledViewport className="proto-product-page proto-app-page proto-home-page">
+        <div className="proto-app-scroll" key={isTracking ? "tracking" : "home"}>
+          <Header />
+          <GlobalContainer>{isTracking ? <TestPaymentDetails /> : <FocusedHome />}</GlobalContainer>
+        </div>
+      </ScaledViewport>
+    );
   }
 
   // Every step from the mobile number to the checks is one page in the product: the
