@@ -164,3 +164,13 @@ decided.
 
 ### Still to do
 Phase 4: the first home screen, the next-payment popup, the test payment and tracking.
+
+### Fix: spacing on the referral sign-up screen (reported 21 Sep)
+The product's pages are laid out for a full browser window: the referral sign-up page
+splits the window in half and gives the invite column up to 650px. Beside the rail the
+frame was only about 1,100px wide, so that column was pressed against the edge with no
+margin. Product pages are now laid out at the width the captures were taken at
+(1,512px) and scaled down to fit the frame, the way a Figma frame is shown, so every
+margin and padding keeps its real proportion. Presenter mode (P) shows them larger.
+Applies to the sign-up pages and the onboarding page; the DigiLocker replicas are
+unchanged.

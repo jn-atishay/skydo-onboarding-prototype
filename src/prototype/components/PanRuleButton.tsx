@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { PAN_RULE } from "../content";
 import { RulePanel } from "./InfoPopup";
+import { viewportScale } from "./ScaledViewport";
 
 export function PanRuleButton() {
   const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
@@ -21,11 +22,14 @@ export function PanRuleButton() {
         document.querySelector(".proto-screen-wrap")) as HTMLElement | null;
       const input = wrap?.querySelector('input[name="panNumber"], input[name="pan"], form input') as HTMLElement | null;
       if (wrap && input) {
+        // Screen measurements are in scaled pixels; the button is placed inside the
+        // scaled page, so convert back to the page's own pixels.
+        const k = viewportScale(wrap);
         const w = wrap.getBoundingClientRect();
         const i = input.getBoundingClientRect();
         setPos({
-          top: i.top - w.top + wrap.scrollTop + i.height / 2 - 13,
-          left: i.right - w.left + wrap.scrollLeft + 10,
+          top: (i.top - w.top) / k + wrap.scrollTop + i.height / k / 2 - 13,
+          left: (i.right - w.left) / k + wrap.scrollLeft + 10,
         });
         return;
       }

@@ -8,6 +8,7 @@ import Onboarding from "../skydo/pages/onboarding";
 import { notifyRouter, setProductPath } from "../shims/next-router";
 import { SAMPLE } from "../mocks/fixtures";
 import { PanRuleButton } from "./components/PanRuleButton";
+import { ScaledViewport, viewportScale } from "./components/ScaledViewport";
 import { DigiLockerAadhaar, DigiLockerConsent, DigiLockerPin } from "./components/DigiLockerReplica";
 
 /** Fills a React-controlled input and fires the events React listens for. */
@@ -101,7 +102,8 @@ function useScrollToCurrentCard(key: string, active: boolean) {
       const icon = scroller?.querySelector(".top-10.bg-black-700") as HTMLElement | null;
       const card = icon?.parentElement as HTMLElement | null;
       if (scroller && card) {
-        const top = card.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+        const k = viewportScale(scroller);
+        const top = (card.getBoundingClientRect().top - scroller.getBoundingClientRect().top) / k + scroller.scrollTop;
         // 48px header + 80px tracker, less a little breathing room
         scroller.scrollTo({ top: Math.max(0, top - 128 - 16) });
         window.clearInterval(tick);
@@ -154,9 +156,9 @@ export function ScreenHost({ step }: { step: StepId }) {
     // The real login page, including its background, logo, footer and the
     // referral panel, not just the card.
     return (
-      <div className="proto-product-page">
+      <ScaledViewport className="proto-product-page">
         <DesktopLoginPage key={`${step}-${variant}`} authenticated={false} isReferred={variant === "referral"} />
-      </div>
+      </ScaledViewport>
     );
   }
 
@@ -188,8 +190,8 @@ export function ScreenHost({ step }: { step: StepId }) {
   // is open and the others are ticked or locked. It is mounted whole here, exactly
   // as the live app mounts it, and the step on show decides which card is open.
   return (
-    <div className="proto-product-page proto-app-page" onClickCapture={step === "aadhaar" ? interceptDigiLocker : undefined}>
-      <div className="proto-app-scroll">
+    <ScaledViewport className="proto-product-page proto-app-page">
+      <div className="proto-app-scroll" onClickCapture={step === "aadhaar" ? interceptDigiLocker : undefined}>
         <Header />
         {step === "pan" && <PanRuleButton />}
         {step === "aadhaar" && aadhaarStage === "prompt" && (
@@ -199,6 +201,6 @@ export function ScreenHost({ step }: { step: StepId }) {
         )}
         <Onboarding />
       </div>
-    </div>
+    </ScaledViewport>
   );
 }
