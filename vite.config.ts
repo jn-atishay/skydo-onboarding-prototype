@@ -50,23 +50,24 @@ export default defineConfig({
 
       // --- the network layer: fixtures instead of a backend ---------------
       // These regexes must match the WHOLE module id, because Vite replaces only
-      // the matched part of the string.
-      { find: /^.*\/util\/beCall$/, replacement: mock("beCall.ts") },
+      // the matched part of the string. They match on the file name alone, so a
+      // same-folder import such as "./beCall" is caught as well as "../util/beCall".
+      { find: /^(.*\/)?beCall$/, replacement: mock("beCall.ts") },
       { find: /^.*apollo-client$/, replacement: mock("apolloClient.tsx") },
       { find: /^@apollo\/client$/, replacement: mock("apolloClient.tsx") },
       { find: /^@apollo\/client\/.*/, replacement: mock("apolloClient.tsx") },
       { find: /^axios$/, replacement: mock("axios.ts") },
-      { find: /^.*\/authentication\/AuthHelper$/, replacement: mock("authHelper.ts") },
-      { find: /^.*\/store\/useLoginStore$/, replacement: mock("loginStore.ts") },
-      { find: /^.*\/Common\/PdfViewer$/, replacement: mock("nullComponent.tsx") },
+      { find: /^(.*\/)?AuthHelper$/, replacement: mock("authHelper.ts") },
+      { find: /^(.*\/)?useLoginStore$/, replacement: mock("loginStore.ts") },
+      { find: /^(.*\/)?PdfViewer$/, replacement: mock("nullComponent.tsx") },
       { find: /^.*pdf-worker(\.js)?$/, replacement: noop },
-      { find: /^.*\/authentication\/WithAuth$/, replacement: mock("withAuth.tsx") },
+      { find: /^(.*\/)?WithAuth$/, replacement: mock("withAuth.tsx") },
       { find: /^react-calendly$/, replacement: mock("calendly.tsx") },
       { find: /^@react-oauth\/google$/, replacement: mock("googleOauth.tsx") },
-      { find: /^.*\/analytics\/useAnalytics$/, replacement: mock("analytics.ts") },
-      { find: /^.*\/analytics\/useSegment$/, replacement: mock("analytics.ts") },
-      { find: /^.*\/analytics\/useTagManager$/, replacement: mock("analytics.ts") },
-      { find: /^.*\/analytics\/loginJourney$/, replacement: noop },
+      { find: /^(.*\/)?useAnalytics$/, replacement: mock("analytics.ts") },
+      { find: /^(.*\/)?useSegment$/, replacement: mock("analytics.ts") },
+      { find: /^(.*\/)?useTagManager$/, replacement: mock("analytics.ts") },
+      { find: /^(.*\/)?loginJourney$/, replacement: noop },
     ],
   },
   define: {

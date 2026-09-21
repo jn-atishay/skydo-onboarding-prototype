@@ -235,3 +235,12 @@ account holder on the bank and USD account cards, the first director or partner,
 the email atishay@example.com. The sample PAN became ABCPJ1234K so its fifth letter
 matches the surname, as a real PAN's does; the sample GST follows it. All numbers
 remain invented.
+
+## Fix: sample website shown as invalid (21 Sep 2026)
+The website check imported the network helper by a same-folder path ("./beCall"), which
+the fixture rule did not match, so that one call went to the real network code, failed
+and marked the URL invalid. It was also the one request that could leave the page. The
+rules for the network helper, sign-in, analytics and the PDF viewer now match on the
+file name alone, so no import form can bypass them. Verified: the sample website now
+gets the green tick, and a pass over sign-up, mobile, KYC intro, Aadhaar, documents,
+home, share account and tracking made no request to any host but the prototype's own.
