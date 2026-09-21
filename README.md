@@ -17,6 +17,7 @@ each step, what usually goes wrong, and why each screen exists.
 | Left rail | Opens on the August 2026 funnel slide (★), then every screen in journey order. Click any step to jump to it. |
 | Business type bar | Freelancer, Sole Proprietor, Private Limited, LLP, Partnership, HUF. The screen re-renders for that type and the choice sticks as you move. |
 | (i) top right | Why this screen exists, and what the numbers say for that step. Closes with X or Escape. |
+| Chart button, left of the (i) | Shows that screen's five August figures on the screen itself, in its blank space. Stays on from screen to screen until pressed again. |
 | (i) beside a field | Extra explanation for that field, such as what the fourth letter of a PAN decides. |
 | Back / Next | Move through the journey. Browser back and forward work too. |
 | Reset | Clears everything and returns to the start. |

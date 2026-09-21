@@ -218,11 +218,20 @@ body,
   justify-content: center;
 }
 
-.proto-info-btn {
+/* The numbers button and the (i) sit together in the frame's top-right corner. */
+.proto-corner {
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 40;
+  display: flex;
+  gap: 8px;
+}
+.proto-info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -529,7 +538,7 @@ body,
 
 /* On the onboarding page the product's own header fills the top edge (avatar and
    menu at the right), so the (i) sits just below it, over the tracker's blank end. */
-.proto-screen-wrap:has(.proto-app-page) > .proto-info-btn {
+.proto-screen-wrap:has(.proto-app-page) > .proto-corner {
   top: 60px;
   right: 16px;
   z-index: 70;
@@ -593,7 +602,7 @@ body,
 
 /* On the home page a full-width banner sits under the header, so the (i) drops into
    the blank margin beside the page column. */
-.proto-screen-wrap:has(.proto-home-page) > .proto-info-btn {
+.proto-screen-wrap:has(.proto-home-page) > .proto-corner {
   top: 96px;
 }
 
@@ -606,6 +615,86 @@ body,
 .proto-main,
 .proto-stage:has(.proto-viewport-outer) {
   overflow: clip;
+}
+
+/* ---------- the numbers card, laid over the screen's blank space ---------- */
+.proto-num-btn.is-on {
+  background: var(--proto-accent);
+  color: #fff;
+}
+.proto-num-card {
+  position: absolute;
+  z-index: 65;
+  width: 168px;
+  box-sizing: border-box;
+  padding: 11px 12px 9px;
+  background: #fff;
+  color: #1b2140;
+  border: 1px solid #dfe4f5;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(22, 34, 91, 0.16);
+  font-family: inherit;
+  /* onboarding steps and DigiLocker: the blank margin left of the page column,
+     below the header and tracker */
+  top: 132px;
+  left: 12px;
+}
+.proto-num-card-head {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5a6484;
+}
+.proto-num-card dl {
+  margin: 0;
+}
+.proto-num-card dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-top: 1px solid #eef1fa;
+}
+.proto-num-card dt {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: #5a6484;
+}
+.proto-num-card dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #16225b;
+  font-variant-numeric: tabular-nums;
+}
+.proto-num-card .is-drop dd {
+  color: #c2410c;
+}
+/* Sign-up screens: the blank space under the Skydo logo, centred on it (the exact
+   spot is measured from the logo; this is where it starts). */
+.proto-num-card.is-under-logo {
+  width: 214px;
+  top: calc(50% + 52px);
+  left: 30%;
+  transform: translateX(-50%);
+}
+/* The DigiLocker pages have no product header, so the card sits higher. */
+.proto-screen-wrap:has(.dl-page) > .proto-num-card {
+  top: 72px;
+}
+/* The focused home: the blank margin right of the page column, under the buttons.
+   It is narrower, so each label sits above its figure. */
+.proto-screen-wrap:has(.proto-home-page) > .proto-num-card {
+  top: 140px;
+  left: auto;
+  right: 12px;
+  width: 136px;
+}
+.proto-screen-wrap:has(.proto-home-page) > .proto-num-card dl > div {
+  display: block;
 }
 
 /* ---------- opening slide: the August funnel ---------- */

@@ -1,6 +1,10 @@
 // The (i) button that sits on every screen, and the panel it opens.
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Funnel, PERIOD, SCREEN_INFO } from "../content";
+
+export function hasNumbers(screenId: string) {
+  return Boolean(SCREEN_INFO[screenId]);
+}
 
 export function InfoButton({ onClick, label = "Why this screen exists" }: { onClick: () => void; label?: string }) {
   return (
@@ -59,17 +63,100 @@ export function InfoPanel({
 const round10 = (n: number) => Math.round(n / 10) * 10;
 const fmt = (n: number) => round10(n).toLocaleString("en-IN");
 
-/** August on this screen: how many arrived, went on and left, and why they leave. */
-function FunnelNumbers({ funnel }: { funnel: Funnel }) {
-  const { landed, moved, movedMeans, scope, reasons, hideNote } = funnel;
+/** The five August figures for a screen, as label and value. */
+function funnelRows({ landed, moved }: Funnel): [string, string][] {
   const forward = Math.round((moved / landed) * 100);
-  const rows: [string, string][] = [
+  return [
     ["Landed on this screen", fmt(landed)],
     ["Moved ahead", fmt(moved)],
     ["Dropped off", fmt(landed - moved)],
     ["Moved forward", `${forward}%`],
     ["Dropped off", `${100 - forward}%`],
   ];
+}
+
+/** The numbers button, left of the (i): shows the figures on the screen itself. */
+export function NumbersButton({ on, onClick }: { on: boolean; onClick: () => void }) {
+  const label = on ? "Hide the numbers" : "Show the numbers";
+  return (
+    <button
+      type="button"
+      className={`proto-info-btn proto-num-btn ${on ? "is-on" : ""}`}
+      onClick={onClick}
+      aria-label={label}
+      aria-pressed={on}
+      title={label}
+    >
+      <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
+        <rect x="2" y="8" width="3" height="6" rx="0.8" fill="currentColor" />
+        <rect x="6.5" y="4.5" width="3" height="9.5" rx="0.8" fill="currentColor" />
+        <rect x="11" y="2" width="3" height="12" rx="0.8" fill="currentColor" />
+      </svg>
+    </button>
+  );
+}
+
+const SIGN_UP_SCREENS = ["login", "email-otp", "mobile"];
+
+/**
+ * On the sign-up screens the blank space is under the Skydo logo, which sits at a
+ * different height on each of them, so the card follows the logo.
+ */
+function useUnderLogo(active: boolean) {
+  const [pos, setPos] = useState<React.CSSProperties | undefined>();
+  useLayoutEffect(() => {
+    if (!active) return;
+    const place = () => {
+      const wrap = document.querySelector(".proto-screen-wrap");
+      if (!wrap) return;
+      const w = wrap.getBoundingClientRect();
+      const logo = Array.from(wrap.querySelectorAll(".proto-product-page svg"))
+        .map((el) => el.getBoundingClientRect())
+        .find((r) => r.width > 120 && r.left - w.left < w.width / 2);
+      if (logo) setPos({ top: logo.bottom - w.top + 24, left: logo.left - w.left + logo.width / 2 });
+    };
+    place();
+    // The page settles over its first moments (fonts, images), so place it again.
+    const timers = [150, 500, 1200].map((ms) => window.setTimeout(place, ms));
+    window.addEventListener("resize", place);
+    return () => {
+      timers.forEach(window.clearTimeout);
+      window.removeEventListener("resize", place);
+    };
+  }, [active]);
+  return pos;
+}
+
+/** The figures laid over the screen's blank space, with nothing else. */
+export function NumbersCard({ screenId }: { screenId: string }) {
+  const info = SCREEN_INFO[screenId];
+  const signUp = SIGN_UP_SCREENS.includes(screenId);
+  const underLogo = useUnderLogo(signUp);
+  if (!info) return null;
+  return (
+    <div
+      className={`proto-num-card ${signUp ? "is-under-logo" : ""}`}
+      style={underLogo}
+      role="note"
+      aria-label="August 2026 numbers for this screen"
+    >
+      <p className="proto-num-card-head">August 2026, per month</p>
+      <dl>
+        {funnelRows(info.funnel).map(([k, v], i) => (
+          <div key={i} className={i === 2 || i === 4 ? "is-drop" : ""}>
+            <dt>{k}</dt>
+            <dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+/** August on this screen: how many arrived, went on and left, and why they leave. */
+function FunnelNumbers({ funnel }: { funnel: Funnel }) {
+  const { movedMeans, scope, reasons, hideNote } = funnel;
+  const rows = funnelRows(funnel);
   return (
     <section className="proto-modal-section">
       <h3>August 2026, per month</h3>

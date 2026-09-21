@@ -407,3 +407,12 @@ Directors, Checks and Focused home popups keep their note without it.
 ## Side bar note removed (21 Sep 2026)
 The side bar no longer shows "A prototype for training. Sample data only, nothing here
 is a real account."
+
+## Numbers button (21 Sep 2026)
+Every product screen has a chart button to the left of the (i). Pressing it lays the
+screen's five August figures (landed, moved ahead, dropped off, % forward, % dropped)
+over the screen's blank space: under the Skydo logo on the sign-up screens, in the
+margin left of the page on the onboarding steps and DigiLocker, and in the right margin
+on the focused home. The figures are the same as in the (i) popup. Once on, the card
+stays on while moving between screens; press the button again to hide it. The opening
+slide has neither button.

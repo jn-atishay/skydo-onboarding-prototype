@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { BUSINESS_TYPE_LIST, BusinessTypeId, StepId, usePrototype } from "./state";
 import { SCREENS, screensFor, indexOfStep } from "./screens";
 import { BottomBar, LeftRail, TopBar } from "./components/Controls";
-import { InfoButton, InfoPanel } from "./components/InfoPopup";
+import { InfoButton, InfoPanel, NumbersButton, NumbersCard, hasNumbers } from "./components/InfoPopup";
 import { useSeedProductStores } from "./useProductStores";
 import { installTapToFill } from "./tapToFill";
 
@@ -35,6 +35,8 @@ export default function App() {
   const proto = usePrototype();
   const { step, businessType, variant, presenter, jump, set, jumpTo, reset } = proto;
   const [infoOpen, setInfoOpen] = useState(false);
+  // Once shown, the numbers stay on from screen to screen until hidden again.
+  const [numbersOn, setNumbersOn] = useState(false);
   const [booted, setBooted] = useState(false);
 
   useSeedProductStores();
@@ -138,7 +140,13 @@ export default function App() {
 
         <div className="proto-stage">
           <div className="proto-screen-wrap">
-            {!def.slide && <InfoButton onClick={() => setInfoOpen(true)} />}
+            {!def.slide && (
+              <div className="proto-corner">
+                {hasNumbers(step) && <NumbersButton on={numbersOn} onClick={() => setNumbersOn((v) => !v)} />}
+                <InfoButton onClick={() => setInfoOpen(true)} />
+              </div>
+            )}
+            {!def.slide && numbersOn && <NumbersCard key={step} screenId={step} />}
             <ScreenErrorBoundary screen={`${step}-${businessType}-${variant}`}>
               {/* wait until the URL has been read, so a deep link mounts its own
                   screen first rather than flashing the sign-up page */}
