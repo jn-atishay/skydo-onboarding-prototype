@@ -303,3 +303,18 @@ The three Aadhaar number boxes on the first DigiLocker screen ran past the card'
 edge, because a text box has a built-in minimum width that stopped the columns shrinking.
 They now share the card's width and line up with the Next button. Verified: the boxes
 end where the button ends; the PIN and consent screens also fit their cards.
+
+## Fix: false PAN error and company form after Verify PAN (21 Sep 2026)
+Verify PAN showed "We're unable to validate your PAN due to a temporary issue with the
+government source", and a Freelancer saw the company form (company name, CIN), until a
+refresh. Two causes:
+- The product calls one more tracking function after a verified PAN, which the
+  prototype's silent stand-in did not have. The call failed inside the product's own
+  button handler, which shows that error and skips reloading the business details.
+  Every tracking call, known or not, is now silent.
+- The side-bar fix earlier today marked the PAN verified before the business details
+  had loaded, so the form fell back to the company layout. The prototype now only
+  clears that flag (for the PAN step) and leaves setting it to the product.
+Verified: Verify PAN for Freelancer, Pvt Ltd, HUF and Sole Prop (which the product's own
+rule turns into Freelancer without a GST) shows no error and the right form; side bar
+back and forward and business-type switches still work.

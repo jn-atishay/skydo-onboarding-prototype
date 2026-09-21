@@ -17,7 +17,13 @@ export class Analytics {
   reset = noop;
 }
 
-const instance = new Analytics();
+// Any other tracking call the product makes (fireMarketingEvent after a verified PAN,
+// for one) is a no-op too. A missing one would throw inside the product's own button
+// handler and surface as a false error on screen. "then" is left alone so the object
+// is never mistaken for a promise.
+const instance = new Proxy(new Analytics(), {
+  get: (target: any, prop) => (prop in target || typeof prop === "symbol" || prop === "then" ? target[prop] : noop),
+}) as Analytics;
 
 /**
  * Matches the product's two call styles: useAnalytics() returns the object, and

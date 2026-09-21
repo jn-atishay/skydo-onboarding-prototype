@@ -30,12 +30,13 @@ function seedProductStores() {
   } as any);
 
   // The PAN card remembers a verified PAN and never forgets it by itself, so going
-  // back to the PAN step would still show the business form. Match it to the step.
-  useCompanyPanDetailsStore.setState({
-    isPanVerified: panDone,
-    isForcePanInput: false,
-    ...(panDone ? {} : { companyPanDetailsData: {} }),
-  } as any);
+  // back to the PAN step would still show the business form: clear it there. It is
+  // never set here, because the card sets it itself once the business details have
+  // loaded; setting it early shows the form before it knows the business type, and
+  // the form then falls back to the company layout.
+  if (!panDone) {
+    useCompanyPanDetailsStore.setState({ isPanVerified: false, isForcePanInput: false, companyPanDetailsData: {} } as any);
+  }
 
   // The documents card opens on the document that matches the bank-card answer:
   // Yes offers the bank statement, No offers a signed contract.
