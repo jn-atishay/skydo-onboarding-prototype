@@ -63,3 +63,40 @@ the pane if you want me to click through the live URL directly.
 Screens 7 to 13. The Aadhaar and DigiLocker sequence, the mobile code popup, the
 directors and partners screens, bank, documents, the checks screen and the first home
 screen with the test payment are still placeholders.
+
+## Phase 2 — the sign-up page proper, Aadhaar and the mobile code
+
+### Corrected from Phase 1
+The sign-up screens were only rendering the login card, not the page around it. They
+now use the product's own `DesktopLoginPage`, so both variants match the real thing:
+the plain page has its background, big logo and footer, and the referral page has the
+two-column layout with the inviter's name, the discount headline, the feature chips
+and the partner strip.
+
+### A bug that would have broken the published site
+The product references images by absolute path, for example `/bg-image-login.png`,
+because the real app is served from the root of a domain. This site lives under a
+sub-path, so every one of those images 404'd. A small build plugin now rewrites such
+a path, but only when the file actually exists in `public/`, so a genuine API path is
+never touched. Vite already did this for stylesheets.
+
+### Built
+- Screens 7 and 8: the Aadhaar prompt, the DigiLocker sequence, the verified state and
+  the mobile-code popup with its two-minute resend timer.
+- DigiLocker belongs to the government and is not in the Skydo codebase, so those three
+  screens are replicas built from the captures. They carry a visible notice saying so,
+  their Aadhaar and PIN boxes hold fixed sample digits and are read-only, and they send
+  nothing anywhere. They must never be mistakeable for the real service.
+- The real "Verify Aadhaar via DigiLocker" button opens the replica instead of leaving
+  the page, and a prototype-only Skip button jumps straight to verified.
+- Arriving at the Confirm mobile step opens the code popup by itself.
+
+### Verified in the browser
+Clicked the whole path: sign-up (both variants), Aadhaar prompt, DigiLocker Aadhaar,
+PIN and consent screens, Allow, the verified state with the masked Aadhaar and prefilled
+name and number, then the mobile-code popup. Background images now return 200 under the
+sub-path.
+
+### Still to do
+Screens 9 to 13: directors and partners, bank, documents, the checks screen and the
+first home screen with the test payment.

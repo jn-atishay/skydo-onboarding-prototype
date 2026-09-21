@@ -1,0 +1,230 @@
+.outer {
+  min-height: 80vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.parentCont {
+  max-width: 600px;
+  min-width: 200px;
+  width: 60vw;
+}
+
+.successcontainer {
+  width: 80vw;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.verification {
+  margin-top: 60px;
+  flex-direction: column;
+  display: flex;
+  min-height: 100px;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.verificationLessMargin {
+  margin-top: 24px;
+  flex-direction: column;
+  display: flex;
+  min-height: 100px;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.btngroup {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+}
+
+.thankyou {
+  font-style: normal;
+  font-weight: 700 !important;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1aa06b;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.needhelp {
+  margin-top: 52px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+
+  color: #0a2540;
+
+  padding: 20px;
+  background: #eef3fe;
+  border-radius: 20px;
+}
+
+.secondsubtext {
+  color: #425466;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.secondrow {
+  margin-top: 20px;
+}
+
+.successHeader {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #0a2540;
+  max-width: 400px;
+}
+
+.successSubText {
+  margin-top: 32px;
+  max-width: 550px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #425466;
+}
+
+.activeStep {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #1aa06b;
+}
+
+.totalSteps {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: #8898aa;
+}
+
+.footerCont {
+  background: #eef3fe;
+  border-radius: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footerCont2 {
+  background: #eef3fe;
+  border-radius: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.loadingHeader {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  color: #0a2540;
+  margin-top: 24px;
+}
+
+.mainHeaderFont {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #0a2540;
+}
+
+.subheaderFont {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #0a2540;
+}
+
+.aHrefLink,
+.aHrefLink:hover,
+.aHrefLink:visited,
+.aHrefLink:focus,
+.aHrefLink:active {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+  cursor: pointer;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0a2540;
+}
+
+.checkboxContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.checkbox {
+  padding-right: 14px;
+  cursor: pointer;
+}
+
+.checkboxInput {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
+.bottom {
+  margin-top: 40px;
+}
+
+.hyperlinkTnC {
+  cursor: pointer;
+  color: #276ef1;
+  text-decoration: none;
+}
+
+.bottomErrorMessageCont {
+  margin-block: 40px;
+  color: #e11900;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}

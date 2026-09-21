@@ -139,3 +139,42 @@ export function companyPanDetailsFixture() {
     docTypeDescription: docTypeDescriptions(),
   };
 }
+
+/** The identity step's verification flags, driven by how far the demo has got. */
+export function identityVerificationStatus() {
+  const p = getProto();
+  const aadhaarDone = p.aadhaarStage === "verified" || ["mobile-otp", "management", "bank", "documents", "verification", "home"].includes(p.step);
+  const phoneDone = ["management", "bank", "documents", "verification", "home"].includes(p.step);
+  return [
+    { verificationStep: "EXPORTER_PAN_FETCHED", isVerified: panIsDone() },
+    { verificationStep: "AADHAAR_NAME_MATCH", isVerified: aadhaarDone },
+    { verificationStep: "UBO_PHONE_OTP", isVerified: phoneDone },
+  ];
+}
+
+/** Answer for the identity step's FETCH_DIRECTOR_DETAILS query. */
+export function directorDetailsFixture() {
+  const p = getProto();
+  const aadhaarDone = p.aadhaarStage === "verified" || ["mobile-otp", "management", "bank", "documents", "verification", "home"].includes(p.step);
+  return {
+    exporterUser: {
+      fullName: SAMPLE.name,
+      registeredName: SAMPLE.name,
+      phoneNumber: SAMPLE.phone,
+      panNumber: p.panValue || SAMPLE.pan,
+      isDirector: COMPANY_TYPES.includes(p.businessType),
+      maskedAadhaar: aadhaarDone ? "XXXX XXXX 1891" : null,
+      exporter: {
+        businessLegalName: displayName(),
+        correspondentName: SAMPLE.name,
+        verificationStatus: identityVerificationStatus(),
+        ubo: COMPANY_TYPES.includes(p.businessType)
+          ? [{ fullName: "PRIYA SHARMA" }, { fullName: "ARJUN MEHTA" }]
+          : [{ fullName: SAMPLE.legalName }],
+      },
+      exporterUserKyc: { kycDocList: [] },
+    },
+    defaultAadhaarVendor: "DIGILOCKER",
+    sanctionCategories: [],
+  };
+}

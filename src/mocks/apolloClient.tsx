@@ -2,7 +2,13 @@
 // so no GraphQL request can leave the page.
 import React, { useEffect, useMemo, useState } from "react";
 import { exporterUserFixture, INDUSTRIES, INDUSTRY_QUESTIONS } from "./fixtures";
-import { companyPanDetailsFixture, industryList, docTypeDescriptions } from "./onboardingFixture";
+import {
+  companyPanDetailsFixture,
+  directorDetailsFixture,
+  identityVerificationStatus,
+  industryList,
+  docTypeDescriptions,
+} from "./onboardingFixture";
 
 function queryText(q: any): string {
   if (!q) return "";
@@ -18,6 +24,17 @@ export function resolveQuery(q: any): any {
   // alongside the customer, so match it before the smaller exporterUser query.
   if (text.includes("FetchCompanyPanDetails") || text.includes("docTypeDescription")) {
     return companyPanDetailsFixture();
+  }
+  if (text.includes("FETCH_DIRECTOR_DETAILS") || text.includes("defaultAadhaarVendor")) {
+    return directorDetailsFixture();
+  }
+  // The identity step polls a small query for its own verification flags.
+  if (text.includes("sanctionCategories")) {
+    return {
+      exporterUser: {
+        exporter: { verificationStatus: identityVerificationStatus(), sanctionCategories: [] },
+      },
+    };
   }
   if (text.includes("exporterUser")) return exporterUserFixture();
   if (text.includes("industry") && text.includes("riskCategory")) {
