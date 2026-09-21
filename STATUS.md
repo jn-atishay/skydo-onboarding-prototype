@@ -359,3 +359,7 @@ for August, grouped: Google 32% (google 758 + google_search 221), Meta 18% (face
 Others 23% (Unknown 266 + cold call 142 + about 308 in sources the chart does not label;
 the chart's own percentages imply about 3,105 onboardings in all). The funnel stays on
 the sign-up cohort, and the footnote says which source each half uses.
+
+## Slide: Google paid and Google search apart (21 Sep 2026)
+The channel split shows Google (paid) 24% (758) and Google search 7% (221) as separate
+channels. Meta rounds to 19% so the six shares add up to 100.

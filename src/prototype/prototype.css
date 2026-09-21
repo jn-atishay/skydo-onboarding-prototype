@@ -767,7 +767,7 @@ body,
 }
 .proto-slide-channels li {
   grid-template-columns: 150px minmax(0, 1fr) 92px;
-  padding: 7px 0;
+  padding: 4px 0;
 }
 .proto-slide-channel-num {
   text-align: right;

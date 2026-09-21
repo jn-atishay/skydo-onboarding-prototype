@@ -58,7 +58,8 @@ const FUNNEL: { label: string; people: number }[] = [
  * not label (about 308) are counted under Others.
  */
 const CHANNELS: { name: string; onboardings: number }[] = [
-  { name: "Google", onboardings: 758 + 221 }, // google, google_search
+  { name: "Google (paid)", onboardings: 758 },
+  { name: "Google search", onboardings: 221 }, // google_search
   { name: "Meta (Facebook, Instagram)", onboardings: 574 },
   { name: "Referrals", onboardings: 447 },
   { name: "Organic (word of mouth, AI tools, blogs)", onboardings: 171 + 147 + 71 },
