@@ -444,3 +444,13 @@ runs as one row along the blank band at the bottom of the page.
 The "Get global accounts" popup on skydo.com now has a "Log in with Google" button above
 the email field, with an OR divider. It is a stand-in: pressing it skips the email code
 and opens step 3, Terms and how you found us.
+
+## Work email gate (24 Sep 2026)
+The first time someone opens the link, they see a screen asking for their work email.
+An address ending in @skydo.com opens the walkthrough; anything else shows "Only for
+Skydo employees". Once through, that browser is not asked again (only a yes/no flag is
+kept in the browser; the email is never stored or sent).
+
+This is a courtesy gate, not security: the site is public, anyone can type a made-up
+@skydo.com address, and the page's content, including the August numbers, is in the
+published files for anyone who looks.
