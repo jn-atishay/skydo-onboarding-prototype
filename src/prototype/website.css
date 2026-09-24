@@ -473,8 +473,39 @@
   top: 30px;
   right: 24px;
 }
+.ws-btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  margin-top: 24px;
+  border: 1px solid #cfd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #0f2748;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ws-btn-google:hover {
+  background: #f5f7fb;
+}
+.ws-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #7a8599;
+}
+.ws-or span {
+  flex: 1;
+  height: 1px;
+  background: #dfe3eb;
+}
 .ws-field-label {
-  margin: 30px 0 8px;
+  margin: 18px 0 8px;
   font-size: 14.5px;
   font-weight: 700;
   color: #0f2748;

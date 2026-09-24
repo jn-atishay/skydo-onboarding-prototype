@@ -439,3 +439,8 @@ Numbers (Mixpanel, skydo.com project, August 2026, unique people, login within a
 the form): opened the Get Started form 45,255, submitted it 17,056, logged in 9,585
 (1,115 of those logins were existing accounts). On the website screens the numbers card
 runs as one row along the blank band at the bottom of the page.
+
+## Google sign-in on the website email box (24 Sep 2026)
+The "Get global accounts" popup on skydo.com now has a "Log in with Google" button above
+the email field, with an OR divider. It is a stand-in: pressing it skips the email code
+and opens step 3, Terms and how you found us.
