@@ -685,13 +685,38 @@ body,
 .proto-num-card .is-drop dd {
   color: #c2410c;
 }
-/* Sign-up screens: the blank space under the Skydo logo, centred on it (the exact
-   spot is measured from the logo; this is where it starts). */
-.proto-num-card.is-under-logo {
-  width: 214px;
-  top: calc(50% + 52px);
-  left: 30%;
+/* skydo.com screens: one row along the blank band at the bottom of the page. */
+.proto-num-card.is-strip {
+  top: auto;
+  bottom: 14px;
+  left: 50%;
+  width: auto;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 9px 16px;
+}
+.proto-num-card.is-strip .proto-num-card-head {
+  margin: 0;
+  width: 84px;
+  line-height: 1.3;
+}
+.proto-num-card.is-strip dl {
+  display: flex;
+  gap: 18px;
+}
+.proto-num-card.is-strip dl > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  border-top: 0;
+  padding: 0 0 0 18px;
+  border-left: 1px solid #eef1fa;
+}
+.proto-num-card.is-strip dt {
+  white-space: nowrap;
 }
 /* The DigiLocker pages have no product header, so the card sits higher. */
 .proto-screen-wrap:has(.dl-page) > .proto-num-card {
@@ -884,4 +909,11 @@ body,
 .proto-rail-item.is-slide .proto-rail-num {
   background: #5b7cfa;
   color: #fff;
+}
+
+/* Over the website's dark popup backdrop the caption needs its own background. */
+.proto-num-card.is-strip .proto-num-card-note {
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #fff;
 }

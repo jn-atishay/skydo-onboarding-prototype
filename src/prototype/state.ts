@@ -47,7 +47,6 @@ export type StepId =
   | "intro"
   | "login"
   | "email-otp"
-  | "mobile"
   | "kyc-intro"
   | "pan"
   | "business-details"

@@ -422,3 +422,20 @@ On the Sign up and Email code screens, the numbers card now carries one line abo
 "Website sign-ups only; a few existing customers are included." Both screens' figures
 come from the login box that follows the skydo.com form, and they are not filtered to
 new people.
+
+## Sign-up moved to skydo.com (24 Sep 2026)
+The journey now starts where most new accounts start: on skydo.com. Step 1, "Sign up on
+skydo.com", is a replica of the website home page. Sign up or Get Started opens the Get
+Started form (name, mobile number, WhatsApp box). Step 2, "Email and code", merges the
+old Email code and Mobile number steps: the same popup asks for an email, then the
+six-digit code, and Verify OTP opens the terms screen. The mobile number is taken on the
+website form, so the separate mobile-number screen is gone. Everything from Terms onward
+is unchanged. The journey has 11 steps instead of 12.
+
+The Sign up popup's Referral variant is gone with the login page. Referral links still
+lead to the Skydo login page, which this build no longer shows.
+
+Numbers (Mixpanel, skydo.com project, August 2026, unique people, login within a day of
+the form): opened the Get Started form 45,255, submitted it 17,056, logged in 9,585
+(1,115 of those logins were existing accounts). On the website screens the numbers card
+runs as one row along the blank band at the bottom of the page.

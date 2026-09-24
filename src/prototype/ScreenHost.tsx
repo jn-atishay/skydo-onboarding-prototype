@@ -3,7 +3,6 @@
 import { FunnelSlide } from "./components/FunnelSlide";
 import React, { useEffect } from "react";
 import { StepId, usePrototype } from "./state";
-import DesktopLoginPage from "../skydo/components/LoginComponents/DesktopLoginPage";
 import Header from "../skydo/components/Header";
 import Onboarding from "../skydo/pages/onboarding";
 import GlobalContainer from "../skydo/components/Layout/GlobalContainer";
@@ -14,52 +13,10 @@ import TestPaymentDetails from "../skydo/pages/payments/[payment_id]";
 import useTestTransactionStore from "../skydo/store/useTestTransactionStore";
 import { isTestPaid, markTestPaid } from "../mocks/homeFixtures";
 import { notifyRouter, setProductPath } from "../shims/next-router";
-import { SAMPLE } from "../mocks/fixtures";
 import { PanRuleButton } from "./components/PanRuleButton";
 import { ScaledViewport, viewportScale } from "./components/ScaledViewport";
+import { WebsiteSignup } from "./components/WebsiteSignup";
 import { DigiLockerAadhaar, DigiLockerConsent, DigiLockerPin } from "./components/DigiLockerReplica";
-
-/** Fills a React-controlled input and fires the events React listens for. */
-function setReactValue(el: HTMLInputElement, value: string) {
-  const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set;
-  setter?.call(el, value);
-  el.dispatchEvent(new Event("input", { bubbles: true }));
-  el.dispatchEvent(new Event("change", { bubbles: true }));
-}
-
-/**
- * The email screen and the code screen are one component in the product: the code
- * appears only after an email is submitted. To let the rail jump straight to the code
- * screen, fill the email and submit it once on mount.
- */
-function useAutoSubmitEmail(active: boolean) {
-  useEffect(() => {
-    if (!active) return;
-    // Typing an email swaps the card to "Continue using email" with a Send OTP
-    // button, so fill the field, wait for that button, then press it.
-    let tries = 0;
-    let clicked = 0;
-    const tick = window.setInterval(() => {
-      tries += 1;
-      const root = document.querySelector(".proto-screen-wrap");
-      if ((root?.textContent ?? "").includes("Enter the OTP sent")) {
-        window.clearInterval(tick);
-        return;
-      }
-      const input = root?.querySelector("form input") as HTMLInputElement | null;
-      if (input && input.value !== SAMPLE.email) setReactValue(input, SAMPLE.email);
-      const send = (Array.from(root?.querySelectorAll("button") ?? []) as HTMLButtonElement[]).find(
-        (b) => b.textContent?.trim() === "Send OTP" && b.offsetParent !== null
-      );
-      if (send && !send.disabled && Date.now() - clicked > 2000) {
-        clicked = Date.now();
-        send.click();
-      }
-      if (tries > 80) window.clearInterval(tick);
-    }, 150);
-    return () => window.clearInterval(tick);
-  }, [active]);
-}
 
 /**
  * The mobile-code popup only exists once Verify is pressed on the identity screen.
@@ -188,13 +145,11 @@ function NotWired({ label }: { label: string }) {
 
 export function ScreenHost({ step }: { step: StepId }) {
   const { variant, aadhaarStage, set } = usePrototype();
-  const isOtp = step === "email-otp";
-  useAutoSubmitEmail(isOtp);
   useAutoOpenMobileOtp(step === "mobile-otp");
   useHomeStages(step === "home", variant, set);
   useAutoClick("Yes, I want to get started", step === "home" && variant === "next-payment", variant);
   useAutoClick("Try test payment", step === "home" && variant === "test", variant);
-  useScrollToCurrentCard(`${step}-${aadhaarStage}`, !["login", "email-otp", "mobile", "kyc-intro", "home"].includes(step));
+  useScrollToCurrentCard(`${step}-${aadhaarStage}`, !["login", "email-otp", "kyc-intro", "home"].includes(step));
 
   /**
    * The real button sends the customer off to DigiLocker. In the prototype it opens
@@ -231,11 +186,11 @@ export function ScreenHost({ step }: { step: StepId }) {
   }
 
   if (step === "login" || step === "email-otp") {
-    // The real login page, including its background, logo, footer and the
-    // referral panel, not just the card.
+    // Sign-up on skydo.com: the website is not in the product codebase, so this is
+    // a replica of it, laid out at desktop width like the product pages.
     return (
-      <ScaledViewport className="proto-product-page">
-        <DesktopLoginPage key={`${step}-${variant}`} authenticated={false} isReferred={variant === "referral"} />
+      <ScaledViewport className="proto-website-page">
+        <WebsiteSignup step={step} />
       </ScaledViewport>
     );
   }

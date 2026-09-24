@@ -56,7 +56,7 @@ function seedProductStores() {
     exporterId: "1",
     loggedInUserEmail: SAMPLE.email,
     businessType: panDone ? businessType : "",
-    phoneNumber: ["login", "email-otp", "mobile"].includes(step) ? "" : SAMPLE.phone,
+    phoneNumber: ["login", "email-otp"].includes(step) ? "" : SAMPLE.phone,
     isTransacting: false,
     offboardingType: "",
     // The bank card shows the filled, verified account; the documents card opens

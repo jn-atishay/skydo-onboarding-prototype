@@ -18,9 +18,9 @@ const useLoginStore = create<LoginState>()((set) => ({
   isBusy: false,
   resetLogin: () => set({ isVerified: false, isBusy: false }),
   register: async () => {
-    // Signing in moves the demo on to the mobile-number screen.
+    // Signing in moves the demo on to the terms screen.
     set({ isBusy: false });
-    usePrototype.getState().set({ step: "mobile", variant: "" });
+    usePrototype.getState().set({ step: "kyc-intro", variant: "" });
   },
   savePhone: async ({ onSuccess }) => {
     // Any 10-digit number is accepted; the demo moves on to the KYC intro.

@@ -47,7 +47,6 @@ export function onboardingStateForStep(): string {
     case "intro":
     case "login":
     case "email-otp":
-    case "mobile":
     case "kyc-intro":
       return "SIGN_UP_SUCCESS";
     case "pan":
@@ -91,7 +90,7 @@ export function exporterUserFixture() {
     exporterUser: {
       fullName: SAMPLE.name,
       emailAddress: SAMPLE.email,
-      phoneNumber: ["login", "email-otp", "mobile"].includes(p.step) ? null : SAMPLE.phone,
+      phoneNumber: ["login", "email-otp"].includes(p.step) ? null : SAMPLE.phone,
       exporter: {
         onBoardingState: onboardingStateForStep(),
         offboardingType: null,

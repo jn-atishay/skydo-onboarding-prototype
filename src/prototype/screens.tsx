@@ -18,16 +18,10 @@ export interface ScreenDef {
 export const SCREENS: ScreenDef[] = [
   // The opening slide: the August funnel, before walking the journey.
   { id: "intro", label: "August 2026 funnel", slide: true },
-  {
-    id: "login",
-    label: "Sign up",
-    variants: [
-      { id: "", label: "Normal" },
-      { id: "referral", label: "Referral" },
-    ],
-  },
-  { id: "email-otp", label: "Email code" },
-  { id: "mobile", label: "Mobile number" },
+  // Sign-up on skydo.com, where most new accounts start: the Get Started form takes a
+  // name and mobile number, then the same popup asks for an email and its code.
+  { id: "login", label: "Sign up on skydo.com" },
+  { id: "email-otp", label: "Email and code" },
   { id: "kyc-intro", label: "Terms and how you found us" },
   { id: "pan", label: "Business PAN", typeAware: true },
   { id: "business-details", label: "Business details", typeAware: true },

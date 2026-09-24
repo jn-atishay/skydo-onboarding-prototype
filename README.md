@@ -67,6 +67,9 @@ Everything on screen is the real component except:
 
 - The DigiLocker screens, which belong to the government and cannot be imported. They are
   static replicas, labelled as such in the prototype.
+- The first two steps, sign-up on skydo.com (home page, Get Started form, then email and
+  code in the same popup). The website is not in the product codebase, so these are
+  replicas built from screenshots of the live site. They send nothing anywhere.
 - Uploading a document attaches a sample file rather than sending anything.
 - The product's guided tour (the speech bubbles that point at parts of the tracking
   page) is not included.

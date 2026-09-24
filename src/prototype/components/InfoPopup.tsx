@@ -1,5 +1,5 @@
 // The (i) button that sits on every screen, and the panel it opens.
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Funnel, PERIOD, SCREEN_INFO } from "../content";
 
 export function hasNumbers(screenId: string) {
@@ -96,47 +96,17 @@ export function NumbersButton({ on, onClick }: { on: boolean; onClick: () => voi
   );
 }
 
-const SIGN_UP_SCREENS = ["login", "email-otp", "mobile"];
-
-/**
- * On the sign-up screens the blank space is under the Skydo logo, which sits at a
- * different height on each of them, so the card follows the logo.
- */
-function useUnderLogo(active: boolean) {
-  const [pos, setPos] = useState<React.CSSProperties | undefined>();
-  useLayoutEffect(() => {
-    if (!active) return;
-    const place = () => {
-      const wrap = document.querySelector(".proto-screen-wrap");
-      if (!wrap) return;
-      const w = wrap.getBoundingClientRect();
-      const logo = Array.from(wrap.querySelectorAll(".proto-product-page svg"))
-        .map((el) => el.getBoundingClientRect())
-        .find((r) => r.width > 120 && r.left - w.left < w.width / 2);
-      if (logo) setPos({ top: logo.bottom - w.top + 36, left: logo.left - w.left + logo.width / 2 });
-    };
-    place();
-    // The page settles over its first moments (fonts, images), so place it again.
-    const timers = [150, 500, 1200].map((ms) => window.setTimeout(place, ms));
-    window.addEventListener("resize", place);
-    return () => {
-      timers.forEach(window.clearTimeout);
-      window.removeEventListener("resize", place);
-    };
-  }, [active]);
-  return pos;
-}
+// On the skydo.com screens the free space is the band along the bottom of the page,
+// below the hero and the popup, so the figures run across it in one row.
+const WEBSITE_SCREENS = ["login", "email-otp"];
 
 /** The figures laid over the screen's blank space, with nothing else. */
 export function NumbersCard({ screenId }: { screenId: string }) {
   const info = SCREEN_INFO[screenId];
-  const signUp = SIGN_UP_SCREENS.includes(screenId);
-  const underLogo = useUnderLogo(signUp);
   if (!info) return null;
   return (
     <div
-      className={`proto-num-card ${signUp ? "is-under-logo" : ""}`}
-      style={underLogo}
+      className={`proto-num-card ${WEBSITE_SCREENS.includes(screenId) ? "is-strip" : ""}`}
       role="note"
       aria-label="August 2026 numbers for this screen"
     >

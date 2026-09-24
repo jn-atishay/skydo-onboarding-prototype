@@ -35,59 +35,42 @@ export const PERIOD =
 
 export const SCREEN_INFO: Record<string, ScreenInfo> = {
   login: {
-    title: "Sign up",
+    title: "Sign up on skydo.com",
     why: [
-      "The email address is the account's main identity, so an email already attached to another user is refused.",
-      "A referral or partner link changes this screen: the customer sees who invited them and the reward waiting for them.",
+      "Most new accounts start here, not on the Skydo login page: the Get Started form on skydo.com asks only for a name and a mobile number.",
+      "Submitting it creates the lead that sales sees, even if the person goes no further.",
+      "The WhatsApp box is ticked by default, and it is how the customer later hears that a payment has settled.",
     ],
     funnel: {
       hideNote: true,
       cardNote: "Website sign-ups only; a few existing customers are included.",
-      landed: 17147,
-      moved: 12008,
-      movedMeans: "asked for an email code",
-      scope: "People who filled the sign-up form on skydo.com, where about four in five new accounts start.",
+      landed: 45255,
+      moved: 17056,
+      movedMeans: "submitted the form",
+      scope: "People who opened the Get Started form on skydo.com.",
       reasons: [
-        "They have just given a phone number and are now asked for an email and a code: a second \"who are you\" step they did not expect.",
-        "Most are on a phone, often inside the Instagram or Facebook browser, and many were only browsing after an ad.",
+        "Many open the form out of curiosity after an ad or while reading the page, and close it without filling it.",
+        "Giving a phone number before seeing the product feels like inviting a sales call.",
       ],
     },
   },
   "email-otp": {
-    title: "Email code",
+    title: "Email and code",
     why: [
-      "The six-digit code proves the person owns the email address they typed.",
-      "It is the only check at this stage. There is no phone code yet.",
-      "The customer can fix a typo without starting again, using the edit link on this screen.",
+      "Right after the form, the same popup asks for an email address and sends a six-digit code to it.",
+      "The code proves the person owns the email. The email becomes the account's main identity, so an email already attached to another user is refused.",
+      "The mobile number is kept from the form, but nothing is sent to the phone yet. The phone code comes later, at the identity step.",
+      "The customer can fix a typo without starting again, using the edit link on the code screen.",
     ],
     funnel: {
       cardNote: "Website sign-ups only; a few existing customers are included.",
-      landed: 12008,
-      moved: 9633,
+      landed: 17056,
+      moved: 9585,
       movedMeans: "entered the code and got into Skydo",
-      scope: "People who asked for a code on skydo.com, logged in within a day.",
+      scope: "People who submitted the form on skydo.com, logged in within a day.",
       reasons: [
+        "They have just given a phone number and are now asked for an email and a code: a second \"who are you\" step they did not expect.",
         "Getting the code means leaving the page for an inbox, and on a phone that is where people get distracted or the mail lands late.",
-        "Some never meant to open an account yet and stop once it asks for effort.",
-      ],
-    },
-  },
-  mobile: {
-    title: "Mobile number",
-    why: [
-      "The number is collected and saved, but nothing is sent to the phone at this point.",
-      "The phone code people expect comes later, at the identity step, after Aadhaar.",
-      "The WhatsApp box is ticked by default, and it is how the customer later hears that a payment has settled.",
-      "Two accounts are allowed to share one phone number, so this is not an identity check.",
-    ],
-    funnel: {
-      hideNote: true,
-      landed: 2800,
-      moved: 2300,
-      movedMeans: "saved a mobile number",
-      scope: "Only people who signed up on the Skydo login page itself see this screen; website sign-ups gave their number already.",
-      reasons: [
-        "It is another question straight after signing in, with nothing yet to show for it.",
       ],
     },
   },
