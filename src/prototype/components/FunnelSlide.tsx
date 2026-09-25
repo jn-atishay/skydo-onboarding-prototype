@@ -1,6 +1,6 @@
 // The opening slide: where the August 2026 leads went, before walking the journey.
 // Everyone who signed up between 1 and 31 August 2026 (a lead and a sign-up are the same
-// thing here), followed to 21 September, from production.
+// thing here), followed to 25 September, from production.
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 /** The slide is laid out on a fixed canvas and scaled to fit the frame, like a deck. */
@@ -37,29 +37,29 @@ function SlideCanvas({ children }: { children: React.ReactNode }) {
 }
 
 // Internal accounts and payees are left out throughout.
-const LEADS = 13844;
+const LEADS = 13840;
 
 /**
  * The headline: exporters whose first CC account was created in August (IST), and how
  * many of those have at least one successful transaction (dated by settlement date) as
- * of 21 September.
+ * of 25 September (transactions settled up to 24 September, 22:10 IST).
  */
-const AUG_ONBOARDINGS = 3185;
-const AUG_ACTIVATED = 825;
+const AUG_ONBOARDINGS = 3183;
+const AUG_ACTIVATED = 864;
 
 /**
- * How many of every 100 of August's leads reached each step, followed to 21 September.
+ * How many of every 100 of August's leads reached each step, followed to 25 September.
  * Onboarding completed and Activated use the same rules as the headline.
  */
 const FUNNEL: { label: string; people: number }[] = [
   { label: "Signup", people: LEADS },
-  { label: "PAN submitted", people: 8633 },
-  { label: "Business details submitted", people: 5550 },
-  { label: "Aadhaar verified", people: 4772 },
-  { label: "Bank account linked", people: 4592 },
-  { label: "Docs uploaded", people: 3448 },
-  { label: "Onboarding completed", people: 2897 },
-  { label: "Activated", people: 711 },
+  { label: "PAN submitted", people: 8639 },
+  { label: "Business details submitted", people: 5558 },
+  { label: "Aadhaar verified", people: 4782 },
+  { label: "Bank account linked", people: 4603 },
+  { label: "Docs uploaded", people: 3462 },
+  { label: "Onboarding completed", people: 2906 },
+  { label: "Activated", people: 744 },
 ];
 
 /**
@@ -98,7 +98,7 @@ export function FunnelSlide() {
     <SlideCanvas>
       <div className="proto-slide-inner">
         <p className="proto-slide-eyebrow">The funnel · August 2026</p>
-        <h1 className="proto-slide-title">August Signup to Activation Funnel (As of 21st Sept 2026)</h1>
+        <h1 className="proto-slide-title">August Signup to Activation Funnel (As of 25th Sept 2026)</h1>
 
         <div className="proto-slide-stats">
           <div className="proto-slide-stat">
@@ -153,7 +153,7 @@ export function FunnelSlide() {
         </div>
 
         <p className="proto-slide-foot">
-          Activation data as of 21 September 2026.
+          Activation data as of 25 September 2026.
         </p>
       </div>
     </SlideCanvas>

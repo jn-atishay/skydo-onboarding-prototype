@@ -454,3 +454,11 @@ kept in the browser; the email is never stored or sent).
 This is a courtesy gate, not security: the site is public, anyone can type a made-up
 @skydo.com address, and the page's content, including the August numbers, is in the
 published files for anyone who looks.
+
+## Opening slide refreshed to 25 Sep 2026
+Re-ran the slide's queries on production (transactions settled up to 24 Sep, 22:10 IST).
+Leads 13,840; onboardings in August 3,183; activated 864 (27.1%), of whom 400 made their
+first successful transaction in August. The out-of-100 funnel for August's leads:
+PAN 8,639, business details 5,558, Aadhaar 4,782, bank 4,603, docs 3,462, onboarded
+2,906, activated 744. The channel split is from Zoho for August onboardings and does not
+change with time, so it is unchanged. Title and footnote now say 25 September.
